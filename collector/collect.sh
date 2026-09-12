@@ -10,8 +10,8 @@ mkdir -p "$OUT"
 
 # Run a command with a time limit, whatever this platform has.
 run_to() {
-  if command -v timeout >/dev/null 2>&1; then timeout 20 "$@"
-  elif command -v perl >/dev/null 2>&1; then perl -e 'alarm 20; exec @ARGV' -- "$@"
+  if command -v timeout >/dev/null 2>&1; then timeout 8 "$@"
+  elif command -v perl >/dev/null 2>&1; then perl -e 'alarm 8; exec @ARGV' -- "$@"
   else "$@"
   fi
 }
@@ -40,11 +40,14 @@ while IFS= read -r tool; do
   fi
   command -v "$tool" > "$d/path.txt" 2>&1
   # BSD tools usually reject --help with "illegal option" and print their usage line: that is data too.
-  run_to "$tool" --help < /dev/null > "$d/help.txt" 2>&1; echo $? > "$d/help.code"
-  run_to "$tool" --version < /dev/null > "$d/version.txt" 2>&1; echo $? > "$d/version.code"
+  # Every output is capped: a BSD tool given --help may echo it forever (yes does), page, or wait.
+  run_to "$tool" --help < /dev/null > "$d/help.raw" 2>&1; echo $? > "$d/help.code"
+  head -c 200000 "$d/help.raw" > "$d/help.txt"; rm -f "$d/help.raw"
+  run_to "$tool" --version < /dev/null > "$d/version.raw" 2>&1; echo $? > "$d/version.code"
+  head -c 20000 "$d/version.raw" > "$d/version.txt"; rm -f "$d/version.raw"
   if command -v man >/dev/null 2>&1; then
     man -w "$tool" > "$d/man.path" 2>/dev/null || true
-    (MANWIDTH=200 COLUMNS=200 run_to man "$tool" 2>/dev/null | col -b) > "$d/man.txt" 2>/dev/null || true
+    (MANWIDTH=200 COLUMNS=200 run_to man "$tool" 2>/dev/null | col -b | head -c 400000) > "$d/man.txt" 2>/dev/null || true
     mp=$(head -1 "$d/man.path" 2>/dev/null || true)
     if [ -n "$mp" ] && [ -f "$mp" ]; then
       case "$mp" in

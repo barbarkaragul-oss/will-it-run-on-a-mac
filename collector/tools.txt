@@ -48,7 +48,7 @@ du
 df
 install
 timeout
-yes
+# yes: prints its arguments forever, so --help/--version on BSD never end; probed separately
 expr
 xargs
 find
