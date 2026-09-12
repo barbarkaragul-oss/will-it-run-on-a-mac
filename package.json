@@ -1,0 +1,25 @@
+{
+  "name": "will-it-run-on-a-mac",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Paste a shell script, see every flag that breaks on macOS or BusyBox, proven by that platform's own man page and a real run.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "extract": "tsx scripts/extract.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node --import tsx --test \"tests/*.test.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barbarkaragul-oss/will-it-run-on-a-mac"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
