@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will it run on a Mac? — shell script flag portability, proven by real runs</title>
+<meta name="description" content="Paste a shell script. Every flag that does not exist on macOS (BSD userland) or Alpine (BusyBox) is marked, with the platform's own man page line and a real execution on that platform as the proof.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍎</text></svg>">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Will it run on a Mac?</h1>
+    <p class="lede">Paste a shell script. Every flag that does not exist on macOS or BusyBox is marked, and the proof is that platform's own man page line and a real run of the binary there. Nothing is uploaded; the checks run in your browser.</p>
+    <nav class="links">
+      <a href="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac">GitHub</a>
+      <a href="#how">How it works</a>
+      <a href="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac/blob/main/collector/">The collector</a>
+      <button id="theme" type="button">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap grid">
+  <section class="panel editor">
+    <div class="row">
+      <label for="sample">Script</label>
+      <select id="sample"></select>
+      <span id="parse-status" class="muted"></span>
+    </div>
+    <p id="blurb" class="muted"></p>
+    <textarea id="script" spellcheck="false" rows="22" placeholder="#!/bin/sh"></textarea>
+    <div class="row platforms" id="platforms"></div>
+    <div class="row">
+      <button id="share" type="button">Copy link to this script</button>
+      <span id="status" class="muted">Loading the parser…</span>
+    </div>
+  </section>
+
+  <section class="panel results">
+    <div id="summary"></div>
+    <div id="findings"></div>
+  </section>
+</main>
+
+<section class="wrap how" id="how">
+  <h2>How it works</h2>
+  <p>A GitHub Actions matrix runs on <b>ubuntu-latest</b> (GNU coreutils), <b>macos-latest</b> (the BSD userland) and an <b>alpine</b> container (BusyBox). On each, for 80 common tools it records the <code>--help</code> output, the usage line and the man page source, and then <b>executes every short flag</b> <code>-a</code>…<code>-Z</code>, <code>-0</code>…<code>-9</code> and every long option any platform documents, classifying the answer by the tool's own unknown-option wording learned from a canary. That gives about 11,000 executions per platform, none of them hand-written. This page parses your script with <a href="https://github.com/tree-sitter/tree-sitter-bash">tree-sitter-bash</a>, resolves the static words, unwraps <code>sudo</code>, <code>env</code>, <code>xargs</code>, <code>find -exec</code> and <code>sh -c</code>, and looks every flag up. The order of trust: a real run beats the man page, the man page beats silence, and silence is reported as unknown.</p>
+  <p>What it does not do: expand variables (a dynamic word is reported as not checked), understand <code>find</code>'s expression language beyond the primaries it has recorded, or judge semantics when a flag exists on both sides with different meaning (<code>stat -f</code>). Shell builtins such as <code>echo -e</code> depend on the shell, not the userland, and are marked as such. Requested from ShellCheck since 2015 (<a href="https://github.com/koalaman/shellcheck/issues/479">#479</a>, <a href="https://github.com/koalaman/shellcheck/issues/2902">#2902</a>); ShellCheck knows which shell you target, this knows which userland you run on.</p>
+</section>
+
+<footer class="wrap muted">MIT · <a href="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac">source and data</a> · every verdict links to its evidence · <span id="dbinfo"></span></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

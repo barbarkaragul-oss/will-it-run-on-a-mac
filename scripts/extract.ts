@@ -103,7 +103,9 @@ export function parseHelpText(text: string, source: 'help' | 'usage' | 'man'): M
     if (om) {
       // The option spec is the part before the description gap: "-E, -r, --regexp-extended", "-i[SUFFIX], --in-place[=SUFFIX]", "-e CMD".
       const spec = line.split(/\s{2,}|\t/).filter(Boolean)[0] ?? '';
-      const specArg: FlagInfo['arg'] = /^\s*-[A-Za-z0-9#?] [A-Z][A-Z_]*(\b|$)/.test(line) || /^\s+-[A-Za-z0-9#?] [a-z]+\t/.test(line) ? 'required' : 'none';
+      // "-d, --delimiter=CHARACTER": the short option takes the same argument as its long form; "-e CMD" / "-f FILE" say it directly.
+      const longArg: FlagInfo['arg'] = /--[a-z][a-z0-9-]*\[=/.test(spec) ? 'optional' : /--[a-z][a-z0-9-]*=/.test(spec) ? 'required' : 'none';
+      const specArg: FlagInfo['arg'] = /^\s*-[A-Za-z0-9#?] [A-Z][A-Z_]*(\b|$)/.test(line) || /^\s+-[A-Za-z0-9#?] [a-z]+\t/.test(line) ? 'required' : longArg;
       for (const sm of spec.matchAll(/(?:^\s*|,\s*)(-[A-Za-z0-9#?])((?:\[[^\]]*\])?)(?=[,\s]|$)/g)) add(sm[1]!, sm[2] ? 'optional' : specArg, t);
     }
     if (/^\s+(-[A-Za-z0-9#?](\[[^\]]*\])?,?\s+)*--[a-z]/.test(line) || /^\s+--[a-z]/.test(line)) {

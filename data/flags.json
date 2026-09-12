@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T19:18:56.969Z",
+ "generated_at": "2026-09-12T19:40:55.892Z",
  "platforms": {
   "ubuntu": {
    "platform": "ubuntu",
@@ -2374,7 +2374,7 @@
      },
      "-w": {
       "flag": "-w",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -4107,7 +4107,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -11179,7 +11179,7 @@
      },
      "-a": {
       "flag": "-a",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -11207,7 +11207,7 @@
      },
      "-l": {
       "flag": "-l",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -12830,7 +12830,7 @@
      },
      "-i": {
       "flag": "-i",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -12862,7 +12862,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -18100,7 +18100,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -18286,7 +18286,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -27976,7 +27976,7 @@
      },
      "-b": {
       "flag": "-b",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -27990,7 +27990,7 @@
      },
      "-c": {
       "flag": "-c",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -28004,7 +28004,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -28018,7 +28018,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -29813,7 +29813,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -29827,7 +29827,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -29841,7 +29841,7 @@
      },
      "-r": {
       "flag": "-r",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -29855,7 +29855,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -31746,7 +31746,7 @@
      },
      "-B": {
       "flag": "-B",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -31872,7 +31872,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -31900,7 +31900,7 @@
      },
      "-x": {
       "flag": "-x",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34465,7 +34465,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -34479,7 +34479,7 @@
      },
      "-D": {
       "flag": "-D",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34507,7 +34507,7 @@
      },
      "-F": {
       "flag": "-F",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34521,7 +34521,7 @@
      },
      "-I": {
       "flag": "-I",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34549,7 +34549,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34577,7 +34577,7 @@
      },
      "-U": {
       "flag": "-U",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -34591,7 +34591,7 @@
      },
      "-W": {
       "flag": "-W",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34605,7 +34605,7 @@
      },
      "-X": {
       "flag": "-X",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -34661,7 +34661,7 @@
      },
      "-c": {
       "flag": "-c",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -34815,7 +34815,7 @@
      },
      "-u": {
       "flag": "-u",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -34857,7 +34857,7 @@
      },
      "-x": {
       "flag": "-x",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -40164,7 +40164,7 @@
      },
      "-B": {
       "flag": "-B",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -40248,7 +40248,7 @@
      },
      "-X": {
       "flag": "-X",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -40304,7 +40304,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -40388,7 +40388,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43323,7 +43323,7 @@
      },
      "-A": {
       "flag": "-A",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43337,7 +43337,7 @@
      },
      "-B": {
       "flag": "-B",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43351,7 +43351,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43365,7 +43365,7 @@
      },
      "-D": {
       "flag": "-D",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43589,7 +43589,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43603,7 +43603,7 @@
      },
      "-e": {
       "flag": "-e",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43617,7 +43617,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -43673,7 +43673,7 @@
      },
      "-m": {
       "flag": "-m",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -47757,7 +47757,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -47771,7 +47771,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -47799,7 +47799,7 @@
      },
      "-u": {
       "flag": "-u",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51185,7 +51185,7 @@
      },
      "-A": {
       "flag": "-A",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51199,7 +51199,7 @@
      },
      "-B": {
       "flag": "-B",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51213,7 +51213,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51227,7 +51227,7 @@
      },
      "-D": {
       "flag": "-D",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51451,7 +51451,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51465,7 +51465,7 @@
      },
      "-e": {
       "flag": "-e",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51479,7 +51479,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -51535,7 +51535,7 @@
      },
      "-m": {
       "flag": "-m",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -60183,7 +60183,7 @@
      },
      "-w": {
       "flag": "-w",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63502,7 +63502,7 @@
      },
      "-A": {
       "flag": "-A",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63516,7 +63516,7 @@
      },
      "-B": {
       "flag": "-B",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63530,7 +63530,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63544,7 +63544,7 @@
      },
      "-D": {
       "flag": "-D",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63768,7 +63768,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63782,7 +63782,7 @@
      },
      "-e": {
       "flag": "-e",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63796,7 +63796,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -63852,7 +63852,7 @@
      },
      "-m": {
       "flag": "-m",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -68377,7 +68377,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -71310,7 +71310,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -74105,7 +74105,7 @@
      },
      "-c": {
       "flag": "-c",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -74119,7 +74119,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -78130,7 +78130,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -78218,7 +78218,7 @@
      },
      "-g": {
       "flag": "-g",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -78232,7 +78232,7 @@
      },
      "-m": {
       "flag": "-m",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -78246,7 +78246,7 @@
      },
      "-o": {
       "flag": "-o",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -78288,7 +78288,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -81607,7 +81607,7 @@
      },
      "-l": {
       "flag": "-l",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -82028,7 +82028,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -82158,7 +82158,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -84549,7 +84549,7 @@
      },
      "-F": {
       "flag": "-F",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -84587,7 +84587,7 @@
      },
      "-I": {
       "flag": "-I",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -84671,7 +84671,7 @@
      },
      "-T": {
       "flag": "-T",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -84909,7 +84909,7 @@
      },
      "-p": {
       "flag": "-p",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -85003,7 +85003,7 @@
      },
      "-w": {
       "flag": "-w",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -90509,7 +90509,7 @@
      },
      "-m": {
       "flag": "-m",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -93705,7 +93705,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -93807,7 +93807,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95608,7 +95608,7 @@
      },
      "-b": {
       "flag": "-b",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95622,7 +95622,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95636,7 +95636,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95650,7 +95650,7 @@
      },
      "-h": {
       "flag": "-h",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95664,7 +95664,7 @@
      },
      "-i": {
       "flag": "-i",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95678,7 +95678,7 @@
      },
      "-l": {
       "flag": "-l",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95692,7 +95692,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95720,7 +95720,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95734,7 +95734,7 @@
      },
      "-v": {
       "flag": "-v",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -95748,7 +95748,7 @@
      },
      "-w": {
       "flag": "-w",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -98421,7 +98421,7 @@
      },
      "-A": {
       "flag": "-A",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -98435,7 +98435,7 @@
      },
      "-N": {
       "flag": "-N",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -98571,7 +98571,7 @@
      },
      "-j": {
       "flag": "-j",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -98639,7 +98639,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -100685,7 +100685,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -117129,7 +117129,7 @@
      },
      "-v": {
       "flag": "-v",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "man",
@@ -119908,7 +119908,7 @@
      },
      "-e": {
       "flag": "-e",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -119922,7 +119922,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -121801,7 +121801,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -121815,7 +121815,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131028,7 +131028,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131070,7 +131070,7 @@
      },
      "-S": {
       "flag": "-S",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131084,7 +131084,7 @@
      },
      "-T": {
       "flag": "-T",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131126,7 +131126,7 @@
      },
      "-c": {
       "flag": "-c",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131210,7 +131210,7 @@
      },
      "-k": {
       "flag": "-k",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131252,7 +131252,7 @@
      },
      "-o": {
       "flag": "-o",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -131294,7 +131294,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134705,7 +134705,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134719,7 +134719,7 @@
      },
      "-a": {
       "flag": "-a",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134733,7 +134733,7 @@
      },
      "-b": {
       "flag": "-b",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134775,7 +134775,7 @@
      },
      "-l": {
       "flag": "-l",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134789,7 +134789,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -134803,7 +134803,7 @@
      },
      "-t": {
       "flag": "-t",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -138201,7 +138201,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -139226,7 +139226,7 @@
      },
      "-c": {
       "flag": "-c",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -139240,7 +139240,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -139250,7 +139250,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -139278,7 +139278,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143387,7 +143387,7 @@
      },
      "-C": {
       "flag": "-C",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143401,7 +143401,7 @@
      },
      "-F": {
       "flag": "-F",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143429,7 +143429,7 @@
      },
      "-H": {
       "flag": "-H",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143443,7 +143443,7 @@
      },
      "-I": {
       "flag": "-I",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143471,7 +143471,7 @@
      },
      "-K": {
       "flag": "-K",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143485,7 +143485,7 @@
      },
      "-L": {
       "flag": "-L",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143513,7 +143513,7 @@
      },
      "-N": {
       "flag": "-N",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143583,7 +143583,7 @@
      },
      "-T": {
       "flag": "-T",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143611,7 +143611,7 @@
      },
      "-V": {
       "flag": "-V",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143639,7 +143639,7 @@
      },
      "-X": {
       "flag": "-X",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143681,7 +143681,7 @@
      },
      "-b": {
       "flag": "-b",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143723,7 +143723,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -143737,7 +143737,7 @@
      },
      "-g": {
       "flag": "-g",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -152669,7 +152669,7 @@
      },
      "-k": {
       "flag": "-k",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -152679,7 +152679,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -153676,7 +153676,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -153732,7 +153732,7 @@
      },
      "-r": {
       "flag": "-r",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -159820,7 +159820,7 @@
      },
      "-f": {
       "flag": "-f",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -159848,7 +159848,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -159876,7 +159876,7 @@
      },
      "-w": {
       "flag": "-w",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -172857,7 +172857,7 @@
      },
      "-L": {
       "flag": "-L",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -172871,7 +172871,7 @@
      },
      "-P": {
       "flag": "-P",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -172885,7 +172885,7 @@
      },
      "-a": {
       "flag": "-a",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -172899,7 +172899,7 @@
      },
      "-d": {
       "flag": "-d",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -172909,7 +172909,7 @@
      },
      "-e": {
       "flag": "-e",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -172923,7 +172923,7 @@
      },
      "-i": {
       "flag": "-i",
-      "arg": "none",
+      "arg": "optional",
       "evidence": [
        {
         "source": "help",
@@ -172951,7 +172951,7 @@
      },
      "-n": {
       "flag": "-n",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",
@@ -173007,7 +173007,7 @@
      },
      "-s": {
       "flag": "-s",
-      "arg": "none",
+      "arg": "required",
       "evidence": [
        {
         "source": "help",

@@ -149,6 +149,12 @@ function analyzeWords(db: Database, name: string, words: Word[], via: string[], 
       return;
     }
   }
+  if (!db.tools[name] && !BUILTINS.has(name)) {
+    // Not a recorded tool: its flags cannot be judged, and pretending otherwise would be noise.
+    finding.notes.push(`${name} is not recorded on any platform: not checked`);
+    out.push(finding);
+    return;
+  }
   let afterDashDash = false;
   let positional = 0;
   for (let i = 0; i < words.length; i++) {
