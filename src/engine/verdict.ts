@@ -24,6 +24,8 @@ export interface Verdict {
   evidence: Evidence[];
   /** The exhaustive execution result for this flag on this platform, when the tool was probed. */
   run?: RunResult;
+  /** The flag exists, but a recorded command using it still failed on this platform (sed -i 's/a/b/' f on macOS). */
+  caveat?: string;
   /** A scenario probe that exercised exactly this flag. */
   probe?: { id: string; command: string; code: number | null; stderr1: string };
 }
@@ -33,17 +35,29 @@ export const BUILTINS = new Set(['echo', 'printf', 'test', '[', 'cd', 'export', 
 
 const PLATFORM_LABEL: Record<Platform, string> = { ubuntu: 'Ubuntu (GNU)', macos: 'macOS (BSD)', alpine: 'Alpine (BusyBox)' };
 
-export function probeFor(db: Database, tool: string, flag: string, platform: Platform) {
+/** How the flag was written in the script: bare (`-i 's/a/b/'`), with an attached value (`-i.bak`), or followed by an empty string (`-i ''`). */
+export type Shape = 'bare' | 'attached' | 'empty';
+
+export function probeFor(db: Database, tool: string, flag: string, platform: Platform, shape: Shape = 'bare') {
   // A probe counts when its command starts with the tool (optionally after a `printf ... |` feed) and carries the flag
   // as its first option; failing that, a probe of the same tool that uses the flag anywhere (find . -name f -printf ...).
   const esc = flag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const first = new RegExp(`^(?:printf [^|]*\\| )?${tool} ${esc}(?=[ =]|$)`);
+  const first = new RegExp(shape === 'attached' ? `^(?:printf [^|]*\\| )?${tool} ${esc}[^ '"]` : `^(?:printf [^|]*\\| )?${tool} ${esc}(?=[ =]|$)`);
   const anywhere = new RegExp(`^(?:printf [^|]*\\| )?${tool} .*(?:^|\\s)${esc}(?=[\\s=]|$)`);
   const name = flag.replace(/^-+/, '');
+  const emptyArg = new RegExp(`${esc} ''`);
+  const attached = new RegExp(`${esc}[^ '"]`);
+  const shapeOk = (cmd: string) => shape === 'empty' ? emptyArg.test(cmd) : shape === 'attached' ? attached.test(cmd) : !emptyArg.test(cmd);
   const pick = (re: RegExp) => {
-    const hits = Object.values(db.probes).filter((p) => re.test(p.command) && p.results[platform]).map((p) => ({ id: p.id, command: p.command, code: p.results[platform]!.code, stderr1: p.results[platform]!.stderr1 }));
-    // Prefer a conclusive answer for this flag: a rejection that names it, then a clean run, then anything.
-    return hits.find((x) => x.code !== null && x.code !== 0 && rejectedName(x.stderr1) === name) ?? hits.find((x) => x.code === 0) ?? hits[0];
+    // Only scenarios written the same way count; a probe of another shape would tell a different story.
+    const hits = Object.values(db.probes).filter((p) => re.test(p.command) && p.results[platform] && shapeOk(p.command)).map((p) => ({ id: p.id, command: p.command, code: p.results[platform]!.code, stderr1: p.results[platform]!.stderr1 }));
+    // Prefer the most telling answer for this flag: a rejection that names it; then a failure that names no option
+    // (the flag was taken, the command still broke: sed -i 's/a/b/' f on macOS); then a clean run; then a failure
+    // caused by some other option in the same command.
+    return hits.find((x) => x.code !== null && x.code !== 0 && rejectedName(x.stderr1) === name)
+      ?? hits.find((x) => x.code !== null && x.code !== 0 && rejectedName(x.stderr1) === '')
+      ?? hits.find((x) => x.code === 0)
+      ?? hits[0];
   };
   return pick(first) ?? pick(anywhere);
 }
@@ -63,7 +77,7 @@ export function documentationIsComplete(t: ToolOnPlatform): boolean {
   return t.sources.includes('help') || t.sources.includes('mdoc') || t.sources.includes('usage') || t.sources.includes('man');
 }
 
-export function judge(db: Database, tool: string, flag: string, platform: Platform): Verdict {
+export function judge(db: Database, tool: string, flag: string, platform: Platform, shape: Shape = 'bare'): Verdict {
   const label = PLATFORM_LABEL[platform];
   if (BUILTINS.has(tool)) {
     return { platform, tool, flag, status: 'builtin', headline: `${tool} is a shell builtin: what ${flag} does depends on the shell (macOS /bin/sh is bash 3.2 in POSIX mode, Ubuntu's is dash, Alpine's is BusyBox ash), not on the userland.`, evidence: [] };
@@ -74,7 +88,7 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
   const info = t.flags[flag];
   const when = db.platforms[platform] ? ` (${db.platforms[platform].os || label}, run on ${db.platforms[platform].recorded_at.slice(0, 10)})` : '';
   const argNote = info?.arg === 'required' ? ', takes a required argument here' : info?.arg === 'optional' ? ', argument optional here' : '';
-  const probe = probeFor(db, tool, flag, platform);
+  const probe = probeFor(db, tool, flag, platform, shape);
   // 1. The flag was executed on this platform by the exhaustive probe: that answer wins.
   const run = t.runs?.[flag];
   if (run) {
@@ -83,9 +97,10 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
     }
     const how = run.code === 0 ? 'exit 0' : run.stderr1 ? `it complained about something else: "${run.stderr1}"` : `exit ${run.code}, no option error`;
     // A scenario probe can still show the flag behaving differently (date -d yesterday on BusyBox: the flag exists, the date format does not).
-    const caveat = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) !== flag.replace(/^-+/, '') ? ` The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
-    if (info) return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveat}`, evidence: info.evidence, run, ...(probe ? { probe } : {}) };
-    return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} is not in ${label}'s documentation, but the binary accepts it: executed there, ${how}${when}.${caveat}`, evidence: [], run, ...(probe ? { probe } : {}) };
+    const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === '' ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
+    const caveat = caveatText ? { caveat: caveatText } : {};
+    if (info) return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: info.evidence, run, ...(probe ? { probe } : {}), ...caveat };
+    return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} is not in ${label}'s documentation, but the binary accepts it: executed there, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: [], run, ...(probe ? { probe } : {}), ...caveat };
   }
   // 2. One of the scenario probes (collector/probes.txt) exercised exactly this flag.
   if (probe && probe.code !== null) {

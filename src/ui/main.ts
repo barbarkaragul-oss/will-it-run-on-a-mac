@@ -70,6 +70,8 @@ function worst(f: FlagFinding): { text: string; cls: string } {
   const bad = PLATFORMS.filter((p) => f.verdicts[p].status === 'rejected' || f.verdicts[p].status === 'missing-tool');
   const maybe = PLATFORMS.filter((p) => f.verdicts[p].status === 'missing');
   if (bad.length) return { text: `breaks on ${bad.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'rejected' };
+  const caveat = PLATFORMS.filter((p) => f.verdicts[p].caveat);
+  if (caveat.length) return { text: `exists, but this use failed on ${caveat.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'missing' };
   if (maybe.length) return { text: `not documented on ${maybe.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'missing' };
   if (PLATFORMS.every((p) => f.verdicts[p].status === 'builtin')) return { text: 'shell builtin', cls: 'builtin' };
   if (PLATFORMS.some((p) => f.verdicts[p].status === 'unknown')) return { text: 'partly unknown', cls: 'unknown' };

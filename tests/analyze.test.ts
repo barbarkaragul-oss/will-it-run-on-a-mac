@@ -33,8 +33,18 @@ date -d yesterday
   assert.deepEqual(a.parseErrors, []);
   const sedI = flag(a, 'sed', '-i')!;
   assert.equal(sedI.verdicts.ubuntu.status, 'ok');
+  assert.equal(sedI.verdicts.ubuntu.caveat, undefined);
   assert.equal(sedI.verdicts.macos.status, 'ok');
   assert.match(sedI.verdicts.macos.headline, /required argument/);
+  // the flag exists on macOS, and the classic use of it still fails there: that is the caveat
+  assert.match(sedI.verdicts.macos.caveat ?? '', /sed -i 's\/a\/b\/' f" still failed there/);
+  // the macOS-style fix is the mirror image: exists everywhere, breaks on GNU
+  const b = analyzeScript(parser, `sed -i '' 's/foo/bar/' file.txt\nsed -i.bak 's/x/y/' file.txt\n`, db);
+  const empty = find(b, 'sed')[0]!.flags[0]!;
+  assert.match(empty.verdicts.ubuntu.caveat ?? '', /sed -i '' 's\/a\/b\/' f" still failed there/);
+  assert.equal(empty.verdicts.macos.caveat, undefined);
+  const bak = find(b, 'sed')[1]!.flags[0]!;
+  for (const p of ['ubuntu', 'macos', 'alpine'] as const) assert.equal(bak.verdicts[p].caveat, undefined, `-i.bak is fine on ${p}`);
   assert.equal(flag(a, 'grep', '-P')!.verdicts.macos.status, 'rejected');
   assert.equal(flag(a, 'grep', '-P')!.verdicts.ubuntu.status, 'ok');
   assert.equal(flag(a, 'sort', '-V')!.verdicts.macos.status, 'ok');

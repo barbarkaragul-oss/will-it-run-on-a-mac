@@ -6,7 +6,7 @@
  */
 import type { Parser as TSParser, Node as TSNode, Tree as TSTree } from 'web-tree-sitter';
 import type { Database, Platform } from '../../scripts/extract.js';
-import { judge, flagsInWord, probeFor, BUILTINS, type Verdict } from './verdict.js';
+import { judge, flagsInWord, probeFor, BUILTINS, type Verdict, type Shape } from './verdict.js';
 
 export interface Pos { row: number; column: number }
 export interface FlagFinding {
@@ -226,10 +226,14 @@ function addFlags(db: Database, tool: string, wd: Word, finding: CommandFinding,
     }
   }
   for (const flag of flags) {
-    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p)])) as Record<Platform, Verdict>;
+    // The shape decides which recorded scenario is the closest match: -i.bak, -i '' and a bare -i are three different stories.
+    const rest = wholeFlag ? '' : v.startsWith('--') ? (v.includes('=') ? v.slice(v.indexOf('=') + 1) : '') : v.slice(v.indexOf(flag[1]!, 1) + 1);
+    const next = words[i + 1];
+    const shape: Shape = rest.length && flags[flags.length - 1] === flag ? 'attached' : next && next.isStatic && next.value === '' ? 'empty' : 'bare';
+    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p, shape)])) as Record<Platform, Verdict>;
     finding.flags.push({ flag, word: v, start: wd.start, end: wd.end, verdicts });
   }
-  void words; void i; void flagsInWord;
+  void flagsInWord;
   return consumed;
 }
 

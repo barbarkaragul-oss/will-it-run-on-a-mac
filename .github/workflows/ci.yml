@@ -1,0 +1,24 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - name: Build the site
+        run: npx tsx scripts/build.ts
+      - name: Built site must be committed
+        run: |
+          git diff --stat -- docs/app.js docs/index.html docs/style.css docs/data/index.json
+          git diff --quiet -- docs/app.js docs/index.html docs/style.css docs/data/index.json || { echo "docs/ is stale: run 'npx tsx scripts/build.ts' and commit"; exit 1; }
