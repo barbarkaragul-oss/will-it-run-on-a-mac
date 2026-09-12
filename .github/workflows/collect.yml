@@ -1,0 +1,44 @@
+name: collect
+# Records what each platform's tools say about themselves (--help, man pages) and what happens when
+# the classic GNU-only flags are actually executed there. Artifacts are the raw evidence.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - collector/**
+      - .github/workflows/collect.yml
+
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: ubuntu
+          - os: macos-latest
+            platform: macos
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - run: sh collector/collect.sh ${{ matrix.platform }}
+      - run: sh collector/probe.sh ${{ matrix.platform }}
+      - run: cat out/${{ matrix.platform }}/_platform.txt; head -5 out/${{ matrix.platform }}/_probes.tsv
+      - uses: actions/upload-artifact@v7
+        with:
+          name: out-${{ matrix.platform }}
+          path: out
+          if-no-files-found: error
+
+  alpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # BusyBox lives in a container; actions cannot run inside Alpine (no glibc), so docker run it is.
+      - run: docker run --rm -v "$PWD:/w" -w /w alpine:3.20 sh -c 'sh collector/collect.sh alpine && sh collector/probe.sh alpine'
+      - run: sudo chown -R "$(id -u)" out; cat out/alpine/_platform.txt; head -5 out/alpine/_probes.tsv
+      - uses: actions/upload-artifact@v7
+        with:
+          name: out-alpine
+          path: out
+          if-no-files-found: error

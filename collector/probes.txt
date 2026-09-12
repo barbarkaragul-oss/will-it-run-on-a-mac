@@ -1,0 +1,89 @@
+# id<TAB>command. Each runs in a fresh temp dir containing f (4 lines: b,a,a,c), g (copy of f), d/ (dir with x.txt).
+# The point is execution ground truth: exit code and first stderr line on each platform.
+sed-i-nosuffix	sed -i 's/a/b/' f
+sed-i-suffix	sed -i.bak 's/a/b/' f
+sed-i-empty	sed -i '' 's/a/b/' f
+sed-E	sed -E 's/(a)/\1/' f
+sed-r	sed -r 's/(a)/\1/' f
+sed-z	sed -z 's/a/b/' f
+grep-P	grep -P 'a+' f
+grep-o	grep -o a f
+grep-E	grep -E 'a|b' f
+grep-r-include	grep -r --include='*.txt' x d
+grep-color	grep --color=never a f
+readlink-f	readlink -f f
+realpath	realpath f
+date-d	date -d yesterday
+date-v	date -v-1d
+date-N	date +%s%N
+date-iso	date -Iseconds
+stat-c	stat -c %s f
+stat-f	stat -f %z f
+find-printf	find . -name f -printf '%p\n'
+find-maxdepth-first	find . -maxdepth 1 -name f
+find-maxdepth-after	find . -name f -maxdepth 1
+xargs-d	printf 'a\nb\n' | xargs -d '\n' echo
+xargs-r	printf '' | xargs -r echo
+xargs-0	printf 'a\0b\0' | xargs -0 echo
+xargs-I	printf 'a\n' | xargs -I{} echo {}
+cp-reflink	cp --reflink=auto f h
+cp-a	cp -a d e
+ls-color	ls --color=never
+ls-G	ls -G
+sort-V	sort -V f
+sort-h	sort -h f
+sort-s	sort -s f
+uniq-D	uniq -D f
+uniq-d	uniq -d f
+head-neg	head -n -1 f
+tail-plus	tail -n +2 f
+tail-f-noargs	tail -c 1 f
+wc-L	wc -L f
+du-b	du -b f
+du-h	du -h f
+base64-w	base64 -w0 f
+base64-b	base64 -b 0 f
+sha256sum	sha256sum f
+shasum-a256	shasum -a 256 f
+md5sum	md5sum f
+md5	md5 f
+timeout	timeout 1 true
+mktemp-noargs	mktemp
+mktemp-t	mktemp -t x
+mktemp-template	mktemp tmp.XXXXXX
+mktemp-d	mktemp -d
+seq	seq 1 3
+seq-w	seq -w 1 3
+echo-e	echo -e 'a\tb'
+echo-n	echo -n a
+sleep-frac	sleep 0.1
+tr-class	printf 'ab' | tr '[:lower:]' '[:upper:]'
+tr-d	printf 'ab' | tr -d a
+split-d	split -d -l 1 f part.
+split-l	split -l 1 f part.
+tar-wildcards	tar -cf t.tar f && tar -tf t.tar --wildcards 'f*'
+tar-czf	tar -czf t.tgz f
+tac	tac f
+rev	rev f
+nproc	nproc
+sysctl-ncpu	sysctl -n hw.ncpu
+column-t	column -t f
+cut-d	cut -d, -f1 f
+paste-s	paste -s f
+comm-12	comm -12 f g
+join	join f g
+install-D	install -D f d/sub/f2
+chmod-R	chmod -R u+r d
+touch-d	touch -d '2020-01-01' f
+touch-t	touch -t 202001010000 f
+ln-relative	ln -sr f link
+ln-s	ln -s f link2
+cp-u	cp -u f g
+mv-n	mv -n f f_moved
+rm-I	rm -I g
+rm-rf	rm -rf e
+expr-match	expr abc : 'a\(b\)'
+getopt-long	getopt -o a --long alpha -- -a
+which-s	which -s cat
+od-A	od -A x -t x1 f
+cksum	cksum f
