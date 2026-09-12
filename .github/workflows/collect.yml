@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v7
       - run: sh collector/collect.sh ${{ matrix.platform }}
       - run: sh collector/probe.sh ${{ matrix.platform }}
+      - run: sh collector/probe-all.sh ${{ matrix.platform }}
       - run: cat out/${{ matrix.platform }}/_platform.txt; head -5 out/${{ matrix.platform }}/_probes.tsv
       - uses: actions/upload-artifact@v7
         with:
@@ -35,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       # BusyBox lives in a container; actions cannot run inside Alpine (no glibc), so docker run it is.
-      - run: docker run --rm -v "$PWD:/w" -w /w alpine:3.20 sh -c 'sh collector/collect.sh alpine && sh collector/probe.sh alpine'
+      - run: docker run --rm -v "$PWD:/w" -w /w alpine:3.20 sh -c 'sh collector/collect.sh alpine && sh collector/probe.sh alpine && sh collector/probe-all.sh alpine'
       - run: sudo chown -R "$(id -u)" out; cat out/alpine/_platform.txt; head -5 out/alpine/_probes.tsv
       - uses: actions/upload-artifact@v7
         with:
