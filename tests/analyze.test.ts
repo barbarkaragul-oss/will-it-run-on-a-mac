@@ -58,7 +58,8 @@ sh -c 'stat -c %s f'
   const sed = find(a, 'sed')[0]!;
   assert.deepEqual(sed.via, ['sudo']);
   assert.equal(flag(a, 'sed', '-z')!.verdicts.macos.status, 'rejected');
-  assert.ok(flag(a, 'sudo', '-u'), 'the wrapper\'s own flag is checked too');
+  assert.ok(find(a, 'sudo')[0]!.notes.some((n) => /not recorded/.test(n)), 'sudo itself is not a recorded tool, so its own options are noted, not judged');
+  assert.ok(flag(a, 'env', '-i'), 'a recorded wrapper\'s own flag is checked');
   assert.deepEqual(find(a, 'sort')[0]!.via, ['env']);
   assert.equal(flag(a, 'xargs', '-0')!.verdicts.macos.status, 'ok');
   assert.equal(flag(a, 'cp', '--reflink')!.verdicts.macos.status, 'rejected');
@@ -100,4 +101,20 @@ tac f
   assert.equal(find(a, 'timeout').length, 1);
   assert.equal(find(a, 'tac').length, 1);
   assert.equal(a.commands.find((c) => c.name === 'tac')!.flags.length, 0);
+  assert.equal(a.commands.find((c) => c.name === 'tac')!.tool!.macos, 'missing');
+  assert.equal(a.commands.find((c) => c.name === 'timeout')!.tool!.macos, 'missing');
+  assert.equal(a.commands.find((c) => c.name === 'timeout')!.tool!.ubuntu, 'present');
+});
+
+test('find primaries: -printf is judged from the recorded run, -name is fine everywhere, nothing is called "not documented"', () => {
+  const a = analyzeScript(parser, `find . -name '*.log' -printf '%p\\n'
+split -d -l 100 "$TMP" chunk.
+`, db);
+  const printf = flag(a, 'find', '-printf')!;
+  assert.equal(printf.verdicts.macos.status, 'rejected');
+  assert.equal(printf.verdicts.ubuntu.status, 'ok-probed');
+  const name = flag(a, 'find', '-name')!;
+  for (const p of ['ubuntu', 'macos', 'alpine'] as const) assert.notEqual(name.verdicts[p].status, 'missing', p);
+  assert.equal(name.verdicts.macos.status, 'ok-probed');
+  assert.deepEqual(find(a, 'split')[0]!.notes, [], 'a quoted scalar operand is not reported as dynamic options');
 });

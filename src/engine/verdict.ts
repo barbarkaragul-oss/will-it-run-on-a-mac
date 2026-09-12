@@ -33,17 +33,23 @@ export const BUILTINS = new Set(['echo', 'printf', 'test', '[', 'cd', 'export', 
 
 const PLATFORM_LABEL: Record<Platform, string> = { ubuntu: 'Ubuntu (GNU)', macos: 'macOS (BSD)', alpine: 'Alpine (BusyBox)' };
 
-function probeFor(db: Database, tool: string, flag: string, platform: Platform) {
-  // A probe counts when its command starts with the tool and the flag, optionally after a `printf ... |` feed.
-  for (const p of Object.values(db.probes)) {
-    const m = /^(?:printf [^|]*\| )?([a-z0-9]+) (-[A-Za-z0-9]|--[a-z-]+)(?=[ =]|$)/.exec(p.command);
-    if (!m || m[1] !== tool || m[2] !== flag) continue;
-    const r = p.results[platform];
-    if (!r) continue;
-    return { id: p.id, command: p.command, code: r.code, stderr1: r.stderr1 };
-  }
-  return undefined;
+export function probeFor(db: Database, tool: string, flag: string, platform: Platform) {
+  // A probe counts when its command starts with the tool (optionally after a `printf ... |` feed) and carries the flag
+  // as its first option; failing that, a probe of the same tool that uses the flag anywhere (find . -name f -printf ...).
+  const esc = flag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const first = new RegExp(`^(?:printf [^|]*\\| )?${tool} ${esc}(?=[ =]|$)`);
+  const anywhere = new RegExp(`^(?:printf [^|]*\\| )?${tool} .*(?:^|\\s)${esc}(?=[\\s=]|$)`);
+  const name = flag.replace(/^-+/, '');
+  const pick = (re: RegExp) => {
+    const hits = Object.values(db.probes).filter((p) => re.test(p.command) && p.results[platform]).map((p) => ({ id: p.id, command: p.command, code: p.results[platform]!.code, stderr1: p.results[platform]!.stderr1 }));
+    // Prefer a conclusive answer for this flag: a rejection that names it, then a clean run, then anything.
+    return hits.find((x) => x.code !== null && x.code !== 0 && rejectedName(x.stderr1) === name) ?? hits.find((x) => x.code === 0) ?? hits[0];
+  };
+  return pick(first) ?? pick(anywhere);
 }
+
+/** Tools whose single-dash words are an expression language (find -name, test -f): their man pages list primaries in a form the extractor does not parse, so "not documented" would be a false claim. */
+export const EXPRESSION_TOOLS = new Set(['find', 'test', '[', 'expr']);
 
 function rejectedName(stderr1: string): string {
   const m = /option(?: --|:)? ?'?-{0,2}([A-Za-z0-9][A-Za-z0-9-]*)|unrecognized: (-{1,2}[A-Za-z0-9-]+)|Option (--?[A-Za-z0-9-]+) is not supported|unknown primary or operator: (-[A-Za-z0-9-]+)|(-[A-Za-z0-9-]+): unknown primary/.exec(stderr1);
@@ -95,7 +101,10 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
   if (info) {
     return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} is documented on ${label}${argNote ? ` (${argNote.slice(2)})` : ''}; not executed there.`, evidence: info.evidence, ...(probe ? { probe } : {}) };
   }
-  if (documentationIsComplete(t)) {
+  if (probe && probe.code !== null && probe.code !== 0 && !info) {
+    return { platform, tool, flag, status: 'unknown', headline: `${tool} ${flag}: the only recorded command using it failed on ${label} for another reason ("${probe.stderr1}"), and no documentation for it was parsed.`, evidence: [], probe };
+  }
+  if (documentationIsComplete(t) && !EXPRESSION_TOOLS.has(tool)) {
     const usage = Object.values(t.flags).flatMap((f) => f.evidence).find((e) => e.source === 'usage' || e.source === 'help');
     return { platform, tool, flag, status: 'missing', headline: `${tool} ${flag} is not among the options ${label}'s ${t.sources.join('/')} lists for ${tool}${t.version ? ` (${t.version})` : ''}; not executed there.`, evidence: usage ? [usage] : [], ...(probe ? { probe } : {}) };
   }

@@ -55,10 +55,14 @@ function schedule() { if (timer) clearTimeout(timer); timer = window.setTimeout(
 async function run(): Promise<void> {
   if (!parser || !index) return;
   const src = $<HTMLTextAreaElement>('script').value;
-  // First pass finds the command names (through wrappers); the second, with those tools loaded, judges the flags.
-  const first = analyzeScript(parser, src, db);
-  await ensureTools(namesIn(first));
-  const a = analyzeScript(parser, src, db);
+  // Each pass can reveal more tools (xargs CMD, find -exec CMD, sh -c '...') once the wrapper's own record is loaded.
+  let a = analyzeScript(parser, src, db);
+  for (let pass = 0; pass < 4; pass++) {
+    const before = Object.keys(db.tools).length;
+    await ensureTools(namesIn(a));
+    if (Object.keys(db.tools).length === before) break;
+    a = analyzeScript(parser, src, db);
+  }
   render(a, src);
 }
 
@@ -77,7 +81,8 @@ function render(a: Analysis, src: string): void {
   const summary = $('summary');
   const findings = $('findings');
   const flags = a.commands.flatMap((c) => c.flags);
-  const perPlatform = PLATFORMS.map((p) => ({ p, breaks: flags.filter((f) => f.verdicts[p].status === 'rejected' || f.verdicts[p].status === 'missing-tool').length, maybe: flags.filter((f) => f.verdicts[p].status === 'missing').length }));
+  const missingTools = (p: Platform) => a.commands.filter((c) => c.tool?.[p] === 'missing').length;
+  const perPlatform = PLATFORMS.map((p) => ({ p, breaks: flags.filter((f) => f.verdicts[p].status === 'rejected').length + missingTools(p), maybe: flags.filter((f) => f.verdicts[p].status === 'missing').length }));
   const unchecked = a.commands.reduce((n, c) => n + c.notes.length, 0) + a.commands.filter((c) => !c.checked).length;
   summary.replaceChildren(
     h('div', { class: 'summary-box' },
@@ -92,10 +97,15 @@ function render(a: Analysis, src: string): void {
 
 function renderCommand(c: CommandFinding, lines: string[]): HTMLElement {
   const lineText = (lines[c.start.row] ?? '').trim();
-  const clean = c.checked && c.flags.every((f) => worst(f).cls === 'ok') && c.notes.length === 0;
+  const clean = c.checked && c.flags.every((f) => worst(f).cls === 'ok') && c.notes.length === 0 && !(c.tool && PLATFORMS.some((p) => c.tool![p] === 'missing'));
   const card = h('div', { class: `cmd${clean ? ' clean' : ''}` });
   card.append(h('h3', {}, h('span', { class: 'line', text: `line ${c.start.row + 1}` }), h('code', { text: c.name }), c.via.length ? h('span', { class: 'via', text: `via ${c.via.join(' → ')}` }) : null, h('span', { class: 'muted mono', text: lineText.length > 90 ? lineText.slice(0, 87) + '…' : lineText })));
   if (!c.checked) { card.append(h('p', { class: 'note', text: c.notes[0] ?? 'not checked' })); return card; }
+  const gone = c.tool ? PLATFORMS.filter((p) => c.tool![p] === 'missing') : [];
+  if (gone.length) {
+    card.classList.remove('clean');
+    card.append(h('div', { class: 'flag' }, h('div', { class: 'head' }, h('code', { text: c.name }), h('span', { class: 'pill rejected', text: `no such tool on ${gone.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}` })), h('p', { class: 'note', text: `command -v ${c.name} found nothing on ${gone.map((p) => `${PLATFORM_NAME[p]} (${index?.platforms[p]?.os ?? p})`).join(' and ')} when the platforms were recorded.` })));
+  }
   for (const f of c.flags) card.append(renderFlag(c, f));
   for (const n of c.notes) card.append(h('p', { class: 'note', text: n }));
   if (c.flags.length === 0 && c.notes.length === 0) card.append(h('p', { class: 'note', text: 'no flags to check' }));
@@ -106,6 +116,11 @@ function renderFlag(c: CommandFinding, f: FlagFinding): HTMLElement {
   const w = worst(f);
   const el = h('div', { class: 'flag' });
   el.append(h('div', { class: 'head' }, h('code', { text: `${c.name} ${f.flag}` }), h('span', { class: `pill ${w.cls}`, text: w.text })));
+  if (PLATFORMS.every((p) => f.verdicts[p].status === 'builtin')) {
+    // One line is enough: the answer does not vary by userland.
+    el.append(h('p', { class: 'note', text: f.verdicts.macos.headline }));
+    return el;
+  }
   const per = h('div', { class: 'per' });
   for (const p of PLATFORMS) {
     const v = f.verdicts[p];

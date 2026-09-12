@@ -6,7 +6,7 @@
  */
 import type { Parser as TSParser, Node as TSNode, Tree as TSTree } from 'web-tree-sitter';
 import type { Database, Platform } from '../../scripts/extract.js';
-import { judge, flagsInWord, BUILTINS, type Verdict } from './verdict.js';
+import { judge, flagsInWord, probeFor, BUILTINS, type Verdict } from './verdict.js';
 
 export interface Pos { row: number; column: number }
 export interface FlagFinding {
@@ -28,6 +28,8 @@ export interface CommandFinding {
   notes: string[];
   /** Whether the command name was static; dynamic names are listed with no flags. */
   checked: boolean;
+  /** Is the tool itself there? (timeout and tac are not on macOS at all.) Undefined for builtins and unrecorded tools. */
+  tool?: Record<Platform, 'present' | 'missing' | 'unknown'> | undefined;
 }
 export interface Analysis {
   commands: CommandFinding[];
@@ -60,8 +62,7 @@ const WRAPPERS: Record<string, { valueFlags: string[]; skipFirstPositional?: num
 
 /** Tools whose first operand is a bundle of old-style letters (tar xvf, ps aux): not dash options, not checked as flags. */
 const OLD_STYLE = new Set(['tar', 'ps']);
-/** Tools whose dash-words are an expression language, not getopt flags. */
-const EXPRESSION_TOOLS = new Set(['find', 'test', '[', 'expr']);
+import { EXPRESSION_TOOLS } from './verdict.js';
 
 export interface StaticValue { value: string; isStatic: boolean }
 
@@ -108,8 +109,15 @@ function takesArg(db: Database, tool: string, flag: string): 'required' | 'optio
 }
 
 /** Turn the resolved words of one simple command into flag findings, unwrapping wrappers. */
+function presenceOf(db: Database, name: string): CommandFinding['tool'] {
+  if (BUILTINS.has(name) || !db.tools[name]) return undefined;
+  const out = {} as NonNullable<CommandFinding['tool']>;
+  for (const p of PLATFORMS) { const t = db.tools[name]?.[p]; out[p] = !t ? 'unknown' : t.present ? 'present' : 'missing'; }
+  return out;
+}
+
 function analyzeWords(db: Database, name: string, words: Word[], via: string[], start: Pos, end: Pos, out: CommandFinding[], parser: TSParser | undefined): void {
-  const finding: CommandFinding = { name, start, end, via, flags: [], notes: [], checked: true };
+  const finding: CommandFinding = { name, start, end, via, flags: [], notes: [], checked: true, tool: presenceOf(db, name) };
   const w = WRAPPERS[name];
   if (w && name !== 'xargs') {
     // Check the wrapper's own flags too (sudo -E, env -S, timeout -k are real portability questions), then recurse into the inner command.
@@ -121,7 +129,8 @@ function analyzeWords(db: Database, name: string, words: Word[], via: string[], 
       if (w.envPrefix && /^[A-Za-z_][A-Za-z0-9_]*=/.test(wd.value)) continue;
       if (wd.value === '--') { i++; break; }
       if (wd.value.startsWith('-') && wd.value.length > 1) {
-        addFlags(db, name, wd, finding, words, i, (f) => (w.valueFlags.includes(f) ? 'required' : 'none'));
+        if (db.tools[name]) addFlags(db, name, wd, finding, words, i, (f) => (w.valueFlags.includes(f) ? 'required' : 'none'));
+        else if (!finding.notes.length) finding.notes.push(`${name} is not recorded on any platform: its own options are not checked`);
         if (w.valueFlags.includes(wd.value)) i++;
         continue;
       }
@@ -159,7 +168,12 @@ function analyzeWords(db: Database, name: string, words: Word[], via: string[], 
   let positional = 0;
   for (let i = 0; i < words.length; i++) {
     const wd = words[i]!;
-    if (!wd.isStatic) { finding.notes.push(`"${wd.value}" is dynamic: not checked`); continue; }
+    if (!wd.isStatic) {
+      // An unquoted expansion ($OPTS, ${FLAGS}) or an array/positional splat ("$@", "${ARGS[@]}") may carry several
+      // options; a quoted scalar ("$TMP", "$ROOT/file") is one word and almost always an operand, so no note.
+      if (wd.type === 'simple_expansion' || wd.type === 'expansion' || /\$[@*]|\[@\]/.test(wd.value)) finding.notes.push(`${wd.value} is dynamic and may carry options: not checked`);
+      continue;
+    }
     const v = wd.value;
     if (afterDashDash) continue;
     if (v === '--') { afterDashDash = true; continue; }
@@ -173,7 +187,7 @@ function analyzeWords(db: Database, name: string, words: Word[], via: string[], 
     }
     if (EXPRESSION_TOOLS.has(name) && v.startsWith('-') && v.length > 2 && !v.startsWith('--')) {
       // find -name, -printf; test -f: single-dash words are primaries, judged only when some platform recorded an answer
-      if (PLATFORMS.some((p) => db.tools[name]?.[p]?.flags[v] || db.tools[name]?.[p]?.runs?.[v])) addFlags(db, name, wd, finding, words, i, () => 'none', v);
+      if (PLATFORMS.some((p) => db.tools[name]?.[p]?.flags[v] || db.tools[name]?.[p]?.runs?.[v] || probeFor(db, name, v, p))) addFlags(db, name, wd, finding, words, i, () => 'none', v);
       else finding.notes.push(`${v}: ${name} primary, not recorded on any platform`);
       continue;
     }
@@ -238,6 +252,7 @@ export function analyzeTree(tree: TSTree, db: Database, parser?: TSParser, via: 
     const words: Word[] = c.childrenForFieldName('argument').filter((a): a is TSNode => !!a).map((a) => { const r = resolveWord(a); return { ...r, start: pos(a.startPosition, offset), end: pos(a.endPosition, offset), type: a.type }; });
     analyzeWords(db, name, words, via, start, end, commands, parser);
   }
+  commands.sort((a, b) => a.start.row - b.start.row || a.start.column - b.start.column);
   const known = new Set(Object.keys(db.tools));
   const SHELLS = new Set(['sh', 'bash', 'dash', 'zsh', 'ksh']);
   const unknownTools = [...new Set(commands.filter((c) => c.checked && !known.has(c.name) && !BUILTINS.has(c.name) && !WRAPPERS[c.name] && !SHELLS.has(c.name)).map((c) => c.name))];
