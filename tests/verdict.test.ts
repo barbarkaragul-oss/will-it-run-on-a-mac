@@ -30,10 +30,15 @@ test('sed -z and grep -P exist on GNU only; the verdict names the platform docum
   assert.match(mz.probe!.stderr1, /illegal option -- z/);
   assert.equal(judge(db, 'sed', '-z', 'alpine').status, 'rejected');
   assert.equal(judge(db, 'grep', '-P', 'macos').status, 'rejected');
-  // a flag with no probe: documentation decides
+  // a flag with no scenario probe: the exhaustive run decides
   const ms = judge(db, 'sed', '-s', 'macos');
-  assert.equal(ms.status, 'missing');
-  assert.match(ms.headline, /not among the options/);
+  assert.equal(ms.status, 'rejected');
+  assert.match(ms.headline, /does not exist on macOS/);
+  assert.equal(ms.run!.result, 'rejected');
+  // a long option nobody documents was never run: documentation decides and says so
+  const nd = judge(db, 'sed', '--no-such-thing', 'macos');
+  assert.equal(nd.status, 'missing');
+  assert.match(nd.headline, /not executed there/);
 });
 
 test('uniq -D: fine on macOS 26, rejected by BusyBox; readlink -f works on all three today', () => {
@@ -48,7 +53,7 @@ test('missing tools, builtins, and documentation contradicted by a run', () => {
   assert.equal(judge(db, 'echo', '-e', 'macos').status, 'builtin');
   const d = judge(db, 'date', '-d', 'macos');
   assert.equal(d.status, 'rejected');
-  assert.match(d.headline, /documented on macOS .* but the recorded run rejected it/);
+  assert.match(d.headline, /does not exist on macOS .* The documentation still mentions it/);
   const c = judge(db, 'grep', '--color', 'alpine');
   assert.equal(c.status, 'ok-probed');
 });

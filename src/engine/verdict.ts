@@ -3,7 +3,7 @@
  * a real execution (probe) beats documentation, documentation beats silence, and silence is reported as
  * unknown rather than guessed.
  */
-import type { Database, Platform, ToolOnPlatform, Evidence } from '../../scripts/extract.js';
+import type { Database, Platform, ToolOnPlatform, Evidence, RunResult } from '../../scripts/extract.js';
 
 export type Status =
   | 'ok'            // documented on this platform (and no probe contradicts it)
@@ -22,6 +22,9 @@ export interface Verdict {
   /** One sentence for the card. */
   headline: string;
   evidence: Evidence[];
+  /** The exhaustive execution result for this flag on this platform, when the tool was probed. */
+  run?: RunResult;
+  /** A scenario probe that exercised exactly this flag. */
   probe?: { id: string; command: string; code: number | null; stderr1: string };
 }
 
@@ -62,8 +65,23 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
   const t = db.tools[tool]?.[platform];
   if (!t) return { platform, tool, flag, status: 'unknown', headline: `${tool} was not recorded on ${label}.`, evidence: [] };
   if (!t.present) return { platform, tool, flag, status: 'missing-tool', headline: `${tool} does not exist on ${label} (command -v ${tool} found nothing on the recorded system).`, evidence: [] };
-  const probe = probeFor(db, tool, flag, platform);
   const info = t.flags[flag];
+  const when = db.platforms[platform] ? ` (${db.platforms[platform].os || label}, run on ${db.platforms[platform].recorded_at.slice(0, 10)})` : '';
+  const argNote = info?.arg === 'required' ? ', takes a required argument here' : info?.arg === 'optional' ? ', argument optional here' : '';
+  const probe = probeFor(db, tool, flag, platform);
+  // 1. The flag was executed on this platform by the exhaustive probe: that answer wins.
+  const run = t.runs?.[flag];
+  if (run) {
+    if (run.result === 'rejected') {
+      return { platform, tool, flag, status: 'rejected', headline: `${tool} ${flag} does not exist on ${label}: the binary answered "${run.stderr1}"${when}${info ? '. The documentation still mentions it' : ''}.`, evidence: info?.evidence ?? [], run, ...(probe ? { probe } : {}) };
+    }
+    const how = run.code === 0 ? 'exit 0' : run.stderr1 ? `it complained about something else: "${run.stderr1}"` : `exit ${run.code}, no option error`;
+    // A scenario probe can still show the flag behaving differently (date -d yesterday on BusyBox: the flag exists, the date format does not).
+    const caveat = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) !== flag.replace(/^-+/, '') ? ` The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
+    if (info) return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveat}`, evidence: info.evidence, run, ...(probe ? { probe } : {}) };
+    return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} is not in ${label}'s documentation, but the binary accepts it: executed there, ${how}${when}.${caveat}`, evidence: [], run, ...(probe ? { probe } : {}) };
+  }
+  // 2. One of the scenario probes (collector/probes.txt) exercised exactly this flag.
   if (probe && probe.code !== null) {
     const name = flag.replace(/^-+/, '');
     if (probe.code !== 0 && rejectedName(probe.stderr1) === name) {
@@ -73,13 +91,13 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
       return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} is not in ${label}'s documentation, but the recorded run accepted it (exit 0).`, evidence: [], probe };
     }
   }
+  // 3. Documentation only.
   if (info) {
-    const argNote = info.arg === 'required' ? ' (takes a required argument here)' : info.arg === 'optional' ? ' (argument optional here)' : '';
-    return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} is documented on ${label}${argNote}.`, evidence: info.evidence, ...(probe ? { probe } : {}) };
+    return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} is documented on ${label}${argNote ? ` (${argNote.slice(2)})` : ''}; not executed there.`, evidence: info.evidence, ...(probe ? { probe } : {}) };
   }
   if (documentationIsComplete(t)) {
     const usage = Object.values(t.flags).flatMap((f) => f.evidence).find((e) => e.source === 'usage' || e.source === 'help');
-    return { platform, tool, flag, status: 'missing', headline: `${tool} ${flag} is not among the options ${label}'s ${t.sources.join('/')} lists for ${tool}${t.version ? ` (${t.version})` : ''}.`, evidence: usage ? [usage] : [], ...(probe ? { probe } : {}) };
+    return { platform, tool, flag, status: 'missing', headline: `${tool} ${flag} is not among the options ${label}'s ${t.sources.join('/')} lists for ${tool}${t.version ? ` (${t.version})` : ''}; not executed there.`, evidence: usage ? [usage] : [], ...(probe ? { probe } : {}) };
   }
   return { platform, tool, flag, status: 'unknown', headline: `No usable option list was recorded for ${tool} on ${label}.`, evidence: [] };
 }

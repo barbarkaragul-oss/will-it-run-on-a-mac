@@ -24,11 +24,27 @@ export interface FlagInfo {
   arg: 'none' | 'optional' | 'required' | 'unknown';
   evidence: Evidence[];
 }
+/**
+ * What happened when the flag was actually executed on the platform (collector/probe-all.sh): `rejected` means the
+ * tool answered with its own unknown-option message (learned from a canary); `recognized` means it did not, whether
+ * the command then succeeded or failed for another reason (missing operand, bad value).
+ */
+export interface RunResult {
+  result: 'rejected' | 'recognized';
+  code: number;
+  stderr1: string;
+  /** Which invocation the stderr line comes from: with an operand file or without. */
+  form: 'with' | 'without';
+}
 export interface ToolOnPlatform {
   present: boolean;
   path?: string;
   version?: string;
   flags: Record<string, FlagInfo>;
+  /** Execution results per flag, when the tool was safe to probe (see collector/probe-tools.txt). */
+  runs?: Record<string, RunResult>;
+  /** The tool's own wording for an unknown short and long option, as recorded from the canaries. */
+  rejects?: { short: string; long: string };
   /** Which sources were available for this tool on this platform. */
   sources: Evidence['source'][];
   /** True when the tool printed something on --help that looks like GNU long-option help (so absence of a flag there means something). */
@@ -148,6 +164,38 @@ function parsePlatform(platform: Platform, text: string): PlatformInfo {
   };
 }
 
+/** Parse _flagprobes.tsv into per-tool run results; tools whose canaries printed nothing cannot be classified and are skipped. */
+export function parseFlagProbes(text: string): Map<string, { runs: Record<string, RunResult>; rejects: { short: string; long: string } }> {
+  const byTool = new Map<string, { canary: { short: string; long: string }; rows: Array<{ flag: string; form: 'with' | 'without'; code: number; cls: string; stderr1: string }> }>();
+  for (const line of text.split('\n').slice(1)) {
+    if (!line.trim()) continue;
+    const [tool, flag, form, code, cls, ...rest] = line.split('\t');
+    if (!tool || !flag) continue;
+    const stderr1 = rest.join('\t');
+    const t = byTool.get(tool) ?? { canary: { short: '', long: '' }, rows: [] };
+    byTool.set(tool, t);
+    if (form === 'canary') { if (flag === '-~') t.canary.short = stderr1; else t.canary.long = stderr1; continue; }
+    if (form !== 'with' && form !== 'without') continue;
+    t.rows.push({ flag, form, code: Number(code), cls: cls ?? '', stderr1 });
+  }
+  const out = new Map<string, { runs: Record<string, RunResult>; rejects: { short: string; long: string } }>();
+  for (const [tool, t] of byTool) {
+    const runs: Record<string, RunResult> = {};
+    const forms = new Map<string, Array<(typeof t.rows)[number]>>();
+    for (const r of t.rows) (forms.get(r.flag) ?? forms.set(r.flag, []).get(r.flag)!).push(r);
+    for (const [flag, rows] of forms) {
+      const isLong = flag.startsWith('--');
+      if ((isLong && !t.canary.long) || (!isLong && !t.canary.short)) continue; // no wording to compare against
+      const rejectedAll = rows.every((r) => r.cls === 'rejected');
+      const recognized = rows.find((r) => r.cls === 'accepted') ?? rows.find((r) => r.cls === 'other');
+      if (rejectedAll) { const r = rows.find((x) => x.form === 'with') ?? rows[0]!; runs[flag] = { result: 'rejected', code: r.code, stderr1: r.stderr1.slice(0, 120), form: r.form }; }
+      else if (recognized) runs[flag] = { result: 'recognized', code: recognized.code, stderr1: recognized.stderr1.slice(0, 120), form: recognized.form };
+    }
+    out.set(tool, { runs, rejects: t.canary });
+  }
+  return out;
+}
+
 function parseProbes(platform: Platform, text: string, probes: Record<string, Probe>) {
   for (const line of text.split('\n').slice(1)) {
     if (!line.trim()) continue;
@@ -205,8 +253,12 @@ export function buildDatabase(): Database {
     if (!existsSync(pdir)) { console.warn(`no recordings for ${platform}`); continue; }
     db.platforms[platform] = parsePlatform(platform, read(path.join(pdir, '_platform.txt')) ?? '');
     parseProbes(platform, read(path.join(pdir, '_probes.tsv')) ?? '', db.probes);
+    const flagRuns = parseFlagProbes(read(path.join(pdir, '_flagprobes.tsv')) ?? '');
     for (const tool of readdirSync(pdir).filter((n) => !n.startsWith('_')).sort()) {
-      (db.tools[tool] ??= {})[platform] = extractTool(platform, path.join(pdir, tool));
+      const rec = extractTool(platform, path.join(pdir, tool));
+      const fr = flagRuns.get(tool);
+      if (fr && rec.present) { rec.runs = fr.runs; rec.rejects = fr.rejects; }
+      (db.tools[tool] ??= {})[platform] = rec;
     }
   }
   return db;
