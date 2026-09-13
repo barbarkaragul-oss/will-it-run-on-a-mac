@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T19:40:55.892Z",
+ "generated_at": "2026-09-13T07:26:40.837Z",
  "platforms": {
   "ubuntu": {
    "platform": "ubuntu",
-   "recorded_at": "2026-09-12T17:26:57Z",
+   "recorded_at": "2026-09-13T07:18:25Z",
    "kernel": "Linux runnervmlun5p 6.17.0-1022-azure",
    "os": "Ubuntu 24.04.5 LTS",
    "userland": "BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.",
@@ -12,8 +12,8 @@
   },
   "macos": {
    "platform": "macos",
-   "recorded_at": "2026-09-12T17:27:02Z",
-   "kernel": "Darwin sjc22-bt150-02a89a79-ab64-4bf3-bfab-7e6563cd7d5b-6A106B124713.local 25.6.0",
+   "recorded_at": "2026-09-13T07:18:31Z",
+   "kernel": "Darwin sjc22-bm208-e517672b-981a-4027-826c-52509d43b60d-425229A4CF95.local 25.6.0",
    "os": "macOS 26.6.2 (25G83)",
    "userland": "BSD userland (macOS)",
    "sh": "/bin/sh GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)",
@@ -21,8 +21,8 @@
   },
   "alpine": {
    "platform": "alpine",
-   "recorded_at": "2026-09-12T17:27:00Z",
-   "kernel": "Linux c710459a0b1b 6.17.0-1022-azure",
+   "recorded_at": "2026-09-13T07:18:32Z",
+   "kernel": "Linux 2f4e5f49fe96 6.17.0-1022-azure",
    "os": "",
    "userland": "BusyBox v1.36.1 (2025-11-23 14:32:18 UTC) multi-call binary.",
    "sh": "/bin/sh",
@@ -58708,9 +58708,9 @@
     "runs": {
      "-a": {
       "result": "recognized",
-      "code": 1,
-      "stderr1": "find: paths must precede expression: `probe.txt'",
-      "form": "with"
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      },
      "-b": {
       "result": "rejected",
@@ -58792,9 +58792,9 @@
      },
      "-o": {
       "result": "recognized",
-      "code": 1,
-      "stderr1": "find: paths must precede expression: `probe.txt'",
-      "form": "with"
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      },
      "-p": {
       "result": "rejected",
@@ -59077,11 +59077,516 @@
       "code": 1,
       "stderr1": "find: unknown predicate `-9'",
       "form": "with"
+     },
+     "-name": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-path": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ipath": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-wholename": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iwholename": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-regex": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iregex": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-regextype": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-lname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ilname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-type": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xtype": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-perm": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-empty": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-size": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-links": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-inum": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-samefile": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-user": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-group": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-uid": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-gid": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-nouser": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-nogroup": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-readable": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-writable": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-executable": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-anewer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-cnewer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Bnewer": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-Bnewer'",
+      "form": "primary"
+     },
+     "-newermt": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerat": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerct": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerBt": {
+      "result": "recognized",
+      "code": 1,
+      "stderr1": "find: This system does not provide a way to find the birth time of a file.",
+      "form": "primary"
+     },
+     "-newermm": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mtime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-atime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ctime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Btime": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-Btime'",
+      "form": "primary"
+     },
+     "-mmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-amin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-cmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Bmin": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-Bmin'",
+      "form": "primary"
+     },
+     "-used": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fstype": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-flags": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-flags'",
+      "form": "primary"
+     },
+     "-acl": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-acl'",
+      "form": "primary"
+     },
+     "-xattr": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-xattr'",
+      "form": "primary"
+     },
+     "-xattrname": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-xattrname'",
+      "form": "primary"
+     },
+     "-daystart": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-follow": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-depth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-maxdepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mindepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xdev": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mount": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-noleaf": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ignore_readdir_race": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-noignore_readdir_race": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xautofs": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unknown predicate `-xautofs'",
+      "form": "primary"
+     },
+     "-warn": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-nowarn": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-true": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-false": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-print": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-print0": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-printf": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fprintf": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fprint": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fprint0": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ls": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fls": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-exec": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-execdir": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ok": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "< echo ... . > ? < echo ... ./.err > ? < echo ... ./probe.txt > ? ",
+      "form": "primary"
+     },
+     "-okdir": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "< echo ... . > ? < echo ... ./.err > ? < echo ... ./probe.txt > ? ",
+      "form": "primary"
+     },
+     "-delete": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-prune": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-quit": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-not": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-and": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-or": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      }
     },
     "rejects": {
      "short": "find: unknown predicate `-~'",
-     "long": "find: unknown predicate `--wiroam-no-such-option'"
+     "long": "find: unknown predicate `--wiroam-no-such-option'",
+     "primary": "find: unknown predicate `-wiroamnosuch'"
     }
    },
    "macos": {
@@ -59281,10 +59786,10 @@
     "manParsed": true,
     "runs": {
      "-a": {
-      "result": "rejected",
-      "code": 1,
-      "stderr1": "find: illegal option -- a",
-      "form": "with"
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      },
      "-b": {
       "result": "rejected",
@@ -59365,10 +59870,10 @@
       "form": "with"
      },
      "-o": {
-      "result": "rejected",
-      "code": 1,
-      "stderr1": "find: illegal option -- o",
-      "form": "with"
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      },
      "-p": {
       "result": "rejected",
@@ -59651,11 +60156,516 @@
       "code": 1,
       "stderr1": "find: illegal option -- 9",
       "form": "with"
+     },
+     "-name": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-path": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ipath": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-wholename": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iwholename": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-regex": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iregex": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-regextype": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -regextype: unknown primary or operator",
+      "form": "primary"
+     },
+     "-lname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ilname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-type": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xtype": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -xtype: unknown primary or operator",
+      "form": "primary"
+     },
+     "-perm": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-empty": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-size": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-links": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-inum": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-samefile": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-user": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-group": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-uid": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-gid": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-nouser": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-nogroup": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-readable": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -readable: unknown primary or operator",
+      "form": "primary"
+     },
+     "-writable": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -writable: unknown primary or operator",
+      "form": "primary"
+     },
+     "-executable": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -executable: unknown primary or operator",
+      "form": "primary"
+     },
+     "-newer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-anewer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-cnewer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Bnewer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newermt": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerat": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerct": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newerBt": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newermm": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mtime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-atime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ctime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Btime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-amin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-cmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Bmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-used": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -used: unknown primary or operator",
+      "form": "primary"
+     },
+     "-fstype": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-flags": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-acl": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xattr": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xattrname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-daystart": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -daystart: unknown primary or operator",
+      "form": "primary"
+     },
+     "-follow": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-depth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-maxdepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mindepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xdev": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mount": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-noleaf": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ignore_readdir_race": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-noignore_readdir_race": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xautofs": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -xautofs: unknown primary or operator",
+      "form": "primary"
+     },
+     "-warn": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -warn: unknown primary or operator",
+      "form": "primary"
+     },
+     "-nowarn": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -nowarn: unknown primary or operator",
+      "form": "primary"
+     },
+     "-true": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-false": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-print": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-print0": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-printf": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -printf: unknown primary or operator",
+      "form": "primary"
+     },
+     "-fprintf": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -fprintf: unknown primary or operator",
+      "form": "primary"
+     },
+     "-fprint": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -fprint: unknown primary or operator",
+      "form": "primary"
+     },
+     "-fprint0": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -fprint0: unknown primary or operator",
+      "form": "primary"
+     },
+     "-ls": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-fls": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: -fls: unknown primary or operator",
+      "form": "primary"
+     },
+     "-exec": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-execdir": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ok": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "\"echo .\"? ",
+      "form": "primary"
+     },
+     "-okdir": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "\"echo .\"? ",
+      "form": "primary"
+     },
+     "-delete": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-prune": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-quit": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-not": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-and": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-or": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      }
     },
     "rejects": {
      "short": "find: illegal option -- ~",
-     "long": "find: illegal option -- -"
+     "long": "find: illegal option -- -",
+     "primary": "find: -wiroamnosuch: unknown primary or operator"
     }
    },
    "alpine": {
@@ -60069,11 +61079,516 @@
       "code": 1,
       "stderr1": "find: unrecognized: -9",
       "form": "with"
+     },
+     "-name": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iname": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-path": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ipath": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-wholename": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iwholename": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -iwholename",
+      "form": "primary"
+     },
+     "-regex": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-iregex": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -iregex",
+      "form": "primary"
+     },
+     "-regextype": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -regextype",
+      "form": "primary"
+     },
+     "-lname": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -lname",
+      "form": "primary"
+     },
+     "-ilname": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -ilname",
+      "form": "primary"
+     },
+     "-type": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xtype": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -xtype",
+      "form": "primary"
+     },
+     "-perm": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-empty": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-size": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-links": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-inum": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-samefile": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -samefile",
+      "form": "primary"
+     },
+     "-user": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-group": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-uid": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -uid",
+      "form": "primary"
+     },
+     "-gid": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -gid",
+      "form": "primary"
+     },
+     "-nouser": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -nouser",
+      "form": "primary"
+     },
+     "-nogroup": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -nogroup",
+      "form": "primary"
+     },
+     "-readable": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -readable",
+      "form": "primary"
+     },
+     "-writable": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -writable",
+      "form": "primary"
+     },
+     "-executable": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-newer": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-anewer": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -anewer",
+      "form": "primary"
+     },
+     "-cnewer": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -cnewer",
+      "form": "primary"
+     },
+     "-Bnewer": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -Bnewer",
+      "form": "primary"
+     },
+     "-newermt": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -newermt",
+      "form": "primary"
+     },
+     "-newerat": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -newerat",
+      "form": "primary"
+     },
+     "-newerct": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -newerct",
+      "form": "primary"
+     },
+     "-newerBt": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -newerBt",
+      "form": "primary"
+     },
+     "-newermm": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -newermm",
+      "form": "primary"
+     },
+     "-mtime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-atime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-ctime": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-Btime": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -Btime",
+      "form": "primary"
+     },
+     "-mmin": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-amin": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -amin",
+      "form": "primary"
+     },
+     "-cmin": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -cmin",
+      "form": "primary"
+     },
+     "-Bmin": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -Bmin",
+      "form": "primary"
+     },
+     "-used": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -used",
+      "form": "primary"
+     },
+     "-fstype": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -fstype",
+      "form": "primary"
+     },
+     "-flags": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -flags",
+      "form": "primary"
+     },
+     "-acl": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -acl",
+      "form": "primary"
+     },
+     "-xattr": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -xattr",
+      "form": "primary"
+     },
+     "-xattrname": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -xattrname",
+      "form": "primary"
+     },
+     "-daystart": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -daystart",
+      "form": "primary"
+     },
+     "-follow": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-depth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-maxdepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mindepth": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-xdev": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-mount": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -mount",
+      "form": "primary"
+     },
+     "-noleaf": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -noleaf",
+      "form": "primary"
+     },
+     "-ignore_readdir_race": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -ignore_readdir_race",
+      "form": "primary"
+     },
+     "-noignore_readdir_race": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -noignore_readdir_race",
+      "form": "primary"
+     },
+     "-xautofs": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -xautofs",
+      "form": "primary"
+     },
+     "-warn": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -warn",
+      "form": "primary"
+     },
+     "-nowarn": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -nowarn",
+      "form": "primary"
+     },
+     "-true": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -true",
+      "form": "primary"
+     },
+     "-false": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -false",
+      "form": "primary"
+     },
+     "-print": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-print0": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-printf": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -printf",
+      "form": "primary"
+     },
+     "-fprintf": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -fprintf",
+      "form": "primary"
+     },
+     "-fprint": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -fprint",
+      "form": "primary"
+     },
+     "-fprint0": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -fprint0",
+      "form": "primary"
+     },
+     "-ls": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -ls",
+      "form": "primary"
+     },
+     "-fls": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -fls",
+      "form": "primary"
+     },
+     "-exec": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-execdir": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -execdir",
+      "form": "primary"
+     },
+     "-ok": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -ok",
+      "form": "primary"
+     },
+     "-okdir": {
+      "result": "rejected",
+      "code": 1,
+      "stderr1": "find: unrecognized: -okdir",
+      "form": "primary"
+     },
+     "-delete": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-prune": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-quit": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-not": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-and": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
+     },
+     "-or": {
+      "result": "recognized",
+      "code": 0,
+      "stderr1": "",
+      "form": "primary"
      }
     },
     "rejects": {
      "short": "find: unrecognized: -~",
-     "long": "find: unrecognized: --wiroam-no-such-option"
+     "long": "find: unrecognized: --wiroam-no-such-option",
+     "primary": "find: unrecognized: -wiroamnosuch"
     }
    }
   },
@@ -92693,7 +94208,7 @@
      "-p": {
       "result": "recognized",
       "code": 1,
-      "stderr1": "mktemp: mkstemp failed on probe.txt/tmp.fdur5oANZc: Not a directory",
+      "stderr1": "mktemp: mkstemp failed on probe.txt/tmp.AK9ysBffQA: Not a directory",
       "form": "with"
      },
      "-q": {
@@ -178143,17 +179658,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.OEgB8DZ2xS/f"
+     "stdout1": "/tmp/tmp.QbaHUsnY2q/f"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/private/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.cJoVnSKlAk/f"
+     "stdout1": "/private/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.TPHEi0D1rM/f"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.HAbaHH/f"
+     "stdout1": "/tmp/tmp.pMjgCD/f"
     }
    }
   },
@@ -178164,17 +179679,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.WT909bj06I/f"
+     "stdout1": "/tmp/tmp.ONCDr2BgK0/f"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/private/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.tLjAUGjQPE/f"
+     "stdout1": "/private/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.6PREE9Bcnu/f"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.PGNoOH/f"
+     "stdout1": "/tmp/tmp.AbjAID/f"
     }
    }
   },
@@ -178185,7 +179700,7 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "Fri Sep 11 17:27:04 UTC 2026"
+     "stdout1": "Sat Sep 12 07:18:31 UTC 2026"
     },
     "macos": {
      "code": 1,
@@ -178211,7 +179726,7 @@
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "Fri Sep 11 17:27:38 UTC 2026"
+     "stdout1": "Sat Sep 12 07:19:06 UTC 2026"
     },
     "alpine": {
      "code": 1,
@@ -178227,17 +179742,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "1789234024583347370"
+     "stdout1": "1789283912004956285"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "1789234058067897000"
+     "stdout1": "1789283946112395000"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "1789234021"
+     "stdout1": "1789283913"
     }
    }
   },
@@ -178248,17 +179763,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "2026-09-12T17:27:04+00:00"
+     "stdout1": "2026-09-13T07:18:32+00:00"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "2026-09-12T17:27:38+00:00"
+     "stdout1": "2026-09-13T07:19:06+00:00"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "2026-09-12T17:27:01+00:00"
+     "stdout1": "2026-09-13T07:18:33+00:00"
     }
    }
   },
@@ -178920,17 +180435,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.UpVHXbcqhS"
+     "stdout1": "/tmp/tmp.hBS0Z0Ei6M"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.z1XoAd0wja"
+     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.5a7SO9HrnR"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.MNcmba"
+     "stdout1": "/tmp/tmp.lpkmCK"
     }
    }
   },
@@ -178946,7 +180461,7 @@
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/x.hBKHF5jp9w"
+     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/x.J4IdEKraHr"
     },
     "alpine": {
      "code": 1,
@@ -178962,17 +180477,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "tmp.k882rz"
+     "stdout1": "tmp.19FrAw"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "tmp.LnEkHG"
+     "stdout1": "tmp.vh9ni0"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "tmp.KaaeAb"
+     "stdout1": "tmp.jOIgNK"
     }
    }
   },
@@ -178983,17 +180498,17 @@
     "ubuntu": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.g5tB1zvCD6"
+     "stdout1": "/tmp/tmp.IYsRcBoTLt"
     },
     "macos": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.2kq1lKGoeC"
+     "stdout1": "/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T/tmp.0tfCr3tETG"
     },
     "alpine": {
      "code": 0,
      "stderr1": "",
-     "stdout1": "/tmp/tmp.IemBIb"
+     "stdout1": "/tmp/tmp.nChCdK"
     }
    }
   },
