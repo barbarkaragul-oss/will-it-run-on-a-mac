@@ -62,6 +62,13 @@ const WRAPPERS: Record<string, { valueFlags: string[]; skipFirstPositional?: num
 
 /** Tools whose first operand is a bundle of old-style letters (tar xvf, ps aux): not dash options, not checked as flags. */
 const OLD_STYLE = new Set(['tar', 'ps']);
+
+/** How many words each find primary takes as its value (union of GNU, BSD and BusyBox); -exec and friends are handled separately. */
+const FIND_PRIMARY_ARGS: Record<string, number> = Object.fromEntries([
+  ...['-name', '-iname', '-path', '-ipath', '-wholename', '-iwholename', '-regex', '-iregex', '-regextype', '-lname', '-ilname', '-type', '-xtype', '-perm', '-size', '-links', '-inum', '-samefile', '-user', '-group', '-uid', '-gid', '-newer', '-anewer', '-cnewer', '-Bnewer', '-mtime', '-atime', '-ctime', '-Btime', '-mmin', '-amin', '-cmin', '-Bmin', '-used', '-fstype', '-flags', '-xattrname', '-context', '-maxdepth', '-mindepth', '-printf', '-fprint', '-fprint0', '-fls'].map((p) => [p, 1]),
+  ...['-newermt', '-newerat', '-newerct', '-newerBt', '-newermm', '-newerma', '-newermc', '-newermB', '-neweram', '-neweraa', '-newerac', '-neweraB', '-newercm', '-newerca', '-newercc', '-newercB', '-newerBm', '-newerBa', '-newerBc', '-newerBB'].map((p) => [p, 1]),
+  ['-fprintf', 2],
+]);
 import { EXPRESSION_TOOLS } from './verdict.js';
 
 export interface StaticValue { value: string; isStatic: boolean }
@@ -189,6 +196,8 @@ function analyzeWords(db: Database, name: string, words: Word[], via: string[], 
       // find -name, -printf; test -f: single-dash words are primaries, judged only when some platform recorded an answer
       if (PLATFORMS.some((p) => db.tools[name]?.[p]?.flags[v] || db.tools[name]?.[p]?.runs?.[v] || probeFor(db, name, v, p))) addFlags(db, name, wd, finding, words, i, () => 'none', v);
       else finding.notes.push(`${v}: ${name} primary, not recorded on any platform`);
+      // The primary's own arguments are values, not primaries: -mtime -1, -perm -644, -fprintf FILE FORMAT
+      if (name === 'find') i += FIND_PRIMARY_ARGS[v] ?? 0;
       continue;
     }
     if (v.startsWith('-') && v.length > 1) {

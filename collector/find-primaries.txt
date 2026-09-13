@@ -1,0 +1,93 @@
+# find primaries and operators: primary<TAB>expression words (tab-separated)
+# Each expression is executed on every platform as `find . <words...>` in a scratch directory that holds
+# probe.txt, stdin from /dev/null, and classified by the platform's own unknown-primary wording, learned
+# from a canary (`find . -wiroamnosuch`). Arguments are chosen to be valid on every platform that has the
+# primary, so a rejection is about the primary, not its argument.
+# Union of GNU findutils, BSD (macOS) find and BusyBox find. Not here: -context (SELinux) and -d (a BSD
+# option before the path, a deprecated GNU alias after it; the exhaustive short-flag probe covers it).
+-name	-name	probe.txt
+-iname	-iname	PROBE.TXT
+-path	-path	./probe.txt
+-ipath	-ipath	./PROBE.TXT
+-wholename	-wholename	./probe.txt
+-iwholename	-iwholename	./PROBE.TXT
+-regex	-regex	.*
+-iregex	-iregex	.*
+-regextype	-regextype	posix-extended	-regex	.*
+-lname	-lname	x
+-ilname	-ilname	x
+-type	-type	f
+-xtype	-xtype	f
+-perm	-perm	-644
+-empty	-empty
+-size	-size	+0
+-links	-links	1
+-inum	-inum	1
+-samefile	-samefile	probe.txt
+-user	-user	root
+-group	-group	0
+-uid	-uid	0
+-gid	-gid	0
+-nouser	-nouser
+-nogroup	-nogroup
+-readable	-readable
+-writable	-writable
+-executable	-executable
+-newer	-newer	probe.txt
+-anewer	-anewer	probe.txt
+-cnewer	-cnewer	probe.txt
+-Bnewer	-Bnewer	probe.txt
+-newermt	-newermt	2020-01-01
+-newerat	-newerat	2020-01-01
+-newerct	-newerct	2020-01-01
+-newerBt	-newerBt	2020-01-01
+-newermm	-newermm	probe.txt
+-mtime	-mtime	-1
+-atime	-atime	-1
+-ctime	-ctime	-1
+-Btime	-Btime	-1
+-mmin	-mmin	-1
+-amin	-amin	-1
+-cmin	-cmin	-1
+-Bmin	-Bmin	-1
+-used	-used	1
+-fstype	-fstype	local
+-flags	-flags	nouchg
+-acl	-acl
+-xattr	-xattr
+-xattrname	-xattrname	x
+-daystart	-daystart	-mtime	-1
+-follow	-follow
+-depth	-depth
+-maxdepth	-maxdepth	1
+-mindepth	-mindepth	1
+-xdev	-xdev
+-mount	-mount
+-noleaf	-noleaf
+-ignore_readdir_race	-ignore_readdir_race
+-noignore_readdir_race	-noignore_readdir_race
+-xautofs	-xautofs
+-warn	-warn
+-nowarn	-nowarn
+-true	-true
+-false	-false
+-print	-print
+-print0	-print0
+-printf	-printf	%p\n
+-fprintf	-fprintf	out.txt	%p\n
+-fprint	-fprint	out.txt
+-fprint0	-fprint0	out.txt
+-ls	-ls
+-fls	-fls	out.txt
+-exec	-exec	echo	{}	;
+-execdir	-execdir	echo	{}	;
+-ok	-ok	echo	{}	;
+-okdir	-okdir	echo	{}	;
+-delete	-name	probe.txt	-delete
+-prune	-prune
+-quit	-quit
+-not	-not	-name	probe.txt
+-a	-name	probe.txt	-a	-name	probe.txt
+-o	-name	probe.txt	-o	-name	probe.txt
+-and	-name	probe.txt	-and	-name	probe.txt
+-or	-name	probe.txt	-or	-name	probe.txt

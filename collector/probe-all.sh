@@ -24,6 +24,7 @@ T=$(mktemp -d 2>/dev/null || mktemp -d -t wiroam)
 LETTERS="a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9"
 
 reset_dir() {
+  mkdir -p "$T" 2>/dev/null   # a probe (find -delete) may have removed it
   cd "$T" && rm -rf ./* .[!.]* 2>/dev/null
   printf 'b\na\na\nc\n' > probe.txt
 }
@@ -74,6 +75,33 @@ while IFS= read -r tool; do
     done
   done
 done < "$ROOT/collector/probe-tools.txt"
+
+# find primaries (collector/find-primaries.txt): after the path, a single-dash word is a primary, not an
+# option, and the platform rejects an unknown one with different wording, so it gets its own canary.
+probe_find() {   # $@: expression words after `find .`; prints "code<TAB>stderr1" (in a subshell, like probe)
+  reset_dir
+  run_to find . "$@" < /dev/null > /dev/null 2> "$T/.err"; c=$?
+  printf '%s\t%s' "$c" "$(first "$T/.err")"
+}
+if command -v find >/dev/null 2>&1 && [ -f "$ROOT/collector/find-primaries.txt" ]; then
+  TAB=$(printf '\t')
+  can3=$(probe_find -wiroamnosuch | cut -f2); can3s=$(printf '%s' "$can3" | sed 's/wiroamnosuch/%/')
+  printf '%s\t%s\t%s\t%s\t%s\t%s\n' find '-wiroamnosuch' canary '' canary "$can3" >> "$TSV"
+  while IFS= read -r line; do
+    case "$line" in ''|'#'*) continue ;; esac
+    key=${line%%"$TAB"*}; expr=${line#*"$TAB"}
+    # Split the expression on tabs only, with globbing off: "-regex .*" must reach find as written.
+    set -f; OLDIFS=$IFS; IFS=$TAB; set -- $expr; IFS=$OLDIFS; set +f
+    r=$(probe_find "$@"); code=${r%%	*}; e=${r#*	}
+    name=${key#-}
+    exp=$(printf '%s' "$can3s" | sed "s/%/$name/")
+    if [ -n "$can3" ] && [ "$e" = "$exp" ]; then cls=rejected
+    elif [ "$code" = 0 ]; then cls=accepted
+    else cls=other
+    fi
+    printf '%s\t%s\t%s\t%s\t%s\t%s\n' find "$key" primary "$code" "$cls" "$e" >> "$TSV"
+  done < "$ROOT/collector/find-primaries.txt"
+fi
 cd "$ROOT"
 rm -rf "$T"
 echo "flag probes on $P: $(($(wc -l < "$TSV") - 1)) rows"

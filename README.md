@@ -50,7 +50,7 @@ Nothing in the flag database is written by hand. [`collector/`](collector/) is a
 |---|---|
 | [`collect.sh`](collector/collect.sh) | `--help` output, the usage line a BSD tool prints on an unknown option, the rendered man page and its mdoc source |
 | [`probe.sh`](collector/probe.sh) | 87 scenario commands (`sed -i 's/a/b/' f`, `date -d yesterday`, `find . -printf`, …) with exit code, first stderr line and first stdout line |
-| [`probe-all.sh`](collector/probe-all.sh) | **every short flag** `-a`…`-z`, `-A`…`-Z`, `-0`…`-9` and **every long option any platform documents**, executed with and without an operand file; the answer is classified as *rejected* or *recognized* by comparing it with the tool's own unknown-option wording, learned from two canary invocations (`-~` and `--wiroam-no-such-option`) |
+| [`probe-all.sh`](collector/probe-all.sh) | **every short flag** `-a`…`-z`, `-A`…`-Z`, `-0`…`-9` and **every long option any platform documents**, executed with and without an operand file; the answer is classified as *rejected* or *recognized* by comparing it with the tool's own unknown-option wording, learned from two canary invocations (`-~` and `--wiroam-no-such-option`); plus **every `find` primary** in [`find-primaries.txt`](collector/find-primaries.txt), executed after a path (`find . -newermt 2020-01-01`) and classified by a third canary (`find . -wiroamnosuch`) |
 
 That is about 11,000 executions per platform per week. [`scripts/extract.ts`](scripts/extract.ts) turns the recordings into [`data/flags.json`](data/flags.json): per tool and platform, every documented flag with the verbatim line that documents it and its arity, every executed flag with its result, and the tool's version and path. The site loads one small file per tool. The weekly run commits the new database, so a flag that appears in a macOS release shows up as *ok* the next Monday, with the date.
 
@@ -81,7 +81,7 @@ To re-record: fork, run the **collect** workflow (Actions → collect → Run wo
 
 - **Existence, not semantics.** A flag can exist on two platforms and behave differently; the evidence lines are shown, the meaning is not compared.
 - **Dynamic words are not checked.** No variable expansion, no `eval`, no `$(which sed)`.
-- **`find` is an expression language.** Its primaries (`-name`, `-printf`, `-newermt`) are judged only where a recorded scenario used them; the rest are noted, not guessed.
+- **`find` is an expression language.** Its primaries (`-name`, `-printf`, `-newermt`, …) are not read from the man pages; each one in [`find-primaries.txt`](collector/find-primaries.txt) is executed after a path on every platform and judged by that run alone. A primary not in that list is noted, not guessed.
 - **Old-style bundles** (`tar xvf`, `ps aux`) and key=value tools (`dd if=`) are noted, not judged.
 - **Three platforms, one version each**, whatever the GitHub runner image is that week. FreeBSD, older macOS and other BusyBox builds are not recorded.
 - **Network and process tools** (`curl`, `wget`, `ssh`, `rsync`, `kill`, `pkill`) are documented but not exhaustively executed.

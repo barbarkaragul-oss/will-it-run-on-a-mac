@@ -33,8 +33,8 @@ export interface RunResult {
   result: 'rejected' | 'recognized';
   code: number;
   stderr1: string;
-  /** Which invocation the stderr line comes from: with an operand file or without. */
-  form: 'with' | 'without';
+  /** Which invocation the stderr line comes from: with an operand file, without, or as a find primary after the path. */
+  form: 'with' | 'without' | 'primary';
 }
 export interface ToolOnPlatform {
   present: boolean;
@@ -43,8 +43,8 @@ export interface ToolOnPlatform {
   flags: Record<string, FlagInfo>;
   /** Execution results per flag, when the tool was safe to probe (see collector/probe-tools.txt). */
   runs?: Record<string, RunResult>;
-  /** The tool's own wording for an unknown short and long option, as recorded from the canaries. */
-  rejects?: { short: string; long: string };
+  /** The tool's own wording for an unknown short and long option (and, for find, an unknown primary), as recorded from the canaries. */
+  rejects?: { short: string; long: string; primary?: string };
   /** Which sources were available for this tool on this platform. */
   sources: Evidence['source'][];
   /** True when the tool printed something on --help that looks like GNU long-option help (so absence of a flag there means something). */
@@ -166,9 +166,17 @@ function parsePlatform(platform: Platform, text: string): PlatformInfo {
   };
 }
 
-/** Parse _flagprobes.tsv into per-tool run results; tools whose canaries printed nothing cannot be classified and are skipped. */
-export function parseFlagProbes(text: string): Map<string, { runs: Record<string, RunResult>; rejects: { short: string; long: string } }> {
-  const byTool = new Map<string, { canary: { short: string; long: string }; rows: Array<{ flag: string; form: 'with' | 'without'; code: number; cls: string; stderr1: string }> }>();
+type Canaries = { short: string; long: string; primary?: string };
+type ProbeRow = { flag: string; form: RunResult['form']; code: number; cls: string; stderr1: string };
+
+/**
+ * Parse _flagprobes.tsv into per-tool run results. A row is only usable when the canary of its kind (short option,
+ * long option, find primary) printed something to compare against; tools whose canaries printed nothing are skipped.
+ * The same flag can have rows of several kinds (find -a: an option before the path, an operator after it); it is
+ * rejected only when every usable row rejected it.
+ */
+export function parseFlagProbes(text: string): Map<string, { runs: Record<string, RunResult>; rejects: Canaries }> {
+  const byTool = new Map<string, { canary: Canaries; rows: ProbeRow[] }>();
   for (const line of text.split('\n').slice(1)) {
     if (!line.trim()) continue;
     const [tool, flag, form, code, cls, ...rest] = line.split('\t');
@@ -176,24 +184,31 @@ export function parseFlagProbes(text: string): Map<string, { runs: Record<string
     const stderr1 = rest.join('\t');
     const t = byTool.get(tool) ?? { canary: { short: '', long: '' }, rows: [] };
     byTool.set(tool, t);
-    if (form === 'canary') { if (flag === '-~') t.canary.short = stderr1; else t.canary.long = stderr1; continue; }
-    if (form !== 'with' && form !== 'without') continue;
+    if (form === 'canary') {
+      if (flag === '-~') t.canary.short = stderr1;
+      else if (flag === '-wiroamnosuch') t.canary.primary = stderr1;
+      else t.canary.long = stderr1;
+      continue;
+    }
+    if (form !== 'with' && form !== 'without' && form !== 'primary') continue;
     t.rows.push({ flag, form, code: Number(code), cls: cls ?? '', stderr1 });
   }
-  const out = new Map<string, { runs: Record<string, RunResult>; rejects: { short: string; long: string } }>();
+  const out = new Map<string, { runs: Record<string, RunResult>; rejects: Canaries }>();
   for (const [tool, t] of byTool) {
     const runs: Record<string, RunResult> = {};
-    const forms = new Map<string, Array<(typeof t.rows)[number]>>();
+    const forms = new Map<string, ProbeRow[]>();
     for (const r of t.rows) (forms.get(r.flag) ?? forms.set(r.flag, []).get(r.flag)!).push(r);
-    for (const [flag, rows] of forms) {
-      const isLong = flag.startsWith('--');
-      if ((isLong && !t.canary.long) || (!isLong && !t.canary.short)) continue; // no wording to compare against
+    const canaryFor = (r: ProbeRow) => r.form === 'primary' ? t.canary.primary ?? '' : r.flag.startsWith('--') ? t.canary.long : t.canary.short;
+    for (const [flag, all] of forms) {
+      const rows = all.filter((r) => canaryFor(r)); // no wording to compare against: not classifiable
+      if (!rows.length) continue;
       const rejectedAll = rows.every((r) => r.cls === 'rejected');
       const recognized = rows.find((r) => r.cls === 'accepted') ?? rows.find((r) => r.cls === 'other');
       if (rejectedAll) { const r = rows.find((x) => x.form === 'with') ?? rows[0]!; runs[flag] = { result: 'rejected', code: r.code, stderr1: r.stderr1.slice(0, 120), form: r.form }; }
       else if (recognized) runs[flag] = { result: 'recognized', code: recognized.code, stderr1: recognized.stderr1.slice(0, 120), form: recognized.form };
     }
-    out.set(tool, { runs, rejects: t.canary });
+    const rejects: Canaries = { short: t.canary.short, long: t.canary.long, ...(t.canary.primary ? { primary: t.canary.primary } : {}) };
+    out.set(tool, { runs, rejects });
   }
   return out;
 }

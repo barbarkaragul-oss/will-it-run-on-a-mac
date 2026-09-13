@@ -66,8 +66,8 @@ export function probeFor(db: Database, tool: string, flag: string, platform: Pla
 export const EXPRESSION_TOOLS = new Set(['find', 'test', '[', 'expr']);
 
 function rejectedName(stderr1: string): string {
-  const m = /option(?: --|:)? ?'?-{0,2}([A-Za-z0-9][A-Za-z0-9-]*)|unrecognized: (-{1,2}[A-Za-z0-9-]+)|Option (--?[A-Za-z0-9-]+) is not supported|unknown primary or operator: (-[A-Za-z0-9-]+)|(-[A-Za-z0-9-]+): unknown primary/.exec(stderr1);
-  return m ? (m[1] ?? m[2] ?? m[3] ?? m[4] ?? m[5] ?? '').replace(/^-+/, '').replace(/=.*$/, '') : '';
+  const m = /option(?: --|:)? ?'?-{0,2}([A-Za-z0-9][A-Za-z0-9-]*)|unrecognized: (-{1,2}[A-Za-z0-9_-]+)|Option (--?[A-Za-z0-9-]+) is not supported|unknown primary or operator: (-[A-Za-z0-9_-]+)|(-[A-Za-z0-9_-]+): unknown primary|unknown predicate .(-[A-Za-z0-9_-]+)/.exec(stderr1);
+  return m ? (m[1] ?? m[2] ?? m[3] ?? m[4] ?? m[5] ?? m[6] ?? '').replace(/^-+/, '').replace(/=.*$/, '') : '';
 }
 
 /** Does this tool's record on this platform list its options completely enough that absence means something? */
@@ -100,6 +100,8 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
     const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === '' ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
     const caveat = caveatText ? { caveat: caveatText } : {};
     if (info) return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: info.evidence, run, ...(probe ? { probe } : {}), ...caveat };
+    // find primaries are not parsed from the man pages at all, so "not in the documentation" would be a false claim there.
+    if (EXPRESSION_TOOLS.has(tool)) return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} exists on ${label}: executed there${run.form === 'primary' ? ` as \`${tool} . ${flag} ...\`` : ''}, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: [], run, ...(probe ? { probe } : {}), ...caveat };
     return { platform, tool, flag, status: 'ok-probed', headline: `${tool} ${flag} is not in ${label}'s documentation, but the binary accepts it: executed there, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: [], run, ...(probe ? { probe } : {}), ...caveat };
   }
   // 2. One of the scenario probes (collector/probes.txt) exercised exactly this flag.
