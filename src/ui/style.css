@@ -17,6 +17,10 @@ h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -.3px; }
 .lede { margin: 0 0 10px; max-width: 900px; color: var(--muted); }
 .links { display: flex; gap: 14px; align-items: center; font-size: 13px; }
 .links button { font-size: 12px; padding: 3px 9px; border: 1px solid var(--border); background: var(--panel); color: var(--fg); border-radius: 6px; cursor: pointer; }
+/* The one call to action on the page: a plain link, no third-party button, no tracking iframe. */
+.links a.star { font-size: 12px; padding: 3px 9px; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; text-decoration: none; }
+.links a.star:hover { background: var(--accent); color: var(--panel); }
+.links a.star .glyph { margin-right: 4px; }
 .grid { display: grid; grid-template-columns: minmax(360px, 5fr) minmax(380px, 6fr); gap: 16px; align-items: start; }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
