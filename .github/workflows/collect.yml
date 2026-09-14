@@ -4,7 +4,11 @@ name: collect
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 5 * * 1'   # Mondays 05:17 UTC: re-record every platform, rebuild the database, commit if it changed
+    # GitHub queues scheduled workflows and drops them to the back of the line at busy times;
+    # the top of the hour is the worst, and '0 6 * * 1' is one of the most common crons there is.
+    # On 2026-09-14 all four of these repos missed their slot by more than three hours, so the
+    # times were moved to odd minutes, spread apart so they do not queue behind each other either.
+    - cron: '19 7 * * 1'   # Mondays 07:19 UTC: re-record every platform, rebuild the database, commit if it changed
   push:
     paths:
       - collector/**
