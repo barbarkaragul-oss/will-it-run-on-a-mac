@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-15T13:57:07.111Z",
+ "generated_at": "2026-09-15T14:06:24.409Z",
  "shells": {
   "alpine": {
    "/bin/sh": {
@@ -3715,7 +3715,7 @@
   },
   "compgen": {
    "label": "compgen",
-   "snippet": "compgen -A function >/dev/null || exit 9; printf 'ok\\n'",
+   "snippet": "compgen -A builtin >/dev/null || exit 9; printf 'ok\\n'",
    "results": {
     "alpine|/bin/sh": {
      "exit": 9,
@@ -3728,8 +3728,8 @@
      "stderr1": "/bin/ash: compgen: not found"
     },
     "alpine|/bin/bash": {
-     "exit": 9,
-     "stdout1": "",
+     "exit": 0,
+     "stdout1": "ok",
      "stderr1": ""
     },
     "alpine|/bin/zsh": {
@@ -3743,13 +3743,13 @@
      "stderr1": "/usr/bin/dash: 1: compgen: not found"
     },
     "macos|/bin/bash": {
-     "exit": 9,
-     "stdout1": "",
+     "exit": 0,
+     "stdout1": "ok",
      "stderr1": ""
     },
     "macos|/bin/sh": {
-     "exit": 9,
-     "stdout1": "",
+     "exit": 0,
+     "stdout1": "ok",
      "stderr1": ""
     },
     "macos|/bin/zsh": {
@@ -3763,8 +3763,8 @@
      "stderr1": "/bin/ksh: compgen: not found"
     },
     "ubuntu|/bin/bash": {
-     "exit": 9,
-     "stdout1": "",
+     "exit": 0,
+     "stdout1": "ok",
      "stderr1": ""
     },
     "ubuntu|/bin/sh": {
