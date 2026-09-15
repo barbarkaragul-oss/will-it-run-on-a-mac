@@ -1,0 +1,4477 @@
+{
+ "generated_at": "2026-09-15T12:30:49.723Z",
+ "shells": {
+  "alpine": {
+   "/bin/sh": {
+    "kind": "busybox",
+    "version": "v1.36.1 (2025-11-23 14:32:18 UTC)"
+   },
+   "/bin/ash": {
+    "kind": "busybox",
+    "version": "v1.36.1 (2025-11-23 14:32:18 UTC)"
+   },
+   "/bin/bash": {
+    "kind": "bash",
+    "version": "5.2.26(1)-release"
+   },
+   "/bin/zsh": {
+    "kind": "zsh",
+    "version": "5.9"
+   },
+   "/usr/bin/dash": {
+    "kind": "dash",
+    "version": "dash: Small and fast POSIX-compliant shell"
+   }
+  },
+  "macos": {
+   "/bin/bash": {
+    "kind": "bash",
+    "version": "3.2.57(1)-release"
+   },
+   "/bin/sh": {
+    "kind": "bash",
+    "version": "3.2.57(1)-release"
+   },
+   "/bin/zsh": {
+    "kind": "zsh",
+    "version": "5.9"
+   },
+   "/bin/ksh": {
+    "kind": "ksh",
+    "version": "Version AJM 93u+ 2012-08-01"
+   }
+  },
+  "ubuntu": {
+   "/bin/bash": {
+    "kind": "bash",
+    "version": "5.2.21(1)-release"
+   },
+   "/bin/sh": {
+    "kind": "dash",
+    "version": "0.5.12-6ubuntu5"
+   },
+   "/bin/dash": {
+    "kind": "dash",
+    "version": "0.5.12-6ubuntu5"
+   },
+   "/bin/zsh": {
+    "kind": "zsh",
+    "version": "5.9"
+   },
+   "/bin/ksh": {
+    "kind": "ksh",
+    "version": "Version AJM 93u+m/1.0.8 2024-01-01"
+   }
+  }
+ },
+ "probes": {
+  "identity": {
+   "label": "which shell is this",
+   "snippet": "printf '%s|%s|%s\\n' \"${BASH_VERSION:-nobash}\" \"${ZSH_VERSION:-nozsh}\" \"${KSH_VERSION:-noksh}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|noksh",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|noksh",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "5.2.26(1)-release|nozsh|noksh",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3.2.57(1)-release|nozsh|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3.2.57(1)-release|nozsh|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|Version AJM 93u+ 2012-08-01",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "5.2.21(1)-release|nozsh|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "nobash|nozsh|Version AJM 93u+m/1.0.8 2024-01-01",
+     "stderr1": ""
+    }
+   }
+  },
+  "array_index": {
+   "label": "arrays start at 0",
+   "snippet": "arr=(a b c) || exit 9; printf '%s\\n' \"${arr[1]}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    }
+   }
+  },
+  "array_length": {
+   "label": "${#arr[@]} counts elements",
+   "snippet": "arr=(a b c) || exit 9; printf '%s\\n' \"${#arr[@]}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "array_all": {
+   "label": "\"${arr[@]}\" expands one word per element",
+   "snippet": "arr=(a b c) || exit 9; set -- \"${arr[@]}\"; printf '%s\\n' \"$#\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected \"(\""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "word_split": {
+   "label": "unquoted $var splits on whitespace",
+   "snippet": "v='a b c'; set -- $v; printf '%s\\n' \"$#\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "ifs_split": {
+   "label": "unquoted $var splits on IFS",
+   "snippet": "IFS=,; v='a,b,c'; set -- $v; printf '%s\\n' \"$#\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "glob_nomatch": {
+   "label": "a glob with no match stays literal",
+   "snippet": "printf '%s\\n' /definitely/not/here/*.xyz",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    }
+   }
+  },
+  "glob_nomatch_for": {
+   "label": "for over a glob with no match runs once with the pattern",
+   "snippet": "n=0; for f in /definitely/not/here/*.xyz; do n=$((n+1)); done; printf '%s\\n' \"$n\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    }
+   }
+  },
+  "pipe_read": {
+   "label": "read at the end of a pipeline runs in a subshell",
+   "snippet": "printf 'hi\\n' | read v; printf '[%s]\\n' \"$v\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    }
+   }
+  },
+  "alias_in_script": {
+   "label": "aliases are not expanded in scripts",
+   "snippet": "alias probealias='printf aliased'; probealias",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: probealias: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/ash: probealias: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: probealias: command not found"
+    },
+    "alpine|/bin/zsh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: probealias: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: probealias: command not found"
+    },
+    "macos|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: probealias: command not found"
+    },
+    "macos|/bin/zsh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "macos|/bin/ksh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: probealias: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: probealias: command not found"
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: probealias: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: probealias: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: probealias: not found"
+    }
+   }
+  },
+  "double_bracket": {
+   "label": "[[ ]] with pattern match",
+   "snippet": "[[ abc == a* ]] && printf 'yes\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: [[: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: [[: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    }
+   }
+  },
+  "single_bracket_eqeq": {
+   "label": "[ a == b ] (== inside single brackets)",
+   "snippet": "[ abc == abc ] && printf 'yes\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: = not found"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: [: abc: unexpected operator"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: = not found"
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: [: abc: unexpected operator"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: [: abc: unexpected operator"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: = not found"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    }
+   }
+  },
+  "regex_match": {
+   "label": "[[ =~ ]] regular expressions",
+   "snippet": "[[ abc =~ ^a ]] && printf 're\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: [[: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: [[: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    }
+   }
+  },
+  "substring": {
+   "label": "${var:offset:length}",
+   "snippet": "x=ABCDE; printf '%s\\n' \"${x:1:2}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    }
+   }
+  },
+  "lowercase_bash4": {
+   "label": "${var,,} lowercase (bash 4)",
+   "snippet": "x=ABC; printf '%s\\n' \"${x,,}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "abc",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: ${x,,}: bad substitution"
+    },
+    "macos|/bin/sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/sh: ${x,,}: bad substitution"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `,' unexpected"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "abc",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `,' unexpected"
+    }
+   }
+  },
+  "uppercase_bash4": {
+   "label": "${var^^} uppercase (bash 4)",
+   "snippet": "x=abc; printf '%s\\n' \"${x^^}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ABC",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: ${x^^}: bad substitution"
+    },
+    "macos|/bin/sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/sh: ${x^^}: bad substitution"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `^' unexpected"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ABC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `^' unexpected"
+    }
+   }
+  },
+  "indirect_bash": {
+   "label": "${!name} indirection",
+   "snippet": "v=HOME; printf '%s\\n' \"${!v}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/root",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/Users/runner",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "/Users/runner",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "/home/runner",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    }
+   }
+  },
+  "pattern_replace": {
+   "label": "${var/pattern/repl}",
+   "snippet": "x=a-b-c; printf '%s\\n' \"${x//-/+}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    }
+   }
+  },
+  "assoc_declare": {
+   "label": "declare -A associative arrays",
+   "snippet": "declare -A m || exit 9; m[key]=v || exit 9; printf '%s\\n' \"${m[key]}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: declare: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ash: declare: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: declare: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 0: declare: -A: invalid option"
+    },
+    "macos|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: line 0: declare: -A: invalid option"
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: declare: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: declare: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: declare: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: declare: not found"
+    }
+   }
+  },
+  "mapfile": {
+   "label": "mapfile / readarray",
+   "snippet": "mapfile -t l <<< 'x' || exit 9; printf '%s\\n' \"${l[0]}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/bash: mapfile: command not found"
+    },
+    "macos|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: mapfile: command not found"
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: mapfile: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: mapfile: not found"
+    }
+   }
+  },
+  "printf_v": {
+   "label": "printf -v assigns to a variable",
+   "snippet": "printf -v out '%s' hi || exit 9; printf '%s\\n' \"$out\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "-v",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "-v",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: printf: Illegal option -v"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: printf: -v: unknown option"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: printf: Illegal option -v"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: printf: Illegal option -v"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    }
+   }
+  },
+  "read_p": {
+   "label": "read -p prompt",
+   "snippet": "read -p 'q' v <<< 'x' || exit 9; printf '[%s]\\n' \"$v\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[x]",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[x]",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "[x]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: read: no query process"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "[x]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: read: no query process [Bad file descriptor]"
+    }
+   }
+  },
+  "read_a": {
+   "label": "read -a into an array",
+   "snippet": "read -a a <<< '1 2' || exit 9; printf '%s\\n' \"${a[1]}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: read: -a: unknown option"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    }
+   }
+  },
+  "shopt": {
+   "label": "shopt (bash options)",
+   "snippet": "shopt -s nullglob || exit 9; printf 'ok\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: shopt: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ash: shopt: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: shopt: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: shopt: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: shopt: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: shopt: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: shopt: not found"
+    }
+   }
+  },
+  "function_keyword": {
+   "label": "function name { } syntax",
+   "snippet": "function f { printf 'hi\\n'; }; f",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"}\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"}\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"}\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    }
+   }
+  },
+  "local_in_func": {
+   "label": "local inside a function",
+   "snippet": "f() { local x=1 || exit 9; printf '%s\\n' \"$x\"; }; f",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: local: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: f[1]: local: not found"
+    }
+   }
+  },
+  "dollar_quote": {
+   "label": "$'...' ANSI-C quoting",
+   "snippet": "x=$'a\\tb'; printf '%s\\n' \"${#x}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "brace_expand": {
+   "label": "{1..3} brace expansion",
+   "snippet": "set -- {1..3}; printf '%s\\n' \"$#\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "power_arith": {
+   "label": "** in arithmetic",
+   "snippet": "printf '%s\\n' $((2**10))",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: arithmetic expression: expecting primary: \"2**10\""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: arithmetic expression: expecting primary: \"2**10\""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: arithmetic expression: expecting primary: \"2**10\""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    }
+   }
+  },
+  "paren_arith": {
+   "label": "(( )) arithmetic command",
+   "snippet": "x=5; (( x > 3 )) && printf 'big\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: x: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/ash: x: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: x: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: x: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: x: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    }
+   }
+  },
+  "let_builtin": {
+   "label": "let",
+   "snippet": "let x=1+2 || exit 9; printf '%s\\n' \"$x\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: let: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: let: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: let: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "octal_literal": {
+   "label": "$((010)) is octal 8",
+   "snippet": "printf '%s\\n' $((010))",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "10",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "10",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "10",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "10",
+     "stderr1": ""
+    }
+   }
+  },
+  "leading_zero_08": {
+   "label": "$((08)) is an error in octal",
+   "snippet": "printf '%s\\n' $((08))",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: arithmetic syntax error"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: arithmetic syntax error"
+    },
+    "alpine|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: 08: value too great for base (error token is \"08\")"
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: arithmetic expression: expecting EOF: \"08\""
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: 08: value too great for base (error token is \"08\")"
+    },
+    "macos|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 08: value too great for base (error token is \"08\")"
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: 08: value too great for base (error token is \"08\")"
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: arithmetic expression: expecting EOF: \"08\""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: arithmetic expression: expecting EOF: \"08\""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    }
+   }
+  },
+  "test_v": {
+   "label": "[[ -v var ]]",
+   "snippet": "[[ -v HOME ]] && printf 'set\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "sh: HOME: unknown operand"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "ash: HOME: unknown operand"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "[[: HOME: unknown operand"
+    },
+    "macos|/bin/bash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/bash: -c: line 0: conditional binary operator expected"
+    },
+    "macos|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: -c: line 0: conditional binary operator expected"
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: [[: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: [[: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    }
+   }
+  },
+  "declare_n": {
+   "label": "declare -n nameref",
+   "snippet": "declare -n r=HOME || exit 9; printf '%s\\n' \"${r:+ref}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: declare: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ash: declare: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ref",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: declare: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 0: declare: -n: invalid option"
+    },
+    "macos|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: line 0: declare: -n: invalid option"
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: declare: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ref",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: declare: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: declare: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: declare: not found"
+    }
+   }
+  },
+  "at_Q": {
+   "label": "${var@Q} quoting transform (bash 4.4)",
+   "snippet": "x='a b'; printf '%s\\n' \"${x@Q}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "'a b'",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: ${x@Q}: bad substitution"
+    },
+    "macos|/bin/sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/sh: ${x@Q}: bad substitution"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: \"${x@Q}\": bad substitution"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "'a b'",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: \"${x@Q}\": bad substitution"
+    }
+   }
+  },
+  "pipestatus_upper": {
+   "label": "PIPESTATUS array",
+   "snippet": "true | false; printf '%s\\n' \"${PIPESTATUS[1]:-unset}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    }
+   }
+  },
+  "pipefail": {
+   "label": "set -o pipefail",
+   "snippet": "set -o pipefail || exit 9; printf 'ok\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: set: Illegal option -o pipefail"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: set: Illegal option -o pipefail"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: set: Illegal option -o pipefail"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    }
+   }
+  },
+  "random": {
+   "label": "$RANDOM",
+   "snippet": "case \"${RANDOM:-}\" in ''|*[!0-9]*) exit 9;; esac; printf 'number\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    }
+   }
+  },
+  "epochseconds": {
+   "label": "$EPOCHSECONDS",
+   "snippet": "case \"${EPOCHSECONDS:-}\" in ''|*[!0-9]*) exit 9;; esac; printf 'number\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    }
+   }
+  },
+  "bash_source": {
+   "label": "BASH_SOURCE",
+   "snippet": "printf '%s\\n' \"${BASH_SOURCE[0]:-unset}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    }
+   }
+  },
+  "funcname": {
+   "label": "FUNCNAME",
+   "snippet": "f() { printf '%s\\n' \"${FUNCNAME[0]:-unset}\"; }; f",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: bad substitution"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: bad substitution"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "f",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Bad substitution"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "f",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "f",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "f",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Bad substitution"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Bad substitution"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    }
+   }
+  },
+  "type_t": {
+   "label": "type -t",
+   "snippet": "type -t printf",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "builtin",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 127,
+     "stdout1": "-t: not found",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "builtin",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "builtin",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "macos|/bin/ksh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: whence: -t: unknown option"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "builtin",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 127,
+     "stdout1": "-t: not found",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 127,
+     "stdout1": "-t: not found",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "builtin",
+     "stderr1": ""
+    }
+   }
+  },
+  "echo_dash_e": {
+   "label": "echo -e interprets escapes",
+   "snippet": "x=$(echo -e 'a\\tb'); printf '%s\\n' \"${#x}\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "6",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "6",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "6",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "6",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    }
+   }
+  },
+  "echo_dash_n": {
+   "label": "echo -n suppresses the newline",
+   "snippet": "x=$(echo -n a; echo b); printf '%s\\n' \"$x\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "-n a",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    }
+   }
+  },
+  "process_subst": {
+   "label": "<( ) process substitution",
+   "snippet": "cat <(printf 'sub\\n')",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: -c: line 0: syntax error near unexpected token `('"
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"(\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    }
+   }
+  },
+  "here_string": {
+   "label": "<<< here-strings",
+   "snippet": "cat <<< here",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected redirection"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: redirection unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    }
+   }
+  },
+  "export_f": {
+   "label": "export -f exports a function",
+   "snippet": "f() { :; }; export -f f || exit 9; printf 'ok\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: export: line 0: illegal option -f"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: export: line 0: illegal option -f"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: export: Illegal option -f"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "f () {",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: export: -f: unknown option"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: export: Illegal option -f"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: export: Illegal option -f"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: export: -f: unknown option"
+    }
+   }
+  },
+  "compgen": {
+   "label": "compgen",
+   "snippet": "compgen -A function | head -c 0 || exit 9; printf 'ok\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/bin/sh: compgen: not found"
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/bin/ash: compgen: not found"
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/usr/bin/dash: 1: compgen: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "head: illegal byte count -- 0"
+    },
+    "macos|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "head: illegal byte count -- 0"
+    },
+    "macos|/bin/zsh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "macos|/bin/ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: compgen: not found"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/bin/sh: 1: compgen: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/bin/dash: 1: compgen: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": "/bin/ksh: compgen: not found"
+    }
+   }
+  },
+  "set_u_unset": {
+   "label": "set -u on an unset variable",
+   "snippet": "set -u; printf '%s\\n' \"$undefined_variable_xyz\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: undefined_variable_xyz: parameter not set"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: undefined_variable_xyz: parameter not set"
+    },
+    "alpine|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: undefined_variable_xyz: unbound variable"
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: undefined_variable_xyz: parameter not set"
+    },
+    "macos|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: undefined_variable_xyz: unbound variable"
+    },
+    "macos|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: undefined_variable_xyz: unbound variable"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "macos|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: undefined_variable_xyz: unbound variable"
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: undefined_variable_xyz: parameter not set"
+    }
+   }
+  },
+  "readonly_assign": {
+   "label": "assigning to a readonly variable",
+   "snippet": "readonly r=1; r=2; printf '%s\\n' \"$?\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: r: is read only"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: r: is read only"
+    },
+    "alpine|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: r: readonly variable"
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: r: is read only"
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: r: readonly variable"
+    },
+    "macos|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: r: readonly variable"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "macos|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: r: is read only"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: r: readonly variable"
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: r: is read only"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: r: is read only"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: r: is read only"
+    }
+   }
+  },
+  "div_zero": {
+   "label": "division by zero",
+   "snippet": "printf '%s\\n' $((1/0))",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: divide by zero"
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: divide by zero"
+    },
+    "alpine|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: 1/0: division by 0 (error token is \"0\")"
+    },
+    "alpine|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: arithmetic expression: division by zero: \"1/0\""
+    },
+    "macos|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: 1/0: division by 0 (error token is \"0\")"
+    },
+    "macos|/bin/sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1/0: division by 0 (error token is \"0\")"
+    },
+    "macos|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "macos|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: 1/0: divide by zero"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/bash: line 1: 1/0: division by 0 (error token is \"0\")"
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: arithmetic expression: division by zero: \"1/0\""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: arithmetic expression: division by zero: \"1/0\""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: 1/0: divide by zero"
+    }
+   }
+  },
+  "coproc": {
+   "label": "coproc",
+   "snippet": "coproc { :; } || exit 9; printf 'ok\\n'",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: syntax error: unexpected \"}\""
+    },
+    "alpine|/bin/ash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/ash: syntax error: unexpected \"}\""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: Syntax error: \"}\" unexpected"
+    },
+    "macos|/bin/bash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/bash: -c: line 0: syntax error near unexpected token `}'"
+    },
+    "macos|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: -c: line 0: syntax error near unexpected token `}'"
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `}' unexpected"
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: Syntax error: \"}\" unexpected"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 2,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: Syntax error: \"}\" unexpected"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 3,
+     "stdout1": "",
+     "stderr1": "/bin/ksh: syntax error at line 1: `}' unexpected"
+    }
+   }
+  },
+  "source_dot": {
+   "label": ". and source",
+   "snippet": "printf 'x=1\\n' > s.sh; . ./s.sh || exit 9; printf '%s\\n' \"$x\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    }
+   }
+  },
+  "source_keyword": {
+   "label": "source keyword",
+   "snippet": "printf 'y=2\\n' > s.sh; source ./s.sh || exit 9; printf '%s\\n' \"$y\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/usr/bin/dash: 1: source: not found"
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/sh: 1: source: not found"
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "/bin/dash: 1: source: not found"
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    }
+   }
+  },
+  "getopts": {
+   "label": "getopts",
+   "snippet": "set -- -a; getopts a o || exit 9; printf '%s\\n' \"$o\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    }
+   }
+  },
+  "trap_exit": {
+   "label": "trap on EXIT",
+   "snippet": "trap 'printf trapped' EXIT; :",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    }
+   }
+  },
+  "last_pipe_status": {
+   "label": "$? after a pipeline is the last command",
+   "snippet": "true | false; printf '%s\\n' \"$?\"",
+   "results": {
+    "alpine|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/ash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/usr/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/bash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/dash": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    }
+   }
+  }
+ }
+}
