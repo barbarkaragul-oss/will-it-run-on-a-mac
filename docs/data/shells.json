@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-15T12:41:59.311Z",
+ "generated_at": "2026-09-15T13:57:07.111Z",
  "shells": {
   "alpine": {
    "/bin/sh": {
@@ -3715,42 +3715,42 @@
   },
   "compgen": {
    "label": "compgen",
-   "snippet": "compgen -A function | head -c 0 || exit 9; printf 'ok\\n'",
+   "snippet": "compgen -A function >/dev/null || exit 9; printf 'ok\\n'",
    "results": {
     "alpine|/bin/sh": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/bin/sh: compgen: not found"
     },
     "alpine|/bin/ash": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/bin/ash: compgen: not found"
     },
     "alpine|/bin/bash": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": ""
     },
     "alpine|/bin/zsh": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "zsh:1: command not found: compgen"
     },
     "alpine|/usr/bin/dash": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/usr/bin/dash: 1: compgen: not found"
     },
     "macos|/bin/bash": {
      "exit": 9,
      "stdout1": "",
-     "stderr1": "head: illegal byte count -- 0"
+     "stderr1": ""
     },
     "macos|/bin/sh": {
      "exit": 9,
      "stdout1": "",
-     "stderr1": "head: illegal byte count -- 0"
+     "stderr1": ""
     },
     "macos|/bin/zsh": {
      "exit": 9,
@@ -3763,28 +3763,28 @@
      "stderr1": "/bin/ksh: compgen: not found"
     },
     "ubuntu|/bin/bash": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": ""
     },
     "ubuntu|/bin/sh": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/bin/sh: 1: compgen: not found"
     },
     "ubuntu|/bin/dash": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/bin/dash: 1: compgen: not found"
     },
     "ubuntu|/bin/zsh": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "zsh:1: command not found: compgen"
     },
     "ubuntu|/bin/ksh": {
-     "exit": 0,
-     "stdout1": "ok",
+     "exit": 9,
+     "stdout1": "",
      "stderr1": "/bin/ksh: compgen: not found"
     }
    }
