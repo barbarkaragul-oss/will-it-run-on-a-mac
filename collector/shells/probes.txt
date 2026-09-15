@@ -25,7 +25,7 @@ regex_match	[[ =~ ]] regular expressions	[[ abc =~ ^a ]] && printf 're\n'
 substring	${var:offset:length}	x=ABCDE; printf '%s\n' "${x:1:2}"
 lowercase_bash4	${var,,} lowercase (bash 4)	x=ABC; printf '%s\n' "${x,,}"
 uppercase_bash4	${var^^} uppercase (bash 4)	x=abc; printf '%s\n' "${x^^}"
-indirect_bash	${!name} indirection	v=HOME; printf '%s\n' "${!v}"
+indirect_bash	${!name} indirection	x=hello; v=x; printf '%s\n' "${!v}"
 pattern_replace	${var/pattern/repl}	x=a-b-c; printf '%s\n' "${x//-/+}"
 assoc_declare	declare -A associative arrays	declare -A m || exit 9; m[key]=v || exit 9; printf '%s\n' "${m[key]}"
 mapfile	mapfile / readarray	mapfile -t l <<< 'x' || exit 9; printf '%s\n' "${l[0]}"

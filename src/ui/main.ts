@@ -1,8 +1,10 @@
-import { Parser, Language } from 'web-tree-sitter';
+import { Parser, Language, type Tree } from 'web-tree-sitter';
 import { analyzeScript, PLATFORMS, type Analysis, type CommandFinding, type FlagFinding } from '../engine/analyze.js';
 import type { Database, Platform, PlatformInfo, Probe, ToolOnPlatform } from '../../scripts/extract.js';
 import type { Verdict, Status } from '../engine/verdict.js';
 import { SAMPLES } from './samples.js';
+import { analyzeShells, detectShebang, targetsFor, REFERENCE, type ConstructFinding, type Interp, type ShellTarget } from '../engine/shells.js';
+import type { ShellsDatabase } from '../../scripts/extract-shells.js';
 
 interface Index { generated_at: string; platforms: Record<Platform, PlatformInfo>; probes: Record<string, Probe>; tools: string[] }
 
@@ -24,6 +26,8 @@ const LABEL: Record<Status, string> = { ok: 'ok', 'ok-probed': 'ok (run)', missi
 
 let parser: Parser | undefined;
 let index: Index | undefined;
+/** The shell-semantics recordings; absent until the collector has run with the shell probes. */
+let shellsDb: ShellsDatabase | undefined;
 const db: Database = { generated_at: '', platforms: {} as Database['platforms'], tools: {}, probes: {} };
 const loading = new Map<string, Promise<void>>();
 
@@ -64,6 +68,71 @@ async function run(): Promise<void> {
     a = analyzeScript(parser, src, db);
   }
   render(a, src);
+  renderShells(parser.parse(src)!, src);
+}
+
+const SHELL_STATUS_CLS = { same: 'ok', differs: 'missing', breaks: 'rejected', unknown: 'unknown' } as const;
+const SHELL_STATUS_LABEL = { same: 'same as bash', differs: 'differs', breaks: 'breaks', unknown: 'not recorded' } as const;
+
+/** Which interpreter to judge under: the selector, or the shebang when the selector says so. */
+function chosenInterp(src: string): { interp: Interp | null; how: string } {
+  const sel = $<HTMLSelectElement>('interp').value;
+  if (sel === 'bash' || sel === 'sh' || sel === 'zsh') return { interp: sel, how: `judged as ${sel} (chosen above)` };
+  if (sel === 'none') return { interp: null, how: 'judged as pasted into each platform\'s default shell' };
+  const s = detectShebang(src);
+  if (s.interp) return { interp: s.interp, how: `judged as ${s.interp}, from the shebang ${s.line}` };
+  if (s.line) return { interp: null, how: `the shebang ${s.line} names no shell this page records; judged as pasted into each platform's default shell` };
+  return { interp: null, how: 'no shebang: judged as pasted into each platform\'s default shell (bash on Ubuntu, zsh on macOS, ash on Alpine)' };
+}
+
+function renderShells(tree: Tree, src: string): void {
+  const box = $('shells');
+  if (!shellsDb) { box.replaceChildren(); return; }
+  const { interp, how } = chosenInterp(src);
+  const targets = targetsFor(interp, shellsDb);
+  const findings = analyzeShells(tree, shellsDb, targets);
+  const lines = src.split('\n');
+  const count = (st: ConstructFinding['verdicts'][number]['status'], t: ShellTarget) => findings.filter((f) => f.verdicts.find((v) => v.target.key === t.key)?.status === st).length;
+
+  const head = h('div', { class: 'summary-box' },
+    h('div', {}, h('b', { text: `${findings.length} shell construct${findings.length === 1 ? '' : 's'} checked` }), ` · ${how}`),
+    ...targets.map((t) => {
+      const breaks = count('breaks', t), differs = count('differs', t);
+      return h('div', { class: 'verdict-line' },
+        h('span', { class: `pill ${breaks ? 'rejected' : differs ? 'missing' : 'ok'}`, text: t.label }),
+        h('span', {}, breaks ? h('b', { class: 'bad', text: `${breaks} will break` }) : h('b', { class: 'ok', text: 'nothing breaks' }), differs ? ` · ${differs} behave${differs === 1 ? 's' : ''} differently` : ''));
+    }),
+    h('p', { class: 'note', text: `Every verdict below is a recorded run of the same construct under that interpreter, compared with Ubuntu's bash ${shellsDb.shells.ubuntu?.['/bin/bash']?.version ?? ''}. Recorded ${shellsDb.generated_at.slice(0, 10)}.` }),
+  );
+
+  const cards = findings.map((f) => {
+    const worst = f.verdicts.some((v) => v.status === 'breaks') ? 'breaks' : f.verdicts.some((v) => v.status === 'differs') ? 'differs' : f.verdicts.every((v) => v.status === 'unknown') ? 'unknown' : 'same';
+    const bad = f.verdicts.filter((v) => v.status === 'breaks').map((v) => PLATFORM_NAME[v.target.platform].split(' ')[0]);
+    const diff = f.verdicts.filter((v) => v.status === 'differs').map((v) => PLATFORM_NAME[v.target.platform].split(' ')[0]);
+    const pillText = bad.length ? `breaks on ${bad.join(' and ')}` : diff.length ? `differs on ${diff.join(' and ')}` : worst === 'unknown' ? 'not recorded' : 'same everywhere';
+    const card = h('div', { class: `cmd${worst === 'same' ? ' clean' : ''}` });
+    const lineText = (lines[f.start.row] ?? '').trim();
+    card.append(h('h3', {}, h('span', { class: 'line', text: `line ${f.start.row + 1}` }), h('code', { text: f.text }), h('span', { class: 'muted mono', text: lineText.length > 90 ? lineText.slice(0, 87) + '…' : lineText })));
+    const flag = h('div', { class: 'flag' }, h('div', { class: 'head' }, h('code', { text: f.label }), h('span', { class: `pill ${SHELL_STATUS_CLS[worst]}`, text: pillText })));
+    // a construct that every target runs exactly like bash gets one line; the evidence is for the differences
+    if (worst === 'same') { card.append(flag); return card; }
+    const per = h('div', { class: 'per' });
+    for (const v of f.verdicts) {
+      const isRef = v.target.key === REFERENCE;
+      per.append(h('div', { class: 'p' }, h('span', { class: 'name', text: v.target.label }), h('span', {}, h('span', { class: `pill ${isRef ? 'ok' : SHELL_STATUS_CLS[v.status]}`, text: isRef ? 'reference' : SHELL_STATUS_LABEL[v.status] }), ' ', isRef ? (v.got?.stdout1 ? `prints "${v.got.stdout1}"` : `exit ${v.got?.exit ?? '?'}`) : v.headline)));
+      if (v.got) {
+        per.append(h('details', { class: 'evidence' }, h('summary', { text: 'the recorded run' }),
+          h('ul', {},
+            h('li', {}, h('code', { text: f.snippet }), ` → exit ${v.got.exit}`, v.got.stdout1 ? [' · stdout: ', h('code', { text: v.got.stdout1 })] as unknown as Node : null, v.got.stderr1 ? [' · stderr: ', h('code', { text: v.got.stderr1 })] as unknown as Node : null),
+            v.ref ? h('li', {}, h('span', { class: 'muted', text: 'bash on Ubuntu: ' }), `exit ${v.ref.exit}`, v.ref.stdout1 ? [' · stdout: ', h('code', { text: v.ref.stdout1 })] as unknown as Node : null) : null,
+          )));
+      }
+    }
+    flag.append(per);
+    card.append(flag);
+    return card;
+  });
+  box.replaceChildren(h('h2', { text: 'Shell constructs' }), head, ...cards);
 }
 
 function worst(f: FlagFinding): { text: string; cls: string } {
@@ -173,6 +242,7 @@ async function init(): Promise<void> {
   else applySample(SAMPLES[0]!.id);
   sel.addEventListener('change', () => { if (sel.value !== 'custom') { applySample(sel.value); history.replaceState(null, '', location.pathname); schedule(); } });
   ta.addEventListener('input', () => { sel.value = 'custom'; $('blurb').textContent = ''; schedule(); });
+  $('interp').addEventListener('change', () => schedule());
   $('share').addEventListener('click', () => { const url = `${location.origin}${location.pathname}#s=${encodeShare(ta.value)}`; history.replaceState(null, '', `#s=${encodeShare(ta.value)}`); navigator.clipboard?.writeText(url).then(() => toast('Link copied'), () => toast('Link is in the address bar')); });
   const theme = $('theme');
   const setTheme = (t: string | null) => { if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); };
@@ -181,11 +251,14 @@ async function init(): Promise<void> {
 
   const status = $('status');
   try {
-    const [idx] = await Promise.all([
+    const [idx, shells] = await Promise.all([
       fetch('data/index.json').then((r) => r.json() as Promise<Index>),
+      // optional: the page works without it until the collector has recorded the shell probes
+      fetch('data/shells.json').then((r) => (r.ok ? (r.json() as Promise<ShellsDatabase>) : undefined)).catch(() => undefined),
       Parser.init({ locateFile: (f: string) => `vendor/${f}` }),
     ]);
     index = idx;
+    shellsDb = shells;
     db.generated_at = idx.generated_at; db.platforms = idx.platforms; db.probes = idx.probes;
     const lang = await Language.load('vendor/tree-sitter-bash.wasm');
     parser = new Parser();

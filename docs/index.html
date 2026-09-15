@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Will it run on a Mac? — shell script flag portability, proven by real runs</title>
-<meta name="description" content="Paste a shell script. Every flag that does not exist on macOS (BSD userland) or Alpine (BusyBox) is marked, with the platform's own man page line and a real execution on that platform as the proof.">
+<meta name="description" content="Paste a shell script. Every flag that does not exist on macOS (BSD userland) or Alpine (BusyBox) is marked, with the platform's own man page line and a real execution on that platform as the proof. Shell constructs (arrays, [[ ]], ${x,,}, an unquoted $var) are judged under the interpreter the shebang names: bash 3.2, zsh, dash, BusyBox ash, from real runs too.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍎</text></svg>">
 </head>
@@ -27,6 +27,13 @@
     <div class="row">
       <label for="sample">Script</label>
       <select id="sample"></select>
+      <select id="interp" title="Which interpreter the script is judged under on each platform">
+        <option value="auto">Run as: what the shebang says</option>
+        <option value="bash">Run as: bash (#!/bin/bash)</option>
+        <option value="sh">Run as: sh (#!/bin/sh)</option>
+        <option value="zsh">Run as: zsh</option>
+        <option value="none">Run as: pasted into the default shell</option>
+      </select>
       <span id="parse-status" class="muted"></span>
     </div>
     <p id="blurb" class="muted"></p>
@@ -41,12 +48,14 @@
   <section class="panel results">
     <div id="summary"></div>
     <div id="findings"></div>
+    <div id="shells"></div>
   </section>
 </main>
 
 <section class="wrap how" id="how">
   <h2>How it works</h2>
   <p>A GitHub Actions matrix runs on <b>ubuntu-latest</b> (GNU coreutils), <b>macos-latest</b> (the BSD userland) and an <b>alpine</b> container (BusyBox). On each, for 80 common tools it records the <code>--help</code> output, the usage line and the man page source, and then <b>executes every short flag</b> <code>-a</code>…<code>-Z</code>, <code>-0</code>…<code>-9</code> and every long option any platform documents, classifying the answer by the tool's own unknown-option wording learned from a canary. That gives about 11,000 executions per platform, none of them hand-written. This page parses your script with <a href="https://github.com/tree-sitter/tree-sitter-bash">tree-sitter-bash</a>, resolves the static words, unwraps <code>sudo</code>, <code>env</code>, <code>xargs</code>, <code>find -exec</code> and <code>sh -c</code>, and looks every flag up. The order of trust: a real run beats the man page, the man page beats silence, and silence is reported as unknown.</p>
+  <p>The shell matters as much as the userland, so the collector also runs 58 shell constructs (arrays, <code>${x,,}</code>, <code>[[ ]]</code>, <code>(( ))</code>, <code>&lt;( )</code>, <code>mapfile</code>, an unquoted <code>$var</code>, a glob that matches nothing, <code>cmd | read v</code>, …) as one-line scripts under every shell each platform has: 14 interpreters, 812 recorded results. The page reads your shebang (<code>#!/bin/bash</code> is bash 3.2 on macOS; <code>#!/bin/sh</code> is dash, bash-as-sh or BusyBox ash; no shebang means the default shell, zsh on a Mac) and compares each construct's recorded run under that interpreter with bash 5.2 on Ubuntu. Under zsh, 15 of the 58 constructs are errors and 9 print something else; the verdicts show both outputs.</p>
   <p>What it does not do: expand variables (a dynamic word is reported as not checked), understand <code>find</code>'s expression language beyond the primaries it has recorded, or judge semantics when a flag exists on both sides with different meaning (<code>stat -f</code>). Shell builtins such as <code>echo -e</code> depend on the shell, not the userland, and are marked as such. Requested from ShellCheck since 2015 (<a href="https://github.com/koalaman/shellcheck/issues/479">#479</a>, <a href="https://github.com/koalaman/shellcheck/issues/2902">#2902</a>); ShellCheck knows which shell you target, this knows which userland you run on.</p>
 </section>
 
