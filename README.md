@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/"><img src="docs/screenshot.png" alt="The checker: a script on the left, and on the right every command with each flag marked fine, breaks on macOS, breaks on Alpine, with the evidence line under it" width="900"></a>
+  <a href="https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/"><img src="docs/demo.gif" alt="Switching from the sample written to survive all three platforms (nothing breaks on macOS, one flag on Alpine) to a release script from a Linux laptop (7 flags break on macOS, 4 on Alpine), then opening the evidence on date -d: the macOS binary answered 'date: illegal option -- d' although its man page still lists a -d" width="900"></a>
 </p>
 
 "Works on my Linux, breaks on my Mac." `sed -i` without a suffix, `date -d yesterday`, `grep -P`, `find -printf`, `xargs -d`, `cp --reflink`, `stat -c`, `timeout`: the same dozen flags have broken macOS and Alpine CI jobs for fifteen years. ShellCheck has been asked to warn about them since 2015 ([#479](https://github.com/koalaman/shellcheck/issues/479), [#973](https://github.com/koalaman/shellcheck/issues/973), [#1455](https://github.com/koalaman/shellcheck/issues/1455), [#2902](https://github.com/koalaman/shellcheck/issues/2902)); its maintainer's answer was that ShellCheck knows which *shell* you target, not which *userland*, and that somebody would have to maintain the list. Nobody wanted to maintain the list by hand. This page does not: the list is measured.
