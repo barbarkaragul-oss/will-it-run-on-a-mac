@@ -57,7 +57,7 @@ echo_dash_n	echo -n suppresses the newline	x=$(echo -n a; echo b); printf '%s\n'
 process_subst	<( ) process substitution	cat <(printf 'sub\n')
 here_string	<<< here-strings	cat <<< here
 export_f	export -f exports a function	f() { :; }; export -f f || exit 9; printf 'ok\n'
-compgen	compgen	compgen -A function | head -c 0 || exit 9; printf 'ok\n'
+compgen	compgen	compgen -A function >/dev/null || exit 9; printf 'ok\n'
 set_u_unset	set -u on an unset variable	set -u; printf '%s\n' "$undefined_variable_xyz"
 readonly_assign	assigning to a readonly variable	readonly r=1; r=2; printf '%s\n' "$?"
 div_zero	division by zero	printf '%s\n' $((1/0))
