@@ -91,4 +91,6 @@ jobs:
           git add data docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "data: weekly re-recording of Ubuntu, macOS and Alpine ($(date -u +%Y-%m-%d))"
+          # a commit may have landed on main during the twenty minutes of recording; put the data on top of it
+          git pull --rebase origin main
           git push
