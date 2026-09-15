@@ -32,11 +32,16 @@ const DATA = path.resolve('data');
 
 export function parseProbesFile(text: string): Record<string, { label: string; snippet: string }> {
   const out: Record<string, { label: string; snippet: string }> = {};
-  for (const line of text.split('\n')) {
+  const lines = text.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]!;
     if (!line.trim() || line.startsWith('#')) continue;
-    const [id, label, ...rest] = line.split('\t');
-    if (!id || !label || !rest.length) continue;
-    out[id] = { label, snippet: rest.join('\t') };
+    const fields = line.split('\t');
+    // a probe with a missing TAB would otherwise vanish here and run as `sh -c ''` on every shell
+    if (fields.length !== 3 || fields.some((f) => !f)) throw new Error(`probes.txt line ${i + 1}: expected id<TAB>label<TAB>snippet, got ${fields.length} fields: ${line.slice(0, 60)}`);
+    const [id, label, snippet] = fields as [string, string, string];
+    if (out[id]) throw new Error(`probes.txt line ${i + 1}: duplicate probe id ${id}`);
+    out[id] = { label, snippet };
   }
   return out;
 }

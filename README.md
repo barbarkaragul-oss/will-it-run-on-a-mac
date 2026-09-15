@@ -83,6 +83,19 @@ npx tsx scripts/build.ts    # docs/ (the static site; serve it with any static s
 
 To re-record: fork, run the **collect** workflow (Actions → collect → Run workflow), download the three artifacts into `out/`, and run `npx tsx scripts/extract.ts`. To add a tool, add it to [`collector/tools.txt`](collector/tools.txt) (and to [`probe-tools.txt`](collector/probe-tools.txt) if it is safe to run with arbitrary flags in a temporary directory).
 
+**Corpus behind the probe list.** The shell constructs in [`collector/shells/probes.txt`](collector/shells/probes.txt) were chosen by counting what real, widely run bash scripts use. The repositories are listed in [`collector/shells/corpus.txt`](collector/shells/corpus.txt) as `owner/repo`, with an optional `@ref` suffix naming a tag to check out; clone them into one directory and scan it:
+
+```bash
+mkdir -p corpus
+for r in $(grep -v '^#' collector/shells/corpus.txt); do
+  repo=${r%@*}; ref=${r#*@}; dir="corpus/${repo//\//__}"
+  if [ "$ref" != "$r" ]; then git clone --depth 1 --branch "$ref" "https://github.com/$repo" "$dir"; else git clone --depth 1 "https://github.com/$repo" "$dir"; fi
+done
+npx tsx scripts/corpus-scan.ts corpus corpus-report.json
+```
+
+The report counts, per construct, how many scripts use it at least once and which ones the probes already measure; a construct many scripts use that no probe covers is a candidate for the next probe. Repositories whose scripts are all zsh (ohmyzsh) contribute nothing to the count: the scanner skips zsh files and only reports how many it skipped.
+
 ## Limits
 
 - **Existence, not semantics.** A flag can exist on two platforms and behave differently; the evidence lines are shown, the meaning is not compared.

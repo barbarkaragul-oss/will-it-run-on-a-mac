@@ -1,0 +1,32 @@
+# Repositories whose shell scripts make up the corpus behind the probe list (scripts/corpus-scan.ts).
+# One "owner/repo[@ref]" per line. Chosen for being widely run bash: installers, version managers, frameworks, tools.
+nvm-sh/nvm
+rust-lang/rustup
+Homebrew/install
+docker/docker-install
+acmesh-official/acme.sh
+pyenv/pyenv
+rbenv/rbenv
+asdf-vm/asdf@v0.14.1
+junegunn/fzf
+ohmybash/oh-my-bash
+Bash-it/bash-it
+bats-core/bats-core
+dylanaraps/neofetch
+sdkman/sdkman-cli
+aristocratos/bashtop
+k3s-io/k3s
+starship/starship
+denoland/deno_install
+oven-sh/bun
+tailscale/tailscale
+helm/helm
+pnpm/get.pnpm.io
+mathiasbynens/dotfiles
+thoughtbot/laptop
+rupa/z
+tj/n
+nodenv/nodenv
+ohmyzsh/ohmyzsh
+git/git
+kubernetes/kubernetes

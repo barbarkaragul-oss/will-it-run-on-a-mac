@@ -44,7 +44,7 @@ octal_literal	$((010)) is octal 8	printf '%s\n' $((010))
 leading_zero_08	$((08)) is an error in octal	printf '%s\n' $((08))
 test_v	[[ -v var ]]	[[ -v HOME ]] && printf 'set\n'
 declare_n	declare -n nameref	declare -n r=HOME || exit 9; printf '%s\n' "${r:+ref}"
-at_Q	${var@Q} quoting transform (bash 4.4)	x='a b'; printf '%s\n' "${x@Q}"
+at_upper_q	${var@Q} quoting transform (bash 4.4)	x='a b'; printf '%s\n' "${x@Q}"
 pipestatus_upper	PIPESTATUS array	true | false; printf '%s\n' "${PIPESTATUS[1]:-unset}"
 pipefail	set -o pipefail	set -o pipefail || exit 9; printf 'ok\n'
 random	$RANDOM	case "${RANDOM:-}" in ''|*[!0-9]*) exit 9;; esac; printf 'number\n'
@@ -60,6 +60,7 @@ export_f	export -f exports a function	f() { :; }; export -f f || exit 9; printf 
 compgen	compgen	compgen -A builtin >/dev/null || exit 9; printf 'ok\n'
 set_u_unset	set -u on an unset variable	set -u; printf '%s\n' "$undefined_variable_xyz"
 readonly_assign	assigning to a readonly variable	readonly r=1; r=2; printf '%s\n' "$?"
+readonly_declare	readonly declares a variable	readonly r=1 || exit 9; printf '%s\n' "$r"
 div_zero	division by zero	printf '%s\n' $((1/0))
 coproc	coproc	coproc { :; } || exit 9; printf 'ok\n'
 source_dot	. and source	printf 'x=1\n' > s.sh; . ./s.sh || exit 9; printf '%s\n' "$x"
@@ -67,3 +68,86 @@ source_keyword	source keyword	printf 'y=2\n' > s.sh; source ./s.sh || exit 9; pr
 getopts	getopts	set -- -a; getopts a o || exit 9; printf '%s\n' "$o"
 trap_exit	trap on EXIT	trap 'printf trapped' EXIT; :
 last_pipe_status	$? after a pipeline is the last command	true | false; printf '%s\n' "$?"
+function_posix	f() { } POSIX function syntax	f() { printf 'hi\n'; }; f
+export_assign	export VAR=value reaches child processes	export PROBE_X=one || exit 9; sh -c 'printf "%s\n" "${PROBE_X:-unset}"'
+default_value	${x:-d} default when unset or empty	unset v; w=''; printf '%s,%s\n' "${v:-a}" "${w:-b}"
+alternate_value	${x:+y} alternate value when set	v=1; unset w; printf '%s,%s\n' "${v:+yes}" "${w:+yes}"
+assign_default	${x:=d} assigns the default	unset v; : "${v:=dflt}"; printf '%s\n' "$v"
+strip_prefix	${x#p} / ${x##p} strip a prefix	x=/usr/local/bin; printf '%s,%s\n' "${x#*/}" "${x##*/}"
+strip_suffix	${x%p} / ${x%%p} strip a suffix	x=file.tar.gz; printf '%s,%s\n' "${x%.*}" "${x%%.*}"
+string_length	${#x} string length	x=hello; printf '%s\n' "${#x}"
+negation	! cmd negates the exit status	! false || exit 9; ! true; printf '%s\n' "$?"
+printf_basic	printf with width, alignment and zero-pad	printf '%5s|%-3s|%03d\n' ab c 7
+fd_dup	2>&1 duplicates a file descriptor	x=$( { printf 'e\n' >&2; } 2>&1 ); printf '%s\n' "$x"
+subshell_scope	( ) subshell keeps assignments local	x=out; (x=in); printf '%s\n' "$x"
+read_r	read -r keeps backslashes	printf '%s\n' 'a\b' | { read -r v || exit 9; printf '%s\n' "$v"; }
+arith_basic	$(( )) integer arithmetic	x=7; printf '%s\n' "$(( x * 3 + 10 / 4 - 20 % 7 ))"
+eval_basic	eval re-parses its arguments	n=probe_var; eval "$n=42" || exit 9; printf '%s\n' "$probe_var"
+command_v	command -v looks up a command	command -v printf || exit 9
+shift_n	shift n drops n positional parameters	set -- a b c d; shift 2 || exit 9; printf '%s\n' "$*"
+backticks	`cmd` command substitution	x=`printf 'tick'`; printf '%s\n' "$x"
+until_loop	until loop runs while the test fails	n=0; until [ "$n" -ge 3 ]; do n=$((n+1)); done; printf '%s\n' "$n"
+case_basic	case with | alternatives and ;;	x=b2; case $x in a*) r=A;; b*|c*) r=BC;; *) r=other;; esac; printf '%s\n' "$r"
+test_n_z	[ -n ] and [ -z ] string tests	x=abc; e=''; [ -n "$x" ] && [ -z "$e" ] && printf 'ok\n'
+test_t	[ -t 0 ] tests whether stdin is a terminal	if [ -t 0 ]; then printf 'tty\n'; else printf 'notty\n'; fi
+set_u_empty_at	"$@" if empty under set -u	set -u; set --; printf 'ok%s\n' "$@"
+array_negative_index	${arr[-1]} indexes from the end (bash 4.3)	arr=(a b c) || exit 9; printf '%s\n' "${arr[-1]}"
+case_fallthrough_amp	;& falls through to the next case (bash 4)	case a in a) printf 'a' ;& b) printf 'b\n' ;; esac
+case_fallthrough_test	;;& keeps testing later patterns (bash 4)	case ab in a*) printf 'x' ;;& *b) printf 'y\n' ;; esac
+pipe_both	|& pipes stderr along with stdout (bash 4)	{ printf 'viapipe\n' >&2; } |& cat
+array_keys	${!arr[@]} lists the array's indices	arr=(a b c) || exit 9; printf '%s\n' "${!arr[*]}"
+printf_q	printf %q shell-quotes a value	printf '%q\n' 'a b'
+printf_time	printf %(fmt)T formats a time (bash 4.2)	printf '%(%Y)T\n' 1000000000
+declare_g	declare -g global from inside a function	f() { declare -g gv=1 || exit 9; }; f; printf '%s\n' "${gv:-unset}"
+at_upper_u	${var@U} uppercase transform (bash 5.1)	x=abc; printf '%s\n' "${x@U}"
+wait_n	wait -n waits for the next job (bash 4.3)	true & wait -n || exit 9; printf 'ok\n'
+read_upper_n	read -N reads exactly N chars, IFS ignored	printf 'ab cd' | { read -N 3 v || exit 9; printf '[%s]\n' "$v"; }
+substring_neg_len	${var:1:-1} negative length (bash 4.2)	x=ABCDE; printf '%s\n' "${x:1:-1}"
+set_u_empty_array	"${arr[@]}" if empty under set -u	set -u; arr=() || exit 9; printf 'ok%s\n' "${arr[@]}"
+array_append	arr+=(x) appends to an array	a=(x y) || exit 9; a+=(z) || exit 9; printf '%s|%s\n' "${#a[@]}" "${a[2]}"
+array_var_index	${arr[$i]} indexes from 0	a=(x y z) || exit 9; i=1; printf '%s\n' "${a[$i]}"
+dbl_bracket_and	&& inside [[ ]]	x=1; y=''; [[ -n $x && -z $y ]] && printf 'both\n'
+dbl_bracket_neq_pattern	[[ x != pattern ]] matches a glob	x=hello; [[ $x != h* ]]; case $? in 0) printf 'literal\n';; 1) printf 'pattern\n';; *) exit 9;; esac
+amp_redirect	&> redirects stdout and stderr	printf 'x\n' &>/dev/null; wait; printf 'ok\n'
+substr_negative	${x: -n} counts from the end	x=abcdef; printf '%s\n' "${x: -2}"
+array_slice	${arr[@]:n} slices an array	a=(x y z) || exit 9; set -- "${a[@]:1}"; printf '%s|%s\n' "$#" "$1"
+array_star_ifs	"${arr[*]}" joins with the first IFS char	a=(x y z) || exit 9; IFS=-; printf '%s\n' "${a[*]}"
+string_append	x+=y appends to a string	x=ab; x+=cd || exit 9; printf '%s\n' "$x"
+c_style_for	for ((i=0; i<n; i++)) loops	n=0; for ((i=0; i<3; i++)); do n=$((n+i)); done; printf '%s\n' "$n"
+echo_backslash	echo prints backslashes literally	x=$(echo 'a\tb'); printf '%s\n' "${#x}"
+bash_rematch	BASH_REMATCH after =~	re='([0-9]+)'; [[ abc123 =~ $re ]] || exit 9; printf '[%s]\n' "${BASH_REMATCH[1]}"
+trap_exit_in_function	trap EXIT set inside a function	f() { trap "printf 'T\n'" EXIT; }; f; printf 'after\n'
+trap_err	trap on ERR	trap "printf 'err\n'" ERR || exit 9; false; printf 'after\n'
+hostname_var	HOSTNAME is set	[ -n "${HOSTNAME:-}" ] && printf 'set\n' || printf 'unset\n'
+euid_var	EUID is set	[ -n "${EUID:-}" ] && printf 'set\n' || printf 'unset\n'
+seconds_var	SECONDS is set	[ -n "${SECONDS:-}" ] && printf 'set\n' || printf 'unset\n'
+ostype_var	OSTYPE is set	[ -n "${OSTYPE:-}" ] && printf 'set\n' || printf 'unset\n'
+read_reply	read with no name fills REPLY	printf 'hi\n' | { read -r || exit 9; printf '[%s]\n' "$REPLY"; }
+read_d	read -d delimiter	printf 'ab:cd' | { read -r -d : v || exit 9; printf '%s\n' "$v"; }
+read_d_null	read -d '' reads up to NUL	printf 'ab\ncd' | { IFS= read -r -d '' v; s=$?; [ "$s" -eq 1 ] || exit 9; printf '%s\n' "${#v}"; }
+read_n	read -n 1 reads one character	printf 'abc' | { read -r -n 1 v || exit 9; printf '%s\n' "$v"; }
+local_masks_status	local x=$(cmd) hides the command status	f() { local x=$(false); printf '%s\n' "$?"; }; f
+export_masks_status	export x=$(cmd) hides the command status	export x=$(false); printf '%s\n' "$?"
+set_e_function_or	set -e ignored in a function under ||	set -e; f() { false; printf 'x\n'; }; f || true; printf 'ok\n'
+set_o_nounset	set -o nounset rejects unset variables	set -o nounset || exit 9; (printf '%s\n' "$u_xyz") 2>/dev/null && exit 9; printf 'enforced\n'
+complete_builtin	complete registers a completion	_pc() { :; }; complete -F _pc probecmd || exit 9; printf 'ok\n'
+declare_a	declare -a indexed array	declare -a arr || exit 9; arr[1]=x; arr[2]=y; printf '%s\n' "${#arr[@]}"
+declare_i	declare -i integer variable	declare -i n || exit 9; n=2+3; printf '%s\n' "$n"
+declare_x	declare -x exports a variable	declare -x PROBE_X=1 || exit 9; sh -c 'printf "%s\n" "${PROBE_X:-unset}"'
+declare_p	declare -p prints a variable	x=hi; declare -p x
+declare_upper_f	declare -F lists function names	f() { :; }; declare -F f || exit 9
+typeset_builtin	typeset declares a variable	typeset tv=1 || exit 9; printf '%s\n' "$tv"
+pushd_popd	pushd / popd directory stack	pushd / >/dev/null || exit 9; popd >/dev/null || exit 9; printf 'ok\n'
+builtin_keyword	builtin runs a shell builtin	builtin printf '%s\n' ok
+hash_r	hash -r clears the command cache	hash -r || exit 9; printf 'ok\n'
+type_upper_p	type -P finds an executable path	type -P sh >/dev/null || exit 9; printf 'ok\n'
+unset_v	unset -v unsets a variable	v=1; unset -v v || exit 9; printf '%s\n' "${v:-unset}"
+unset_f	unset -f removes a function	f() { printf 'fn\n'; }; unset -f f || exit 9; f 2>/dev/null || printf 'gone\n'
+unset_array_element	unset arr[i] removes an element	arr=(a b c) || exit 9; unset 'arr[1]' || exit 9; printf '%s\n' "${#arr[@]}"
+shopt_nullglob	shopt -s nullglob drops unmatched globs	shopt -s nullglob || exit 9; set -- /nonexistent/dir/*; printf '%s\n' "$#"
+shopt_extglob	shopt -s extglob @(a|b) patterns	shopt -s extglob || exit 9; eval 'case ab in @(ab|cd)) r=yes;; *) r=no;; esac'; printf '%s\n' "$r"
+shopt_globstar	shopt -s globstar ** (bash 4)	shopt -s globstar || exit 9; eval 'set -- /nonexistent/dir/**/x.y'; printf '%s\n' "$#"
+caller_builtin	caller names the calling function	g() { c=$(caller 0) || exit 9; set -- $c; printf '%s\n' "$2"; }; f() { g; }; f
+base_n_literal	base#n arithmetic literal	printf '%s\n' "$(( 10#08 ))"
+local_outside	local outside a function	local x=1; printf '%s\n' "$?"
+array_literal	arr=(a b) array literal	a=(x y z) || exit 9; printf 'ok\n'

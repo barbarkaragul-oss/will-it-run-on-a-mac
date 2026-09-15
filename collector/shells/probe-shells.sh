@@ -48,6 +48,9 @@ version_of() {
   esac | flat
 }
 
+# Docker exports HOSTNAME into the Alpine container; with it inherited, dash would look as if it set the variable itself
+unset HOSTNAME
+
 printf 'platform\tshell\tkind\tversion\tprobe\texit\tstdout1\tstderr1\n' > "$OUT"
 for SH in $SHELLS; do
   if [ ! -x "$SH" ]; then
@@ -57,6 +60,7 @@ for SH in $SHELLS; do
   KIND=$(kind_of "$SH"); VER=$(version_of "$SH" "$KIND")
   echo "== $PLATFORM $SH: $KIND $VER" >&2
   grep -v '^#' "$HERE/probes.txt" | grep -v '^[[:space:]]*$' | while IFS='	' read -r ID LABEL SNIPPET; do
+    [ -n "$SNIPPET" ] || { echo "probes.txt: $ID has no snippet (missing TAB?)" >&2; exit 1; }
     [ -n "$ID" ] || continue
     rm -rf "$T/w"; mkdir -p "$T/w"
     ( cd "$T/w" && "$SH" -c "$SNIPPET" </dev/null >"$T/.o" 2>"$T/.e" ); CODE=$?
