@@ -4,7 +4,7 @@
  *   npx tsx scripts/build.ts
  */
 import { build } from 'esbuild';
-import { mkdirSync, copyFileSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
+import { mkdirSync, copyFileSync, writeFileSync, readFileSync, rmSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import type { Database } from './extract.js';
 
@@ -36,6 +36,8 @@ rmSync(path.join(DOCS, 'data', 'tools'), { recursive: true, force: true });
 mkdirSync(path.join(DOCS, 'data', 'tools'), { recursive: true });
 const index = { generated_at: db.generated_at, platforms: db.platforms, probes: db.probes, tools: Object.keys(db.tools).sort() };
 writeFileSync(path.join(DOCS, 'data', 'index.json'), JSON.stringify(index));
+// the shell-semantics recordings ship as one small file; the page fetches it only when a script's shebang asks
+if (existsSync('data/shells.json')) copyFileSync('data/shells.json', path.join(DOCS, 'data', 'shells.json'));
 let bytes = 0;
 for (const [tool, rec] of Object.entries(db.tools)) {
   const s = JSON.stringify(rec);

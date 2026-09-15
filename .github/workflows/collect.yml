@@ -33,10 +33,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
+      # Ubuntu ships bash and dash; zsh and ksh are installed so the shell probes can compare them
+      # on the same machine. macOS already has bash 3.2, zsh and ksh in /bin.
+      - if: matrix.platform == 'ubuntu'
+        run: sudo apt-get update -q && sudo apt-get install -y -q zsh ksh >/dev/null
       - run: sh collector/collect.sh ${{ matrix.platform }}
       - run: sh collector/probe.sh ${{ matrix.platform }}
       - run: sh collector/probe-all.sh ${{ matrix.platform }}
-      - run: cat out/${{ matrix.platform }}/_platform.txt; head -5 out/${{ matrix.platform }}/_probes.tsv
+      - run: sh collector/shells/probe-shells.sh ${{ matrix.platform }}
+      - run: cat out/${{ matrix.platform }}/_platform.txt; head -5 out/${{ matrix.platform }}/_probes.tsv; head -3 out/${{ matrix.platform }}/_shells.tsv
       - uses: actions/upload-artifact@v7
         with:
           name: out-${{ matrix.platform }}
@@ -48,8 +53,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       # BusyBox lives in a container; actions cannot run inside Alpine (no glibc), so docker run it is.
-      - run: docker run --rm -v "$PWD:/w" -w /w alpine:3.20 sh -c 'sh collector/collect.sh alpine && sh collector/probe.sh alpine && sh collector/probe-all.sh alpine'
-      - run: sudo chown -R "$(id -u)" out; cat out/alpine/_platform.txt; head -5 out/alpine/_probes.tsv
+      # bash, zsh and dash are added only for the shell probes; the tool recordings still see BusyBox alone.
+      - run: docker run --rm -v "$PWD:/w" -w /w alpine:3.20 sh -c 'sh collector/collect.sh alpine && sh collector/probe.sh alpine && sh collector/probe-all.sh alpine && apk add --no-cache bash zsh dash >/dev/null && sh collector/shells/probe-shells.sh alpine'
+      - run: sudo chown -R "$(id -u)" out; cat out/alpine/_platform.txt; head -5 out/alpine/_probes.tsv; head -3 out/alpine/_shells.tsv
       - uses: actions/upload-artifact@v7
         with:
           name: out-alpine
@@ -74,6 +80,7 @@ jobs:
           path: out
           merge-multiple: true
       - run: ls out; npx tsx scripts/extract.ts
+      - run: npx tsx scripts/extract-shells.ts
       - run: npm test
       - run: npx tsx scripts/build.ts
       - name: Commit the refreshed database

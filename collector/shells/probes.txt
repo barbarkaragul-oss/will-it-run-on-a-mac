@@ -1,0 +1,69 @@
+# Shell-semantics probes: id<TAB>label<TAB>snippet
+#
+# Each snippet runs as `<shell> -c '<snippet>'` in an empty scratch directory with stdin from
+# /dev/null; the exit code and the first line of stdout and stderr are recorded per shell per
+# platform. A probe prints a distinctive marker on stdout only when the construct actually did
+# what a bash script would expect, and exits non-zero on every other path -- including the paths
+# where a shell silently keeps going after an error (bash 3.2 continues past a failed
+# `declare -A` and prints something plausible, so every builtin that can fail is followed by
+# `|| exit 9`). Nothing here touches the network or writes outside the scratch directory.
+#
+# The labels are what the site shows a reader; the ids are what the engine maps constructs to.
+identity	which shell is this	printf '%s|%s|%s\n' "${BASH_VERSION:-nobash}" "${ZSH_VERSION:-nozsh}" "${KSH_VERSION:-noksh}"
+array_index	arrays start at 0	arr=(a b c) || exit 9; printf '%s\n' "${arr[1]}"
+array_length	${#arr[@]} counts elements	arr=(a b c) || exit 9; printf '%s\n' "${#arr[@]}"
+array_all	"${arr[@]}" expands one word per element	arr=(a b c) || exit 9; set -- "${arr[@]}"; printf '%s\n' "$#"
+word_split	unquoted $var splits on whitespace	v='a b c'; set -- $v; printf '%s\n' "$#"
+ifs_split	unquoted $var splits on IFS	IFS=,; v='a,b,c'; set -- $v; printf '%s\n' "$#"
+glob_nomatch	a glob with no match stays literal	printf '%s\n' /definitely/not/here/*.xyz
+glob_nomatch_for	for over a glob with no match runs once with the pattern	n=0; for f in /definitely/not/here/*.xyz; do n=$((n+1)); done; printf '%s\n' "$n"
+pipe_read	read at the end of a pipeline runs in a subshell	printf 'hi\n' | read v; printf '[%s]\n' "$v"
+alias_in_script	aliases are not expanded in scripts	alias probealias='printf aliased'; probealias
+double_bracket	[[ ]] with pattern match	[[ abc == a* ]] && printf 'yes\n'
+single_bracket_eqeq	[ a == b ] (== inside single brackets)	[ abc == abc ] && printf 'yes\n'
+regex_match	[[ =~ ]] regular expressions	[[ abc =~ ^a ]] && printf 're\n'
+substring	${var:offset:length}	x=ABCDE; printf '%s\n' "${x:1:2}"
+lowercase_bash4	${var,,} lowercase (bash 4)	x=ABC; printf '%s\n' "${x,,}"
+uppercase_bash4	${var^^} uppercase (bash 4)	x=abc; printf '%s\n' "${x^^}"
+indirect_bash	${!name} indirection	v=HOME; printf '%s\n' "${!v}"
+pattern_replace	${var/pattern/repl}	x=a-b-c; printf '%s\n' "${x//-/+}"
+assoc_declare	declare -A associative arrays	declare -A m || exit 9; m[key]=v || exit 9; printf '%s\n' "${m[key]}"
+mapfile	mapfile / readarray	mapfile -t l <<< 'x' || exit 9; printf '%s\n' "${l[0]}"
+printf_v	printf -v assigns to a variable	printf -v out '%s' hi || exit 9; printf '%s\n' "$out"
+read_p	read -p prompt	read -p 'q' v <<< 'x' || exit 9; printf '[%s]\n' "$v"
+read_a	read -a into an array	read -a a <<< '1 2' || exit 9; printf '%s\n' "${a[1]}"
+shopt	shopt (bash options)	shopt -s nullglob || exit 9; printf 'ok\n'
+function_keyword	function name { } syntax	function f { printf 'hi\n'; }; f
+local_in_func	local inside a function	f() { local x=1 || exit 9; printf '%s\n' "$x"; }; f
+dollar_quote	$'...' ANSI-C quoting	x=$'a\tb'; printf '%s\n' "${#x}"
+brace_expand	{1..3} brace expansion	set -- {1..3}; printf '%s\n' "$#"
+power_arith	** in arithmetic	printf '%s\n' $((2**10))
+paren_arith	(( )) arithmetic command	x=5; (( x > 3 )) && printf 'big\n'
+let_builtin	let	let x=1+2 || exit 9; printf '%s\n' "$x"
+octal_literal	$((010)) is octal 8	printf '%s\n' $((010))
+leading_zero_08	$((08)) is an error in octal	printf '%s\n' $((08))
+test_v	[[ -v var ]]	[[ -v HOME ]] && printf 'set\n'
+declare_n	declare -n nameref	declare -n r=HOME || exit 9; printf '%s\n' "${r:+ref}"
+at_Q	${var@Q} quoting transform (bash 4.4)	x='a b'; printf '%s\n' "${x@Q}"
+pipestatus_upper	PIPESTATUS array	true | false; printf '%s\n' "${PIPESTATUS[1]:-unset}"
+pipefail	set -o pipefail	set -o pipefail || exit 9; printf 'ok\n'
+random	$RANDOM	case "${RANDOM:-}" in ''|*[!0-9]*) exit 9;; esac; printf 'number\n'
+epochseconds	$EPOCHSECONDS	case "${EPOCHSECONDS:-}" in ''|*[!0-9]*) exit 9;; esac; printf 'number\n'
+bash_source	BASH_SOURCE	printf '%s\n' "${BASH_SOURCE[0]:-unset}"
+funcname	FUNCNAME	f() { printf '%s\n' "${FUNCNAME[0]:-unset}"; }; f
+type_t	type -t	type -t printf
+echo_dash_e	echo -e interprets escapes	x=$(echo -e 'a\tb'); printf '%s\n' "${#x}"
+echo_dash_n	echo -n suppresses the newline	x=$(echo -n a; echo b); printf '%s\n' "$x"
+process_subst	<( ) process substitution	cat <(printf 'sub\n')
+here_string	<<< here-strings	cat <<< here
+export_f	export -f exports a function	f() { :; }; export -f f || exit 9; printf 'ok\n'
+compgen	compgen	compgen -A function | head -c 0 || exit 9; printf 'ok\n'
+set_u_unset	set -u on an unset variable	set -u; printf '%s\n' "$undefined_variable_xyz"
+readonly_assign	assigning to a readonly variable	readonly r=1; r=2; printf '%s\n' "$?"
+div_zero	division by zero	printf '%s\n' $((1/0))
+coproc	coproc	coproc { :; } || exit 9; printf 'ok\n'
+source_dot	. and source	printf 'x=1\n' > s.sh; . ./s.sh || exit 9; printf '%s\n' "$x"
+source_keyword	source keyword	printf 'y=2\n' > s.sh; source ./s.sh || exit 9; printf '%s\n' "$y"
+getopts	getopts	set -- -a; getopts a o || exit 9; printf '%s\n' "$o"
+trap_exit	trap on EXIT	trap 'printf trapped' EXIT; :
+last_pipe_status	$? after a pipeline is the last command	true | false; printf '%s\n' "$?"

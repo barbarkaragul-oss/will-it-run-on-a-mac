@@ -10,7 +10,8 @@
   "scripts": {
     "extract": "tsx scripts/extract.ts",
     "typecheck": "tsc --noEmit -p .",
-    "test": "node --import tsx --test \"tests/*.test.ts\""
+    "test": "node --import tsx --test \"tests/*.test.ts\"",
+    "extract-shells": "tsx scripts/extract-shells.ts"
   },
   "repository": {
     "type": "git",
