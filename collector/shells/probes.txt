@@ -151,3 +151,4 @@ caller_builtin	caller names the calling function	g() { c=$(caller 0) || exit 9; 
 base_n_literal	base#n arithmetic literal	printf '%s\n' "$(( 10#08 ))"
 local_outside	local outside a function	local x=1; printf '%s\n' "$?"
 array_literal	arr=(a b) array literal	a=(x y z) || exit 9; printf 'ok\n'
+set_e_basic	set -e stops at the first failing command	(set -e; false; printf 'reached\n'); printf 'ok\n'

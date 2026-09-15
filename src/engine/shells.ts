@@ -626,6 +626,10 @@ export function findConstructs(tree: TSTree): Hit[] {
         let nounsetHere = letters.includes('u');
         for (let i = 0; i < argText.length; i++) { if (argText[i] === '--') break; if (argText[i] === '-o' && argText[i + 1] === 'nounset') nounsetHere = true; }
         if (nounsetHere) add('set_o_nounset', n);
+        // `set -e` / `set -o errexit`: the option itself; the function-under-|| case is judged separately
+        let errexitHere = letters.includes('e');
+        for (let i = 0; i < argText.length; i++) { if (argText[i] === '--') break; if (argText[i] === '-o' && argText[i + 1] === 'errexit') errexitHere = true; }
+        if (errexitHere) add('set_e_basic', n);
         break;
       }
       case 'type': if (has(/^-\w*t/)) add('type_t', n); if (has(/^-[A-Za-z]*P/)) add('type_upper_p', n); break;
