@@ -135,9 +135,9 @@ test('empty-array-under-nounset has a single probe', () => {
 test('set_u_empty_array and set_u_empty_at stay quiet when the script fills the array or the positional list itself', () => {
   assert.ok(!probesOf('set -u\narr=(a b)\necho "${arr[@]}"\n').includes('set_u_empty_array'));
   assert.ok(!probesOf('set -u\ndeclare -a arr=(a)\necho "${arr[*]}"\n').includes('set_u_empty_array'));
-  // an empty literal or an append inside a branch does not prove the array has elements
+  // an empty literal alone does not prove the array has elements; an append with an element does (the usual append-then-guard shape)
   assert.ok(probesOf('set -u\narr=()\necho "${arr[@]}"\n').includes('set_u_empty_array'));
-  assert.ok(probesOf('set -u\narr=()\nif x; then arr+=(a); fi\necho "${arr[@]}"\n').includes('set_u_empty_array'));
+  assert.ok(!probesOf('set -u\narr=()\nif x; then arr+=(a); fi\necho "${arr[@]}"\n').includes('set_u_empty_array'));
   assert.ok(probesOf('set -u\nother=(a b)\necho "${arr[@]}"\n').includes('set_u_empty_array'));
   assert.ok(!probesOf('set -u\nset -- a b\necho "$@" "${*}"\n').includes('set_u_empty_at'));
   assert.ok(probesOf('set -u\nset --\necho "$@"\n').includes('set_u_empty_at'));
