@@ -20,6 +20,11 @@ on:
 permissions:
   contents: write
 
+# two recordings must not write data/shells.json at the same time; the second waits
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
 jobs:
   native:
     strategy:
@@ -91,6 +96,7 @@ jobs:
           git add data docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "data: weekly re-recording of Ubuntu, macOS and Alpine ($(date -u +%Y-%m-%d))"
-          # a commit may have landed on main during the twenty minutes of recording; put the data on top of it
-          git pull --rebase origin main
+          # a commit may have landed on main during the twenty minutes of recording; put the data on top of it.
+          # -X theirs: in a rebase, "theirs" is the commit being replayed -- this recording, which is the newer measurement.
+          git pull --rebase -X theirs origin main
           git push
