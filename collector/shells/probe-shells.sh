@@ -98,15 +98,18 @@ echo "== startup files present: $(awk -F'\t' 'NR>1 && $3=="yes"' "$FILES" | wc -
 
 # zsh is the only shell here that reads a per-user file in a non-interactive shell ($ZDOTDIR/.zshenv),
 # and the only one with a flag to stop it.
-rcflags_for() { case "$1" in zsh) printf '%s' '-d -f' ;; *) printf '' ;; esac; }
+# the long spellings: `emulate sh` turns on SH_OPTION_LETTERS, and a following -d -f is then read
+# the way ksh would read it and rejected
+rcflags_for() { case "$1" in zsh) printf '%s' '--no-globalrcs --no-rcs' ;; *) printf '' ;; esac; }
 
 # bin, name for the shell column, kind, version, rc flags, extra arguments
 run_probes() {
   _bin=$1; _col=$2; _kind=$3; _ver=$4; _rc=$5; _extra=$6
   # shellcheck disable=SC2086  # _extra and _rc are deliberate word lists
-  if ! "$_bin" $_extra $_rc -c ':' >/dev/null 2>&1; then
-    echo "!! $PLATFORM $_col: the shell rejects $_extra; recorded as unusable" >&2
-    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$PLATFORM" "$_col" "$_kind" "$_ver" "-" "-" "" "shell rejected $_extra" >> "$OUT"
+  if ! "$_bin" $_extra $_rc -c ':' >"$T/.c" 2>&1; then
+    _why=$(flat < "$T/.c")
+    echo "!! $PLATFORM $_col: the shell rejects $_extra: $_why" >&2
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$PLATFORM" "$_col" "$_kind" "$_ver" "-" "-" "" "rejected $_extra: $_why" >> "$OUT"
     return 0
   fi
   echo "== $PLATFORM $_col: $_kind $_ver ${_extra:+[$_extra]}${_rc:+ ($_rc)}" >&2
