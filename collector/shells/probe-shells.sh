@@ -5,6 +5,11 @@
 #
 # Output: out/<platform>/_shells.tsv with one row per shell per probe:
 #   platform  shell  kind  version  probe  exit  stdout1  stderr1
+#
+# zsh is recorded more than once: plain, and again under each compatibility knob a script author
+# reaches for when a zsh has to run bash-ish code (`-o shwordsplit`, `--emulate sh`, ...). Those
+# rows carry a shell name of "<path>+<knob>", so the database can answer "and if my zsh sets
+# shwordsplit?" instead of only describing a default zsh.
 # `kind` is what the binary says it is (bash, zsh, ksh, dash, busybox) and `version` is asked of
 # the binary itself, so a row can never be attributed to the wrong interpreter. The shells tried
 # are the ones a shebang or `sh` invocation would actually reach on that platform.
@@ -54,6 +59,22 @@ version_of() {
   esac | flat
 }
 
+# The compatibility knobs, as a script author would spell them. --emulate has to come before the
+# other options (Invocation: "may be passed to the shell ... following options are honoured").
+# Every one of these is off in a native zsh, so the plain rows stay the baseline.
+zsh_variants() {
+  cat <<VARIANTS
+shwordsplit	-o shwordsplit
+ksharrays	-o ksharrays
+nonomatch	-o nonomatch
+octalzeroes	-o octalzeroes
+bashrematch	-o bashrematch
+bashish	-o shwordsplit -o ksharrays -o nonomatch -o octalzeroes -o bashrematch
+emulate-sh	--emulate sh
+emulate-ksh	--emulate ksh
+VARIANTS
+}
+
 # Docker exports HOSTNAME into the Alpine container; with it inherited, dash would look as if it set the variable itself
 unset HOSTNAME
 # $ENV is read by dash, BusyBox ash and ksh; $BASH_ENV by non-interactive bash. Out of the way.
@@ -79,6 +100,27 @@ echo "== startup files present: $(awk -F'\t' 'NR>1 && $3=="yes"' "$FILES" | wc -
 # and the only one with a flag to stop it.
 rcflags_for() { case "$1" in zsh) printf '%s' '-d -f' ;; *) printf '' ;; esac; }
 
+# bin, name for the shell column, kind, version, rc flags, extra arguments
+run_probes() {
+  _bin=$1; _col=$2; _kind=$3; _ver=$4; _rc=$5; _extra=$6
+  # shellcheck disable=SC2086  # _extra and _rc are deliberate word lists
+  if ! "$_bin" $_extra $_rc -c ':' >/dev/null 2>&1; then
+    echo "!! $PLATFORM $_col: the shell rejects $_extra; recorded as unusable" >&2
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$PLATFORM" "$_col" "$_kind" "$_ver" "-" "-" "" "shell rejected $_extra" >> "$OUT"
+    return 0
+  fi
+  echo "== $PLATFORM $_col: $_kind $_ver ${_extra:+[$_extra]}${_rc:+ ($_rc)}" >&2
+  grep -v '^#' "$HERE/probes.txt" | grep -v '^[[:space:]]*$' | while IFS='	' read -r ID LABEL SNIPPET; do
+    [ -n "$SNIPPET" ] || { echo "probes.txt: $ID has no snippet (missing TAB?)" >&2; exit 1; }
+    [ -n "$ID" ] || continue
+    rm -rf "$T/w"; mkdir -p "$T/w"
+    # shellcheck disable=SC2086
+    ( cd "$T/w" && "$_bin" $_extra $_rc -c "$SNIPPET" </dev/null >"$T/.o" 2>"$T/.e" ); CODE=$?
+    O=$(flat < "$T/.o"); E=$(flat < "$T/.e")
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$PLATFORM" "$_col" "$_kind" "$_ver" "$ID" "$CODE" "$O" "$E" >> "$OUT"
+  done
+}
+
 printf 'platform\tshell\tkind\tversion\tprobe\texit\tstdout1\tstderr1\n' > "$OUT"
 for SH in $SHELLS; do
   if [ ! -x "$SH" ]; then
@@ -87,15 +129,11 @@ for SH in $SHELLS; do
   fi
   KIND=$(kind_of "$SH"); VER=$(version_of "$SH" "$KIND")
   RCFLAGS=$(rcflags_for "$KIND")
-  echo "== $PLATFORM $SH: $KIND $VER ${RCFLAGS:+($RCFLAGS)}" >&2
-  grep -v '^#' "$HERE/probes.txt" | grep -v '^[[:space:]]*$' | while IFS='	' read -r ID LABEL SNIPPET; do
-    [ -n "$SNIPPET" ] || { echo "probes.txt: $ID has no snippet (missing TAB?)" >&2; exit 1; }
-    [ -n "$ID" ] || continue
-    rm -rf "$T/w"; mkdir -p "$T/w"
-    # shellcheck disable=SC2086  # RCFLAGS is a deliberate word list
-    ( cd "$T/w" && "$SH" $RCFLAGS -c "$SNIPPET" </dev/null >"$T/.o" 2>"$T/.e" ); CODE=$?
-    O=$(flat < "$T/.o"); E=$(flat < "$T/.e")
-    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$PLATFORM" "$SH" "$KIND" "$VER" "$ID" "$CODE" "$O" "$E" >> "$OUT"
+  run_probes "$SH" "$SH" "$KIND" "$VER" "$RCFLAGS" ""
+  [ "$KIND" = "zsh" ] || continue
+  zsh_variants | while IFS='	' read -r VLABEL VARGS; do
+    [ -n "$VLABEL" ] || continue
+    run_probes "$SH" "$SH+$VLABEL" "$KIND" "$VER" "$RCFLAGS" "$VARGS"
   done
 done
 echo "wrote $OUT ($(($(wc -l < "$OUT") - 1)) rows)" >&2
