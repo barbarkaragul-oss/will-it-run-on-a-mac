@@ -62,12 +62,15 @@ unset ENV BASH_ENV
 # Which startup files existed while this recording was made; a reader can then judge for themselves
 # whether a row could have been influenced by one. zsh reads /etc/zshenv even with -d -f.
 FILES="out/$PLATFORM/_shellfiles.tsv"
-printf 'platform\tfile\texists\tbytes\n' > "$FILES"
+printf 'platform\tfile\texists\tbytes\tsetopt_lines\n' > "$FILES"
 for f in /etc/zshenv /etc/zsh/zshenv "$HOME/.zshenv" "${ZDOTDIR:-}/.zshenv" /etc/zshrc /etc/zsh/zshrc "$HOME/.zshrc" \
          /etc/profile "$HOME/.profile" /etc/bash.bashrc "$HOME/.bashrc" "$HOME/.bash_profile" /etc/ksh.kshrc; do
   [ "$f" = "/.zshenv" ] && continue   # $ZDOTDIR is unset, so this entry is not a real path
-  if [ -f "$f" ]; then printf '%s\t%s\tyes\t%s\n' "$PLATFORM" "$f" "$(wc -c < "$f" | tr -d ' ')" >> "$FILES"
-  else printf '%s\t%s\tno\t0\n' "$PLATFORM" "$f" >> "$FILES"; fi
+  if [ -f "$f" ]; then
+    # only a line that turns an option on or off can change what a probe prints; PATH setup cannot
+    n=$(grep -cE '^[[:space:]]*(setopt|unsetopt|emulate|set -[ko])' "$f" 2>/dev/null || true)
+    printf '%s\t%s\tyes\t%s\t%s\n' "$PLATFORM" "$f" "$(wc -c < "$f" | tr -d ' ')" "${n:-0}" >> "$FILES"
+  else printf '%s\t%s\tno\t0\t0\n' "$PLATFORM" "$f" >> "$FILES"; fi
 done
 echo "== startup files present: $(grep -c '\tyes\t' "$FILES") of $(($(wc -l < "$FILES") - 1))" >&2
 
