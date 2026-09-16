@@ -72,7 +72,8 @@ for f in /etc/zshenv /etc/zsh/zshenv "$HOME/.zshenv" "${ZDOTDIR:-}/.zshenv" /etc
     printf '%s\t%s\tyes\t%s\t%s\n' "$PLATFORM" "$f" "$(wc -c < "$f" | tr -d ' ')" "${n:-0}" >> "$FILES"
   else printf '%s\t%s\tno\t0\t0\n' "$PLATFORM" "$f" >> "$FILES"; fi
 done
-echo "== startup files present: $(grep -c '\tyes\t' "$FILES") of $(($(wc -l < "$FILES") - 1))" >&2
+# awk, not grep: a POSIX grep does not read \t as a tab, and the count came out zero on Ubuntu
+echo "== startup files present: $(awk -F'\t' 'NR>1 && $3=="yes"' "$FILES" | wc -l | tr -d ' ') of $(($(wc -l < "$FILES") - 1)), option-setting lines in them: $(awk -F'\t' 'NR>1 {n+=$5} END {print n+0}' "$FILES")" >&2
 
 # zsh is the only shell here that reads a per-user file in a non-interactive shell ($ZDOTDIR/.zshenv),
 # and the only one with a flag to stop it.
