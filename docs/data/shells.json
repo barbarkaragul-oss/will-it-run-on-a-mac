@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-16T07:53:06.664Z",
+ "generated_at": "2026-09-16T08:03:09.047Z",
  "shells": {
   "alpine": {
    "/bin/sh": {
@@ -215,6 +215,16 @@
      "stdout1": "nobash|5.9|noksh",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "nobash|nozsh|noksh",
@@ -261,6 +271,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "nobash|5.9|noksh",
      "stderr1": ""
@@ -316,6 +336,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "nobash|5.9|noksh",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "nobash|5.9|noksh",
      "stderr1": ""
@@ -381,6 +411,16 @@
      "stdout1": "b",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -427,6 +467,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "b",
      "stderr1": ""
@@ -482,6 +532,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "b",
      "stderr1": ""
@@ -547,6 +607,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -593,6 +663,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -648,6 +728,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -713,6 +803,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -759,6 +859,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -814,6 +924,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -879,6 +999,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "3",
@@ -925,6 +1055,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -980,6 +1120,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -1045,6 +1195,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "3",
@@ -1091,6 +1251,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -1146,6 +1316,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -1211,6 +1391,16 @@
      "stdout1": "/definitely/not/here/*.xyz",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "/definitely/not/here/*.xyz",
@@ -1257,6 +1447,16 @@
      "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "/definitely/not/here/*.xyz",
      "stderr1": ""
@@ -1312,6 +1512,16 @@
      "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "/definitely/not/here/*.xyz",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "/definitely/not/here/*.xyz",
      "stderr1": ""
@@ -1377,6 +1587,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -1423,6 +1643,16 @@
      "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -1478,6 +1708,16 @@
      "stderr1": "zsh:1: no matches found: /definitely/not/here/*.xyz"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -1543,6 +1783,16 @@
      "stdout1": "[hi]",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "[]",
@@ -1589,6 +1839,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "[hi]",
      "stderr1": ""
@@ -1644,6 +1904,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "[hi]",
      "stderr1": ""
@@ -1709,6 +1979,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: probealias"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 127,
      "stdout1": "",
@@ -1755,6 +2035,16 @@
      "stderr1": "zsh:1: command not found: probealias"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 127,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: probealias"
@@ -1810,6 +2100,16 @@
      "stderr1": "zsh:1: command not found: probealias"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 127,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: probealias"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 127,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: probealias"
@@ -1875,6 +2175,16 @@
      "stdout1": "yes",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "yes",
@@ -1921,6 +2231,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes",
      "stderr1": ""
@@ -1976,6 +2296,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes",
      "stderr1": ""
@@ -2041,6 +2371,16 @@
      "stdout1": "yes",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -2087,6 +2427,16 @@
      "stderr1": "zsh:1: = not found"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes",
      "stderr1": ""
@@ -2142,6 +2492,16 @@
      "stderr1": "zsh:1: = not found"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes",
      "stderr1": ""
@@ -2207,6 +2567,16 @@
      "stdout1": "re",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "re",
@@ -2253,6 +2623,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "re",
      "stderr1": ""
@@ -2308,6 +2688,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "re",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "re",
      "stderr1": ""
@@ -2373,6 +2763,16 @@
      "stdout1": "BC",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -2419,6 +2819,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BC",
      "stderr1": ""
@@ -2474,6 +2884,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BC",
      "stderr1": ""
@@ -2539,6 +2959,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -2585,6 +3015,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -2640,6 +3080,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -2705,6 +3155,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -2751,6 +3211,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -2806,6 +3276,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -2871,6 +3351,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -2920,6 +3410,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
     },
     "macos|/bin/ksh": {
      "exit": 0,
@@ -2975,6 +3475,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
      "exit": 0,
@@ -3037,6 +3547,16 @@
      "stdout1": "a+b+c",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -3083,6 +3603,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a+b+c",
      "stderr1": ""
@@ -3138,6 +3668,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a+b+c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a+b+c",
      "stderr1": ""
@@ -3203,6 +3743,16 @@
      "stdout1": "v",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -3249,6 +3799,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "v",
      "stderr1": ""
@@ -3304,6 +3864,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "v",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "v",
      "stderr1": ""
@@ -3369,6 +3939,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: mapfile"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -3415,6 +3995,16 @@
      "stderr1": "zsh:1: command not found: mapfile"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: mapfile"
@@ -3470,6 +4060,16 @@
      "stderr1": "zsh:1: command not found: mapfile"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: mapfile"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: mapfile"
@@ -3535,6 +4135,16 @@
      "stdout1": "hi",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -3581,6 +4191,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -3636,6 +4256,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -3701,6 +4331,16 @@
      "stdout1": "",
      "stderr1": "zsh:read:1: -p: no coprocess"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -3747,6 +4387,16 @@
      "stderr1": "zsh:read:1: -p: no coprocess"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: -p: no coprocess"
@@ -3802,6 +4452,16 @@
      "stderr1": "zsh:read:1: -p: no coprocess"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: -p: no coprocess"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: -p: no coprocess"
@@ -3867,6 +4527,16 @@
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -a"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -3913,6 +4583,16 @@
      "stderr1": "zsh:read:1: bad option: -a"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -a"
@@ -3968,6 +4648,16 @@
      "stderr1": "zsh:read:1: bad option: -a"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -a"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -a"
@@ -4033,6 +4723,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -4079,6 +4779,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -4134,6 +4844,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -4199,6 +4919,16 @@
      "stdout1": "hi",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -4245,6 +4975,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -4300,6 +5040,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -4365,6 +5115,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -4411,6 +5171,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -4466,6 +5236,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -4531,6 +5311,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "5",
@@ -4577,6 +5367,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -4632,6 +5432,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -4697,6 +5507,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -4743,6 +5563,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -4798,6 +5628,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -4863,6 +5703,16 @@
      "stdout1": "1024",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -4909,6 +5759,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1024",
      "stderr1": ""
@@ -4964,6 +5824,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1024",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1024",
      "stderr1": ""
@@ -5029,6 +5899,16 @@
      "stdout1": "big",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 127,
      "stdout1": "",
@@ -5075,6 +5955,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "big",
      "stderr1": ""
@@ -5130,6 +6020,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "big",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "big",
      "stderr1": ""
@@ -5195,6 +6095,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -5241,6 +6151,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -5296,6 +6216,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -5361,6 +6291,16 @@
      "stdout1": "8",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "10",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "8",
@@ -5409,6 +6349,16 @@
     "macos|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "10",
      "stderr1": ""
     },
     "macos|/bin/ksh": {
@@ -5464,6 +6414,16 @@
     "ubuntu|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "10",
      "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
@@ -5527,6 +6487,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad math expression: operator expected at `8'"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad math expression: operator expected at `8'"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -5576,6 +6546,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad math expression: operator expected at `8'"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad math expression: operator expected at `8'"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
     },
     "macos|/bin/ksh": {
      "exit": 0,
@@ -5631,6 +6611,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad math expression: operator expected at `8'"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad math expression: operator expected at `8'"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
      "exit": 0,
@@ -5693,6 +6683,16 @@
      "stdout1": "set",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -5739,6 +6739,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -5794,6 +6804,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -5859,6 +6879,16 @@
      "stdout1": "",
      "stderr1": "zsh:declare:1: bad option: -n"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -5905,6 +6935,16 @@
      "stderr1": "zsh:declare:1: bad option: -n"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:declare:1: bad option: -n"
@@ -5960,6 +7000,16 @@
      "stderr1": "zsh:declare:1: bad option: -n"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:declare:1: bad option: -n"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:declare:1: bad option: -n"
@@ -6025,6 +7075,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -6071,6 +7131,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -6126,6 +7196,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -6191,6 +7271,16 @@
      "stdout1": "unset",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -6237,6 +7327,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -6292,6 +7392,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -6357,6 +7467,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -6403,6 +7523,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -6458,6 +7588,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -6523,6 +7663,16 @@
      "stdout1": "number",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -6569,6 +7719,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "number",
      "stderr1": ""
@@ -6624,6 +7784,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "number",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "number",
      "stderr1": ""
@@ -6689,6 +7859,16 @@
      "stdout1": "",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -6735,6 +7915,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": ""
@@ -6790,6 +7980,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": ""
@@ -6855,6 +8055,16 @@
      "stdout1": "unset",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -6901,6 +8111,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -6956,6 +8176,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -7021,6 +8251,16 @@
      "stdout1": "unset",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -7067,6 +8307,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -7122,6 +8372,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -7187,6 +8447,16 @@
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -t"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 127,
      "stdout1": "-t: not found",
@@ -7233,6 +8503,16 @@
      "stderr1": "zsh:type:1: bad option: -t"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -t"
@@ -7288,6 +8568,16 @@
      "stderr1": "zsh:type:1: bad option: -t"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -t"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -t"
@@ -7353,6 +8643,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "6",
@@ -7399,6 +8699,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -7454,6 +8764,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -7519,6 +8839,16 @@
      "stdout1": "ab",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "ab",
@@ -7565,6 +8895,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -7620,6 +8960,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -7685,6 +9035,16 @@
      "stdout1": "sub",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -7731,6 +9091,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "sub",
      "stderr1": ""
@@ -7786,6 +9156,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "sub",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "sub",
      "stderr1": ""
@@ -7851,6 +9231,16 @@
      "stdout1": "here",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -7897,6 +9287,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "here",
      "stderr1": ""
@@ -7952,6 +9352,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "here",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "here",
      "stderr1": ""
@@ -8017,6 +9427,16 @@
      "stdout1": "",
      "stderr1": "zsh:export:1: invalid option(s)"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -8063,6 +9483,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "f () {",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "f () {",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "f () {",
      "stderr1": ""
@@ -8118,6 +9548,16 @@
      "stderr1": "zsh:export:1: invalid option(s)"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:export:1: invalid option(s)"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:export:1: invalid option(s)"
@@ -8183,6 +9623,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: compgen"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -8229,6 +9679,16 @@
      "stderr1": "zsh:1: command not found: compgen"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: compgen"
@@ -8284,6 +9744,16 @@
      "stderr1": "zsh:1: command not found: compgen"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: compgen"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: compgen"
@@ -8349,6 +9819,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -8395,6 +9875,16 @@
      "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
@@ -8450,6 +9940,16 @@
      "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: undefined_variable_xyz: parameter not set"
@@ -8515,6 +10015,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: read-only variable: r"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -8561,6 +10071,16 @@
      "stderr1": "zsh:1: read-only variable: r"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: read-only variable: r"
@@ -8616,6 +10136,16 @@
      "stderr1": "zsh:1: read-only variable: r"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: read-only variable: r"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: read-only variable: r"
@@ -8681,6 +10211,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -8727,6 +10267,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -8782,6 +10332,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -8847,6 +10407,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: division by zero"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -8893,6 +10463,16 @@
      "stderr1": "zsh:1: division by zero"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: division by zero"
@@ -8948,6 +10528,16 @@
      "stderr1": "zsh:1: division by zero"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: division by zero"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: division by zero"
@@ -9013,6 +10603,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -9059,6 +10659,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -9114,6 +10724,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -9179,6 +10799,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -9225,6 +10855,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -9280,6 +10920,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -9345,6 +10995,16 @@
      "stdout1": "2",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -9391,6 +11051,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "2",
      "stderr1": ""
@@ -9446,6 +11116,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "2",
      "stderr1": ""
@@ -9511,6 +11191,16 @@
      "stdout1": "a",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "a",
@@ -9557,6 +11247,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a",
      "stderr1": ""
@@ -9612,6 +11312,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a",
      "stderr1": ""
@@ -9677,6 +11387,16 @@
      "stdout1": "trapped",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "trapped",
@@ -9723,6 +11443,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "trapped",
      "stderr1": ""
@@ -9778,6 +11508,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "trapped",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "trapped",
      "stderr1": ""
@@ -9843,6 +11583,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -9889,6 +11639,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -9944,6 +11704,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -10009,6 +11779,16 @@
      "stdout1": "hi",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "hi",
@@ -10055,6 +11835,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -10110,6 +11900,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "hi",
      "stderr1": ""
@@ -10175,6 +11975,16 @@
      "stdout1": "one",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "one",
@@ -10221,6 +12031,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "one",
      "stderr1": ""
@@ -10276,6 +12096,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "one",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "one",
      "stderr1": ""
@@ -10341,6 +12171,16 @@
      "stdout1": "a,b",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "a,b",
@@ -10387,6 +12227,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a,b",
      "stderr1": ""
@@ -10442,6 +12292,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a,b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a,b",
      "stderr1": ""
@@ -10507,6 +12367,16 @@
      "stdout1": "yes,",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "yes,",
@@ -10553,6 +12423,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes,",
      "stderr1": ""
@@ -10608,6 +12488,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "yes,",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "yes,",
      "stderr1": ""
@@ -10673,6 +12563,16 @@
      "stdout1": "dflt",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "dflt",
@@ -10719,6 +12619,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "dflt",
      "stderr1": ""
@@ -10774,6 +12684,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "dflt",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "dflt",
      "stderr1": ""
@@ -10839,6 +12759,16 @@
      "stdout1": "usr/local/bin,bin",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "usr/local/bin,bin",
@@ -10885,6 +12815,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "usr/local/bin,bin",
      "stderr1": ""
@@ -10940,6 +12880,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "usr/local/bin,bin",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "usr/local/bin,bin",
      "stderr1": ""
@@ -11005,6 +12955,16 @@
      "stdout1": "file.tar,file",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "file.tar,file",
@@ -11051,6 +13011,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "file.tar,file",
      "stderr1": ""
@@ -11106,6 +13076,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "file.tar,file",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "file.tar,file",
      "stderr1": ""
@@ -11171,6 +13151,16 @@
      "stdout1": "5",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "5",
@@ -11217,6 +13207,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -11272,6 +13272,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -11337,6 +13347,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "1",
@@ -11383,6 +13403,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -11438,6 +13468,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -11503,6 +13543,16 @@
      "stdout1": "   ab|c  |007",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "   ab|c  |007",
@@ -11549,6 +13599,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "   ab|c  |007",
      "stderr1": ""
@@ -11604,6 +13664,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "   ab|c  |007",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "   ab|c  |007",
      "stderr1": ""
@@ -11669,6 +13739,16 @@
      "stdout1": "e",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "e",
@@ -11715,6 +13795,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "e",
      "stderr1": ""
@@ -11770,6 +13860,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "e",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "e",
      "stderr1": ""
@@ -11835,6 +13935,16 @@
      "stdout1": "out",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "out",
@@ -11881,6 +13991,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "out",
      "stderr1": ""
@@ -11936,6 +14056,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "out",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "out",
      "stderr1": ""
@@ -12001,6 +14131,16 @@
      "stdout1": "a\\b",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "a\\b",
@@ -12047,6 +14187,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a\\b",
      "stderr1": ""
@@ -12102,6 +14252,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a\\b",
      "stderr1": ""
@@ -12167,6 +14327,16 @@
      "stdout1": "17",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "17",
@@ -12213,6 +14383,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "17",
      "stderr1": ""
@@ -12268,6 +14448,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "17",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "17",
      "stderr1": ""
@@ -12333,6 +14523,16 @@
      "stdout1": "42",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "42",
@@ -12379,6 +14579,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "42",
      "stderr1": ""
@@ -12434,6 +14644,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "42",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "42",
      "stderr1": ""
@@ -12499,6 +14719,16 @@
      "stdout1": "printf",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "printf",
@@ -12545,6 +14775,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "printf",
      "stderr1": ""
@@ -12600,6 +14840,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "printf",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "printf",
      "stderr1": ""
@@ -12665,6 +14915,16 @@
      "stdout1": "c d",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "c d",
@@ -12711,6 +14971,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "c d",
      "stderr1": ""
@@ -12766,6 +15036,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c d",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "c d",
      "stderr1": ""
@@ -12831,6 +15111,16 @@
      "stdout1": "tick",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "tick",
@@ -12877,6 +15167,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "tick",
      "stderr1": ""
@@ -12932,6 +15232,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "tick",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "tick",
      "stderr1": ""
@@ -12997,6 +15307,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "3",
@@ -13043,6 +15363,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -13098,6 +15428,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -13163,6 +15503,16 @@
      "stdout1": "BC",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "BC",
@@ -13209,6 +15559,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BC",
      "stderr1": ""
@@ -13264,6 +15624,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BC",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BC",
      "stderr1": ""
@@ -13329,6 +15699,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "ok",
@@ -13375,6 +15755,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -13430,6 +15820,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -13495,6 +15895,16 @@
      "stdout1": "notty",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "notty",
@@ -13541,6 +15951,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "notty",
      "stderr1": ""
@@ -13596,6 +16016,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "notty",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "notty",
      "stderr1": ""
@@ -13661,6 +16091,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "ok",
@@ -13707,6 +16147,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -13762,6 +16212,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -13827,6 +16287,16 @@
      "stdout1": "c",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -13873,6 +16343,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "c",
      "stderr1": ""
@@ -13928,6 +16408,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "c",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "c",
      "stderr1": ""
@@ -13993,6 +16483,16 @@
      "stdout1": "ab",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14039,6 +16539,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -14094,6 +16604,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -14159,6 +16679,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: parse error near `&'"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14205,6 +16735,16 @@
      "stderr1": "zsh:1: parse error near `&'"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: parse error near `&'"
@@ -14260,6 +16800,16 @@
      "stderr1": "zsh:1: parse error near `&'"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: parse error near `&'"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: parse error near `&'"
@@ -14325,6 +16875,16 @@
      "stdout1": "viapipe",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14371,6 +16931,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "viapipe",
      "stderr1": ""
@@ -14426,6 +16996,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "viapipe",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "viapipe",
      "stderr1": ""
@@ -14491,6 +17071,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a b c",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14540,6 +17130,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a b c",
+     "stderr1": ""
     },
     "macos|/bin/ksh": {
      "exit": 0,
@@ -14595,6 +17195,16 @@
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a b c",
+     "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
      "exit": 0,
@@ -14657,6 +17267,16 @@
      "stdout1": "a\\ b",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14703,6 +17323,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a\\ b",
      "stderr1": ""
@@ -14758,6 +17388,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "a\\ b",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "a\\ b",
      "stderr1": ""
@@ -14823,6 +17463,16 @@
      "stdout1": "",
      "stderr1": "zsh:printf:1: %(: invalid directive"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -14869,6 +17519,16 @@
      "stderr1": "zsh:printf:1: %(: invalid directive"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:printf:1: %(: invalid directive"
@@ -14924,6 +17584,16 @@
      "stderr1": "zsh:printf:1: %(: invalid directive"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:printf:1: %(: invalid directive"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:printf:1: %(: invalid directive"
@@ -14989,6 +17659,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -15035,6 +17715,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -15090,6 +17780,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -15155,6 +17855,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -15201,6 +17911,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -15256,6 +17976,16 @@
      "stderr1": "zsh:1: bad substitution"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 1,
+     "stdout1": "",
+     "stderr1": "zsh:1: bad substitution"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 1,
      "stdout1": "",
      "stderr1": "zsh:1: bad substitution"
@@ -15321,6 +18051,16 @@
      "stdout1": "",
      "stderr1": "zsh:wait:1: job not found: -n"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -15370,6 +18110,16 @@
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:wait:1: job not found: -n"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
     },
     "macos|/bin/ksh": {
      "exit": 9,
@@ -15425,6 +18175,16 @@
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:wait:1: job not found: -n"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
      "exit": 9,
@@ -15487,6 +18247,16 @@
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -N"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -15533,6 +18303,16 @@
      "stderr1": "zsh:read:1: bad option: -N"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -N"
@@ -15588,6 +18368,16 @@
      "stderr1": "zsh:read:1: bad option: -N"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:read:1: bad option: -N"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:read:1: bad option: -N"
@@ -15653,6 +18443,16 @@
      "stdout1": "BCD",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -15699,6 +18499,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BCD",
      "stderr1": ""
@@ -15754,6 +18564,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "BCD",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "BCD",
      "stderr1": ""
@@ -15819,6 +18639,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -15865,6 +18695,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -15920,6 +18760,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -15985,6 +18835,16 @@
      "stdout1": "3|z",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -16031,6 +18891,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3|z",
      "stderr1": ""
@@ -16086,6 +18956,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3|z",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3|z",
      "stderr1": ""
@@ -16151,6 +19031,16 @@
      "stdout1": "y",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -16197,6 +19087,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "y",
      "stderr1": ""
@@ -16252,6 +19152,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "y",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "y",
      "stderr1": ""
@@ -16317,6 +19227,16 @@
      "stdout1": "both",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -16363,6 +19283,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "both",
      "stderr1": ""
@@ -16418,6 +19348,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "both",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "both",
      "stderr1": ""
@@ -16483,6 +19423,16 @@
      "stdout1": "pattern",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "pattern",
@@ -16529,6 +19479,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "pattern",
      "stderr1": ""
@@ -16584,6 +19544,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "pattern",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "pattern",
      "stderr1": ""
@@ -16649,6 +19619,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "x",
@@ -16695,6 +19675,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -16750,6 +19740,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -16815,6 +19815,16 @@
      "stdout1": "ef",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -16861,6 +19871,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ef",
      "stderr1": ""
@@ -16916,6 +19936,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ef",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ef",
      "stderr1": ""
@@ -16981,6 +20011,16 @@
      "stdout1": "2|y",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -17027,6 +20067,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "2|y",
      "stderr1": ""
@@ -17082,6 +20132,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "2|y",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "2|y",
      "stderr1": ""
@@ -17147,6 +20207,16 @@
      "stdout1": "x-y-z",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -17193,6 +20263,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "x-y-z",
      "stderr1": ""
@@ -17248,6 +20328,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x-y-z",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "x-y-z",
      "stderr1": ""
@@ -17313,6 +20403,16 @@
      "stdout1": "abcd",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -17359,6 +20459,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "abcd",
      "stderr1": ""
@@ -17414,6 +20524,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "abcd",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "abcd",
      "stderr1": ""
@@ -17479,6 +20599,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -17525,6 +20655,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -17580,6 +20720,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -17645,6 +20795,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "4",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "3",
@@ -17691,6 +20851,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "4",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -17746,6 +20916,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "4",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -17811,6 +20991,16 @@
      "stdout1": "[123]",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -17859,6 +21049,16 @@
     "macos|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "[123]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "[]",
      "stderr1": ""
     },
     "macos|/bin/ksh": {
@@ -17914,6 +21114,16 @@
     "ubuntu|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "[123]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "[]",
      "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
@@ -17977,6 +21187,16 @@
      "stdout1": "T",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "after",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "after",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "after",
@@ -18025,6 +21245,16 @@
     "macos|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "T",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "after",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "after",
      "stderr1": ""
     },
     "macos|/bin/ksh": {
@@ -18080,6 +21310,16 @@
     "ubuntu|/bin/zsh+bashish": {
      "exit": 0,
      "stdout1": "T",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "after",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "after",
      "stderr1": ""
     },
     "ubuntu|/bin/ksh": {
@@ -18143,6 +21383,16 @@
      "stdout1": "err",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -18189,6 +21439,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "err",
      "stderr1": ""
@@ -18244,6 +21504,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "err",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "err",
      "stderr1": ""
@@ -18309,6 +21579,16 @@
      "stdout1": "unset",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "unset",
@@ -18355,6 +21635,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -18410,6 +21700,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -18475,6 +21775,16 @@
      "stdout1": "set",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "unset",
@@ -18521,6 +21831,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18576,6 +21896,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18641,6 +21971,16 @@
      "stdout1": "set",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "unset",
@@ -18687,6 +22027,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18742,6 +22092,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18807,6 +22167,16 @@
      "stdout1": "set",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "unset",
@@ -18853,6 +22223,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18908,6 +22288,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "set",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "set",
      "stderr1": ""
@@ -18973,6 +22363,16 @@
      "stdout1": "[hi]",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -19019,6 +22419,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "[hi]",
      "stderr1": ""
@@ -19074,6 +22484,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "[hi]",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "[hi]",
      "stderr1": ""
@@ -19139,6 +22559,16 @@
      "stdout1": "ab",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -19185,6 +22615,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -19240,6 +22680,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ab",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ab",
      "stderr1": ""
@@ -19305,6 +22755,16 @@
      "stdout1": "5",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -19351,6 +22811,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -19406,6 +22876,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -19471,6 +22951,16 @@
      "stdout1": "",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -19517,6 +23007,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": ""
@@ -19572,6 +23072,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": ""
@@ -19637,6 +23147,16 @@
      "stdout1": "0",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "0",
@@ -19683,6 +23203,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -19738,6 +23268,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -19803,6 +23343,16 @@
      "stdout1": "0",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "0",
@@ -19849,6 +23399,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -19904,6 +23464,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -19969,6 +23539,16 @@
      "stdout1": "x",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "x",
@@ -20015,6 +23595,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "x",
      "stderr1": ""
@@ -20070,6 +23660,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "x",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "x",
      "stderr1": ""
@@ -20135,6 +23735,16 @@
      "stdout1": "enforced",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "enforced",
@@ -20181,6 +23791,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "enforced",
      "stderr1": ""
@@ -20236,6 +23856,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "enforced",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "enforced",
      "stderr1": ""
@@ -20301,6 +23931,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: complete"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -20347,6 +23987,16 @@
      "stderr1": "zsh:1: command not found: complete"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: complete"
@@ -20402,6 +24052,16 @@
      "stderr1": "zsh:1: command not found: complete"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: complete"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: complete"
@@ -20467,6 +24127,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -20513,6 +24183,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -20568,6 +24248,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -20633,6 +24323,16 @@
      "stdout1": "5",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -20679,6 +24379,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -20734,6 +24444,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "5",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "5",
      "stderr1": ""
@@ -20799,6 +24519,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -20845,6 +24575,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -20900,6 +24640,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -20965,6 +24715,16 @@
      "stdout1": "typeset x=hi",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 127,
      "stdout1": "",
@@ -21011,6 +24771,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "typeset x=hi",
      "stderr1": ""
@@ -21066,6 +24836,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "typeset x=hi",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "typeset x=hi",
      "stderr1": ""
@@ -21131,6 +24911,16 @@
      "stdout1": "",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -21177,6 +24967,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "",
      "stderr1": ""
@@ -21232,6 +25032,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "",
      "stderr1": ""
@@ -21297,6 +25107,16 @@
      "stdout1": "1",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -21343,6 +25163,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -21398,6 +25228,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "1",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "1",
      "stderr1": ""
@@ -21463,6 +25303,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -21509,6 +25359,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21564,6 +25424,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21629,6 +25499,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 127,
      "stdout1": "",
@@ -21675,6 +25555,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21730,6 +25620,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21795,6 +25695,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "ok",
@@ -21841,6 +25751,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21896,6 +25816,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -21961,6 +25891,16 @@
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -P"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -22007,6 +25947,16 @@
      "stderr1": "zsh:type:1: bad option: -P"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -P"
@@ -22062,6 +26012,16 @@
      "stderr1": "zsh:type:1: bad option: -P"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:type:1: bad option: -P"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:type:1: bad option: -P"
@@ -22127,6 +26087,16 @@
      "stdout1": "unset",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "unset",
@@ -22173,6 +26143,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -22228,6 +26208,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "unset",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "unset",
      "stderr1": ""
@@ -22293,6 +26283,16 @@
      "stdout1": "gone",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "gone",
@@ -22339,6 +26339,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "gone",
      "stderr1": ""
@@ -22394,6 +26404,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "gone",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "gone",
      "stderr1": ""
@@ -22459,6 +26479,16 @@
      "stdout1": "3",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -22505,6 +26535,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -22560,6 +26600,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "3",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "3",
      "stderr1": ""
@@ -22625,6 +26675,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -22671,6 +26731,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -22726,6 +26796,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -22791,6 +26871,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -22837,6 +26927,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -22892,6 +26992,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -22957,6 +27067,16 @@
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -23003,6 +27123,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -23058,6 +27188,16 @@
      "stderr1": "zsh:1: command not found: shopt"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "zsh:1: command not found: shopt"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "zsh:1: command not found: shopt"
@@ -23123,6 +27263,16 @@
      "stdout1": "",
      "stderr1": "g: command not found: caller"
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
     "alpine|/usr/bin/dash": {
      "exit": 9,
      "stdout1": "",
@@ -23169,6 +27319,16 @@
      "stderr1": "g: command not found: caller"
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "g: command not found: caller"
@@ -23224,6 +27384,16 @@
      "stderr1": "g: command not found: caller"
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 9,
+     "stdout1": "",
+     "stderr1": "g: command not found: caller"
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 9,
      "stdout1": "",
      "stderr1": "g: command not found: caller"
@@ -23289,6 +27459,16 @@
      "stdout1": "8",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -23335,6 +27515,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "8",
      "stderr1": ""
@@ -23390,6 +27580,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "8",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "8",
      "stderr1": ""
@@ -23455,6 +27655,16 @@
      "stdout1": "0",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -23501,6 +27711,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -23556,6 +27776,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "0",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "0",
      "stderr1": ""
@@ -23621,6 +27851,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 2,
      "stdout1": "",
@@ -23667,6 +27907,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -23722,6 +27972,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -23787,6 +28047,16 @@
      "stdout1": "ok",
      "stderr1": ""
     },
+    "alpine|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "alpine|/bin/zsh+emulate-ksh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
     "alpine|/usr/bin/dash": {
      "exit": 0,
      "stdout1": "ok",
@@ -23833,6 +28103,16 @@
      "stderr1": ""
     },
     "macos|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "macos|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
@@ -23888,6 +28168,16 @@
      "stderr1": ""
     },
     "ubuntu|/bin/zsh+bashish": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-sh": {
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
+    },
+    "ubuntu|/bin/zsh+emulate-ksh": {
      "exit": 0,
      "stdout1": "ok",
      "stderr1": ""
