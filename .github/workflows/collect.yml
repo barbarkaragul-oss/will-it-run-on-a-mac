@@ -88,12 +88,13 @@ jobs:
       - run: npx tsx scripts/extract-shells.ts
       - run: npm test
       - run: npx tsx scripts/build.ts
+      - run: npx tsx scripts/build-action.ts
       - name: Commit the refreshed database
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data docs
+          git add data docs dist
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "data: weekly re-recording of Ubuntu, macOS and Alpine ($(date -u +%Y-%m-%d))"
           # a commit may have landed on main during the twenty minutes of recording; put the data on top of it.

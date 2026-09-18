@@ -22,3 +22,33 @@ jobs:
         run: |
           git diff --stat -- docs/app.js docs/index.html docs/style.css docs/data/index.json
           git diff --quiet -- docs/app.js docs/index.html docs/style.css docs/data/index.json || { echo "docs/ is stale: run 'npx tsx scripts/build.ts' and commit"; exit 1; }
+      - name: Build the action
+        run: npx tsx scripts/build-action.ts
+      - name: Built action must be committed
+        run: |
+          git diff --stat -- dist
+          git diff --quiet -- dist || { echo "dist/ is stale: run 'npm run build:action' and commit"; exit 1; }
+      # The action checks this repository's own sample, the way a workflow that uses it would:
+      # the annotations and the job summary of this run are what a user of the action sees.
+      - name: Run the action on the sample
+        id: self
+        uses: ./
+        with:
+          files: tests/fixtures/ci-sample.sh
+          fail-on-break: false
+      - name: The action must have found the sample's breaks
+        env:
+          BREAKS: ${{ steps.self.outputs.breaks }}
+          MACOS: ${{ steps.self.outputs['breaks-macos'] }}
+          ALPINE: ${{ steps.self.outputs['breaks-alpine'] }}
+        run: |
+          echo "breaks=$BREAKS macos=$MACOS alpine=$ALPINE"
+          [ "$MACOS" -gt 0 ] && [ "$ALPINE" -gt 0 ] || { echo "the action ran but reported nothing on the sample"; exit 1; }
+      - name: The command line version must fail on the sample and pass on a clean script
+        run: |
+          set +e
+          node bin/wiroam.js tests/fixtures/ci-sample.sh; code=$?
+          set -e
+          [ "$code" -eq 1 ] || { echo "expected exit 1 on the sample, got $code"; exit 1; }
+          printf '#!/bin/sh\nls -la\n' > "$RUNNER_TEMP/clean.sh"
+          node bin/wiroam.js "$RUNNER_TEMP/clean.sh"

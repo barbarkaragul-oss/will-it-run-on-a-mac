@@ -1,0 +1,48 @@
+name: Will it run on a Mac?
+description: Marks every flag in your shell scripts that breaks on macOS or BusyBox, proven by that platform's own binary.
+author: Barbaros Karagülmez
+branding:
+  icon: terminal
+  color: blue
+
+inputs:
+  files:
+    description: Glob patterns of the scripts to check, one per line.
+    default: '**/*.sh'
+  exclude:
+    description: Glob patterns to leave out, one per line.
+    default: |
+      **/node_modules/**
+      **/.git/**
+  platforms:
+    description: Platforms to report, comma separated. macos, alpine, ubuntu. Ubuntu is the reference and is off by default.
+    default: macos,alpine
+  fail-on-break:
+    description: Fail the step when a flag or shell construct breaks on one of the platforms.
+    default: 'true'
+  verbose:
+    description: Also report what could not be checked ($OPTS, dynamic command names, tools not in the database).
+    default: 'false'
+  report-path:
+    description: Where to write the full report as JSON.
+    default: wiroam-report.json
+
+outputs:
+  breaks:
+    description: Number of things that break, over all platforms (flags, missing tools, shell constructs).
+  warnings:
+    description: Number of warnings (not documented, exists but failed in use, shell output differs).
+  files-checked:
+    description: Number of scripts checked.
+  breaks-macos:
+    description: The page's "N will break" for macOS (rejected flags plus missing tools), when macos is reported.
+  breaks-alpine:
+    description: The page's "N will break" for Alpine, when alpine is reported.
+  breaks-ubuntu:
+    description: The same count for Ubuntu, when ubuntu is reported.
+  report:
+    description: Path of the JSON report.
+
+runs:
+  using: node24
+  main: dist/index.js

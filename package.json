@@ -7,11 +7,15 @@
   "engines": {
     "node": ">=22"
   },
+  "bin": {
+    "will-it-run-on-a-mac": "bin/wiroam.js"
+  },
   "scripts": {
     "extract": "tsx scripts/extract.ts",
     "typecheck": "tsc --noEmit -p .",
     "test": "node --import tsx --test \"tests/*.test.ts\"",
-    "extract-shells": "tsx scripts/extract-shells.ts"
+    "extract-shells": "tsx scripts/extract-shells.ts",
+    "build:action": "tsx scripts/build-action.ts"
   },
   "repository": {
     "type": "git",
@@ -19,13 +23,13 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/glob": "^0.7.0",
     "@types/node": "^22.20.2",
     "esbuild": "^0.28.2",
-    "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
-  },
-  "dependencies": {
     "tree-sitter-bash": "^0.25.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
     "web-tree-sitter": "^0.27.0"
   }
 }

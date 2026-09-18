@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/">Open the checker</a> ·
+  <a href="#use-it-in-ci">Use it in CI</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#what-the-runs-showed">What the runs showed</a> ·
   <a href="#limits">Limits</a>
@@ -42,6 +43,53 @@ uniq -D hosts.txt
 - **Judges shell constructs under the interpreter that will actually run them.** Arrays, `${x,,}`, `[[ ]]`, `(( ))`, `<( )`, `<<<`, `mapfile`, `read -p`, an unquoted `$var`, a glob that matches nothing, `cmd | read v`, `set -o pipefail`, `echo -e`, `local`, `function f`: 142 constructs (143 one-liners; one only prints the shell's version), chosen by scanning 2,905 real scripts for what they actually use. The shebang decides the interpreter on each platform (`#!/bin/bash` is bash 3.2 on macOS; `#!/bin/sh` is dash on Ubuntu, bash-as-sh on macOS and BusyBox ash on Alpine; no shebang means the default interactive shell, which is zsh on a Mac), a selector overrides it, and every construct is compared with the recorded run under bash 5.2 on Ubuntu: *same*, *differs* (both run, print different things) or *breaks* (bash runs it, this shell errors).
 - **Refuses to guess.** `$OPTS`, `"$@"`, `${FLAGS}` and a dynamic command name are reported as not checked. Nothing is expanded.
 - **Shows its evidence.** Every verdict expands to the `--help` or man page line and the exact command that was executed, with its exit code and first line of stderr, and the platform version and date it was recorded on.
+
+## Use it in CI
+
+The same checks run as a GitHub Action. Each flag that breaks is marked on its line in the pull request, with the platform's own answer as the message; the job summary has the table and the step fails.
+
+```yaml
+name: scripts
+on: [push, pull_request]
+jobs:
+  will-it-run-on-a-mac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: barbarkaragul-oss/will-it-run-on-a-mac@v1
+        with:
+          files: '**/*.sh'
+```
+
+It does not run anything on a Mac: it reads your scripts on the Linux runner and compares every flag with this repository's database, the same one the page uses. It needs no token and no permissions, and nothing leaves the runner.
+
+| Input | Default | |
+|---|---|---|
+| `files` | `**/*.sh` | glob patterns, one per line |
+| `exclude` | `**/node_modules/**`, `**/.git/**` | glob patterns to leave out |
+| `platforms` | `macos,alpine` | add `ubuntu` to report it too |
+| `fail-on-break` | `true` | `false` reports without failing the step |
+| `verbose` | `false` | also list what could not be checked (`$OPTS`, dynamic command names, tools not in the database) |
+| `report-path` | `wiroam-report.json` | the full report as JSON |
+
+Outputs: `breaks`, `warnings`, `files-checked`, `breaks-macos` and `breaks-alpine` (the page's "N will break": rejected flags plus missing tools), `report`.
+
+What counts: a flag the platform's binary rejected, a tool the platform does not have, and a shell construct that errors under the shell the shebang reaches there are errors. A flag that exists but whose recorded use still failed (`sed -i 's/a/b/' f` on macOS), a flag the documentation does not list, and a construct that prints something else are warnings. The numbers are the page's numbers.
+
+The same check from a terminal, with no install:
+
+```bash
+npx github:barbarkaragul-oss/will-it-run-on-a-mac                 # every *.sh under the current directory
+npx github:barbarkaragul-oss/will-it-run-on-a-mac deploy.sh ci/    # files and directories
+```
+
+It exits 1 when something breaks, 0 when nothing does, and 2 when it could not run; `--json` prints the report, `--platforms macos` narrows it, `--no-fail` always exits 0.
+
+If your scripts are checked, you can say so in your README:
+
+```markdown
+[![Will it run on a Mac?](https://img.shields.io/badge/will%20it%20run%20on%20a%20Mac%3F-checked%20in%20CI-2ea44f)](https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/)
+```
 
 ## How it works
 
