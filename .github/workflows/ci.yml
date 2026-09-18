@@ -24,12 +24,14 @@ jobs:
           git diff --quiet -- docs/app.js docs/index.html docs/style.css docs/data/index.json || { echo "docs/ is stale: run 'npx tsx scripts/build.ts' and commit"; exit 1; }
       - name: Build the action
         run: npx tsx scripts/build-action.ts
+      # The bundles are compared; dist/vendor/*.wasm are copied as they are from the pinned packages and, as with
+      # docs/vendor above, not compared byte for byte: the next step runs the action on them, which is the test that matters.
       - name: Built action must be committed
         run: |
-          git diff --stat -- dist
-          if ! git diff --quiet -- dist; then
+          git diff --stat -- dist/index.js dist/cli.js
+          if ! git diff --quiet -- dist/index.js dist/cli.js; then
             # the files and the first lines of the difference as an annotation, so it can be read without the log
-            detail=$( { git diff --stat -- dist; git diff -- dist/index.js dist/cli.js | head -40; } | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            detail=$( { git diff --stat -- dist/index.js dist/cli.js; git diff -- dist/index.js dist/cli.js | head -40; } | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
             echo "::error title=dist/ is stale::run 'npm run build:action' and commit%0A${detail}"
             exit 1
           fi
