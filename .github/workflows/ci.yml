@@ -43,6 +43,12 @@ jobs:
         with:
           files: tests/fixtures/ci-sample.sh
           fail-on-break: false
+      # The collector's scripts run every week on all three platforms: the action must find nothing in them that breaks.
+      - name: Run the action on the collector
+        uses: ./
+        with:
+          files: collector/**/*.sh
+          fail-on-break: true
       - name: The action must have found the sample's breaks
         env:
           BREAKS: ${{ steps.self.outputs.breaks }}

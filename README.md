@@ -13,6 +13,7 @@
 <p align="center">
   <a href="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac/actions/workflows/collect.yml"><img alt="weekly recording" src="https://github.com/barbarkaragul-oss/will-it-run-on-a-mac/actions/workflows/collect.yml/badge.svg"></a>
+  <a href="#use-it-in-ci"><img alt="Will it run on a Mac? checked in CI" src="https://img.shields.io/badge/will%20it%20run%20on%20a%20Mac%3F-checked%20in%20CI-2ea44f"></a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg">
 </p>
 
@@ -41,6 +42,7 @@ uniq -D hosts.txt
 - **Splits flags the way the tool would.** `-rf` is `-r` and `-f`; `-n5` is `-n` with a value when the tool says `-n` takes one; `--in-place=.bak` is `--in-place`; everything after `--` is an operand; `tar xvf` and `ps aux` are noted as old-style bundles, not judged.
 - **Judges each flag on each platform**, in this order of trust: a real execution of the flag on that platform, then a recorded scenario that used it, then the platform's documentation, and when there is none, *unknown*. Shell builtins (`echo -e`, `set -o`) are marked as depending on the shell, not the userland. A tool that does not exist on a platform (`timeout`, `tac`, `nproc` on macOS) is a break by itself.
 - **Judges shell constructs under the interpreter that will actually run them.** Arrays, `${x,,}`, `[[ ]]`, `(( ))`, `<( )`, `<<<`, `mapfile`, `read -p`, an unquoted `$var`, a glob that matches nothing, `cmd | read v`, `set -o pipefail`, `echo -e`, `local`, `function f`: 142 constructs (143 one-liners; one only prints the shell's version), chosen by scanning 2,905 real scripts for what they actually use. The shebang decides the interpreter on each platform (`#!/bin/bash` is bash 3.2 on macOS; `#!/bin/sh` is dash on Ubuntu, bash-as-sh on macOS and BusyBox ash on Alpine; no shebang means the default interactive shell, which is zsh on a Mac), a selector overrides it, and every construct is compared with the recorded run under bash 5.2 on Ubuntu: *same*, *differs* (both run, print different things) or *breaks* (bash runs it, this shell errors).
+- **Sees the guard.** A tool used only after `command -v`, `which`, `type` or `hash` found it (`if command -v timeout >/dev/null; then timeout 8 …`, `command -v tac && tac …`), or on the right of `||` as a fallback (`mktemp -d || mktemp -d -t x`), is reported as guarded, not as a break. `cmd || exit 1` is an error path, not a fallback, so `cmd` is still judged; an `else` branch is not guarded by the condition that sent control there. A recorded failure is also only carried over to a use of the same kind: `head -n -1` failed on macOS, `head -n 1` did not.
 - **Refuses to guess.** `$OPTS`, `"$@"`, `${FLAGS}` and a dynamic command name are reported as not checked. Nothing is expanded.
 - **Shows its evidence.** Every verdict expands to the `--help` or man page line and the exact command that was executed, with its exit code and first line of stderr, and the platform version and date it was recorded on.
 
@@ -74,7 +76,9 @@ It does not run anything on a Mac: it reads your scripts on the Linux runner and
 
 Outputs: `breaks`, `warnings`, `files-checked`, `breaks-macos` and `breaks-alpine` (the page's "N will break": rejected flags plus missing tools), `report`.
 
-What counts: a flag the platform's binary rejected, a tool the platform does not have, and a shell construct that errors under the shell the shebang reaches there are errors. A flag that exists but whose recorded use still failed (`sed -i 's/a/b/' f` on macOS), a flag the documentation does not list, and a construct that prints something else are warnings. The numbers are the page's numbers.
+What counts: a flag the platform's binary rejected, a tool the platform does not have, and a shell construct that errors under the shell the shebang reaches there are errors. A flag that exists but whose recorded use still failed (`sed -i 's/a/b/' f` on macOS), a flag the documentation does not list, and a construct that prints something else are warnings. A break in a guarded command (after `command -v` found the tool, or as a `||` fallback) is counted as guarded and listed only with `verbose: true`. The numbers are the page's numbers: both count through `src/engine/counts.ts`.
+
+This repository checks its own collector with it: the scripts in `collector/` run every week on Ubuntu, macOS and Alpine, and the action has to find nothing in them that breaks.
 
 The same check from a terminal, with no install:
 

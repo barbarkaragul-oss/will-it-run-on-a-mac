@@ -41,6 +41,10 @@ button:hover { border-color: var(--accent); }
 .pill.rejected, .pill.missing-tool { background: var(--bad-bg); color: var(--bad-fg); }
 .pill.missing { background: var(--warn-bg); color: var(--warn-fg); }
 .pill.unknown, .pill.builtin { background: var(--unk-bg); color: var(--unk-fg); }
+/* would break, but the command only runs where it can: neither red nor green */
+.pill.guarded { background: var(--unk-bg); color: var(--unk-fg); outline: 1px dashed var(--muted); outline-offset: -1px; }
+.cmd.guarded { border-style: dashed; }
+.cmd h3 .guard { color: var(--muted); font-weight: 400; font-size: 12px; font-style: italic; }
 .cmd { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
 .cmd h3 { margin: 0 0 6px; font-size: 14px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .cmd h3 .line { color: var(--muted); font-weight: 400; font-size: 12px; }

@@ -7,6 +7,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { Parser, Language } from 'web-tree-sitter';
 import { analyzeTree, PLATFORMS } from '../engine/analyze.js';
 import { analyzeShells, detectShebang, targetsFor } from '../engine/shells.js';
+import { countPlatform, classifyTool, classifyFlag, guardPhrase } from '../engine/counts.js';
 import type { Database, Platform } from '../../scripts/extract.js';
 import type { ShellsDatabase } from '../../scripts/extract-shells.js';
 
@@ -25,6 +26,7 @@ export type FindingKind =
   | 'undocumented'   // the platform's documentation lists the tool's flags and this one is not among them
   | 'shell-breaks'   // bash runs the construct, this shell errors
   | 'shell-differs'  // both run it, they print different things
+  | 'guarded'        // would break, but the command only runs where it can (command -v, || fallback)
   | 'parse-error'
   | 'unchecked'      // $OPTS, a dynamic command name: reported as not checked
   | 'unknown-tool';
@@ -54,6 +56,8 @@ export interface PlatformCount {
   undocumented: number;
   /** flags that exist but whose recorded use failed there */
   caveats: number;
+  /** breaks and failed uses in commands that only run where they can (command -v X, the right of ||) */
+  guarded: number;
   /** shell constructs that error under the shell the shebang reaches there */
   shellBreaks: number;
 }
@@ -121,7 +125,7 @@ export function parsePlatforms(input: string): Platform[] {
   return PLATFORMS.filter((p) => wanted.includes(p));
 }
 
-const emptyCount = (): PlatformCount => ({ breaks: 0, undocumented: 0, caveats: 0, shellBreaks: 0 });
+const emptyCount = (): PlatformCount => ({ breaks: 0, undocumented: 0, caveats: 0, guarded: 0, shellBreaks: 0 });
 const SEVERITY_ORDER: Record<Severity, number> = { error: 0, warning: 1, notice: 2 };
 
 export function checkSource(src: string, file: string, engine: Engine, opts: CheckOptions): FileReport {
@@ -133,29 +137,26 @@ export function checkSource(src: string, file: string, engine: Engine, opts: Che
   const perPlatform: Partial<Record<Platform, PlatformCount>> = {};
   for (const p of opts.platforms) perPlatform[p] = emptyCount();
 
+  // the counts come from the same function the page uses; the findings below are the same classification, itemized
+  for (const p of opts.platforms) perPlatform[p] = { ...countPlatform(a, p), shellBreaks: 0 };
   for (const c of a.commands) {
     const at = { file, line: c.start.row + 1, column: c.start.column + 1, endLine: c.end.row + 1, endColumn: c.end.column + 1 };
+    const guarded = guardPhrase(c);
     for (const p of opts.platforms) {
-      const count = perPlatform[p]!;
-      if (c.tool?.[p] === 'missing') {
-        count.breaks++;
-        findings.push({ ...at, severity: 'error', kind: 'missing-tool', platform: p, subject: c.name,
-          title: `${c.name} is not on ${PLATFORM_NAME[p]}`,
-          message: `${c.name} is not on ${PLATFORM_NAME[p]} at all: the tool itself is missing there, so every use of it breaks.` });
-      }
+      const t = classifyTool(c, p);
+      const missing = `${c.name} is not on ${PLATFORM_NAME[p]} at all: the tool itself is missing there, so every use of it breaks.`;
+      if (t === 'break') findings.push({ ...at, severity: 'error', kind: 'missing-tool', platform: p, subject: c.name, title: `${c.name} is not on ${PLATFORM_NAME[p]}`, message: missing });
+      else if (t === 'guarded' && opts.verbose) findings.push({ ...at, severity: 'notice', kind: 'guarded', platform: p, subject: c.name, title: `${c.name} is not on ${PLATFORM_NAME[p]}, but it is guarded`, message: `${c.name} is not on ${PLATFORM_NAME[p]} at all, but this command ${guarded}.` });
       for (const f of c.flags) {
         const v = f.verdicts[p];
         const fat = { file, line: f.start.row + 1, column: f.start.column + 1, endLine: f.end.row + 1, endColumn: f.end.column + 1 };
         const base = { ...fat, platform: p, subject: c.name, flag: f.flag, message: v.headline };
-        if (v.status === 'rejected') {
-          count.breaks++;
-          findings.push({ ...base, severity: 'error', kind: 'rejected', title: `${c.name} ${f.flag} breaks on ${PLATFORM_NAME[p]}` });
-        } else if (v.status === 'missing') {
-          count.undocumented++;
-          findings.push({ ...base, severity: 'warning', kind: 'undocumented', title: `${c.name} ${f.flag} is not documented on ${PLATFORM_NAME[p]}` });
-        } else if (v.caveat && v.status !== 'missing-tool') {
-          count.caveats++;
-          findings.push({ ...base, severity: 'warning', kind: 'caveat', title: `${c.name} ${f.flag} exists on ${PLATFORM_NAME[p]}, but this use failed there` });
+        switch (classifyFlag(c, f, p)) {
+          case 'break': findings.push({ ...base, severity: 'error', kind: 'rejected', title: `${c.name} ${f.flag} breaks on ${PLATFORM_NAME[p]}` }); break;
+          case 'undocumented': findings.push({ ...base, severity: 'warning', kind: 'undocumented', title: `${c.name} ${f.flag} is not documented on ${PLATFORM_NAME[p]}` }); break;
+          case 'caveat': findings.push({ ...base, severity: 'warning', kind: 'caveat', title: `${c.name} ${f.flag} exists on ${PLATFORM_NAME[p]}, but this use failed there` }); break;
+          case 'guarded': if (opts.verbose) findings.push({ ...base, severity: 'notice', kind: 'guarded', title: `${c.name} ${f.flag} on ${PLATFORM_NAME[p]}: guarded`, message: `${v.headline} This command ${guarded}.` }); break;
+          default: break;
         }
       }
     }
@@ -214,7 +215,7 @@ export function checkFiles(files: { path: string; src: string }[], engine: Engin
     for (const r of reports) {
       const c = r.perPlatform[p];
       if (!c) continue;
-      sum.breaks += c.breaks; sum.undocumented += c.undocumented; sum.caveats += c.caveats; sum.shellBreaks += c.shellBreaks;
+      sum.breaks += c.breaks; sum.undocumented += c.undocumented; sum.caveats += c.caveats; sum.guarded += c.guarded; sum.shellBreaks += c.shellBreaks;
     }
     perPlatform[p] = sum;
   }
@@ -241,6 +242,7 @@ export function platformLine(p: Platform, c: PlatformCount): string {
   if (c.caveats) parts.push(`${c.caveats} exist${c.caveats === 1 ? 's' : ''} but failed in use`);
   if (c.undocumented) parts.push(`${c.undocumented} not documented there`);
   if (c.shellBreaks) parts.push(`${c.shellBreaks} shell construct${c.shellBreaks === 1 ? '' : 's'} break`);
+  if (c.guarded) parts.push(`${c.guarded} guarded`);
   return `${PLATFORM_NAME[p]}: ${parts.join(' · ')}`;
 }
 

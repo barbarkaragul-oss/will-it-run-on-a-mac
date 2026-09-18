@@ -4,6 +4,7 @@ import type { Database, Platform, PlatformInfo, Probe, ToolOnPlatform } from '..
 import type { Verdict, Status } from '../engine/verdict.js';
 import { SAMPLES } from './samples.js';
 import { analyzeShells, detectShebang, targetsFor, REFERENCE, type ConstructFinding, type Interp, type ShellTarget } from '../engine/shells.js';
+import { countPlatform, guardPhrase, guardLabel } from '../engine/counts.js';
 import type { ShellsDatabase } from '../../scripts/extract-shells.js';
 
 interface Index { generated_at: string; platforms: Record<Platform, PlatformInfo>; probes: Record<string, Probe>; tools: string[] }
@@ -135,12 +136,13 @@ function renderShells(tree: Tree, src: string): void {
   box.replaceChildren(h('h2', { text: 'Shell constructs' }), head, ...cards);
 }
 
-function worst(f: FlagFinding): { text: string; cls: string } {
+function worst(f: FlagFinding, c?: CommandFinding): { text: string; cls: string } {
   const bad = PLATFORMS.filter((p) => f.verdicts[p].status === 'rejected' || f.verdicts[p].status === 'missing-tool');
   const maybe = PLATFORMS.filter((p) => f.verdicts[p].status === 'missing');
-  if (bad.length) return { text: `breaks on ${bad.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'rejected' };
+  const on = (ps: Platform[]): string => ps.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ');
+  if (bad.length) return c?.guard ? { text: `guarded · would break on ${on(bad)}`, cls: 'guarded' } : { text: `breaks on ${on(bad)}`, cls: 'rejected' };
   const caveat = PLATFORMS.filter((p) => f.verdicts[p].caveat);
-  if (caveat.length) return { text: `exists, but this use failed on ${caveat.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'missing' };
+  if (caveat.length) return c?.guard ? { text: `guarded · this use failed on ${on(caveat)}`, cls: 'guarded' } : { text: `exists, but this use failed on ${on(caveat)}`, cls: 'missing' };
   if (maybe.length) return { text: `not documented on ${maybe.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}`, cls: 'missing' };
   if (PLATFORMS.every((p) => f.verdicts[p].status === 'builtin')) return { text: 'shell builtin', cls: 'builtin' };
   if (PLATFORMS.some((p) => f.verdicts[p].status === 'unknown')) return { text: 'partly unknown', cls: 'unknown' };
@@ -152,13 +154,13 @@ function render(a: Analysis, src: string): void {
   const summary = $('summary');
   const findings = $('findings');
   const flags = a.commands.flatMap((c) => c.flags);
-  const missingTools = (p: Platform) => a.commands.filter((c) => c.tool?.[p] === 'missing').length;
-  const perPlatform = PLATFORMS.map((p) => ({ p, breaks: flags.filter((f) => f.verdicts[p].status === 'rejected').length + missingTools(p), maybe: flags.filter((f) => f.verdicts[p].status === 'missing').length }));
+  // counted by src/engine/counts.ts, the same function the GitHub Action counts with
+  const perPlatform = PLATFORMS.map((p) => { const n = countPlatform(a, p); return { p, breaks: n.breaks, maybe: n.undocumented, guarded: n.guarded }; });
   const unchecked = a.commands.reduce((n, c) => n + c.notes.length, 0) + a.commands.filter((c) => !c.checked).length;
   summary.replaceChildren(
     h('div', { class: 'summary-box' },
       h('div', {}, `${a.commands.length} command${a.commands.length === 1 ? '' : 's'}, ${flags.length} flag${flags.length === 1 ? '' : 's'} checked${unchecked ? `, ${unchecked} thing${unchecked === 1 ? '' : 's'} not checked` : ''}.`),
-      ...perPlatform.map(({ p, breaks, maybe }) => h('div', { class: 'verdict-line' }, h('span', { class: `pill ${breaks ? 'rejected' : maybe ? 'missing' : 'ok'}` , text: PLATFORM_NAME[p] }), h('span', {}, breaks ? h('b', { class: 'bad', text: `${breaks} will break` }) : h('b', { class: 'ok', text: 'nothing breaks' }), maybe ? ` · ${maybe} not documented there` : ''))),
+      ...perPlatform.map(({ p, breaks, maybe, guarded }) => h('div', { class: 'verdict-line' }, h('span', { class: `pill ${breaks ? 'rejected' : maybe ? 'missing' : 'ok'}` , text: PLATFORM_NAME[p] }), h('span', {}, breaks ? h('b', { class: 'bad', text: `${breaks} will break` }) : h('b', { class: 'ok', text: 'nothing breaks' }), maybe ? ` · ${maybe} not documented there` : '', guarded ? ` · ${guarded} guarded` : ''))),
       a.parseErrors.length ? h('div', { class: 'note', text: `Parse error near line ${a.parseErrors[0]!.row + 1}, column ${a.parseErrors[0]!.column + 1}: commands after it may be missing.` }) : null,
       a.unknownTools.length ? h('div', { class: 'note', text: `Not recorded on any platform, so not judged: ${a.unknownTools.join(', ')}.` }) : null,
     ),
@@ -168,14 +170,15 @@ function render(a: Analysis, src: string): void {
 
 function renderCommand(c: CommandFinding, lines: string[]): HTMLElement {
   const lineText = (lines[c.start.row] ?? '').trim();
-  const clean = c.checked && c.flags.every((f) => worst(f).cls === 'ok') && c.notes.length === 0 && !(c.tool && PLATFORMS.some((p) => c.tool![p] === 'missing'));
-  const card = h('div', { class: `cmd${clean ? ' clean' : ''}` });
-  card.append(h('h3', {}, h('span', { class: 'line', text: `line ${c.start.row + 1}` }), h('code', { text: c.name }), c.via.length ? h('span', { class: 'via', text: `via ${c.via.join(' → ')}` }) : null, h('span', { class: 'muted mono', text: lineText.length > 90 ? lineText.slice(0, 87) + '…' : lineText })));
+  const clean = c.checked && c.flags.every((f) => worst(f, c).cls === 'ok') && c.notes.length === 0 && !(c.tool && PLATFORMS.some((p) => c.tool![p] === 'missing'));
+  const card = h('div', { class: `cmd${clean ? ' clean' : ''}${c.guard ? ' guarded' : ''}` });
+  card.append(h('h3', {}, h('span', { class: 'line', text: `line ${c.start.row + 1}` }), h('code', { text: c.name }), c.via.length ? h('span', { class: 'via', text: `via ${c.via.join(' → ')}` }) : null, c.guard ? h('span', { class: 'guard', text: guardLabel(c) }) : null, h('span', { class: 'muted mono', text: lineText.length > 90 ? lineText.slice(0, 87) + '…' : lineText })));
   if (!c.checked) { card.append(h('p', { class: 'note', text: c.notes[0] ?? 'not checked' })); return card; }
   const gone = c.tool ? PLATFORMS.filter((p) => c.tool![p] === 'missing') : [];
   if (gone.length) {
     card.classList.remove('clean');
-    card.append(h('div', { class: 'flag' }, h('div', { class: 'head' }, h('code', { text: c.name }), h('span', { class: 'pill rejected', text: `no such tool on ${gone.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ')}` })), h('p', { class: 'note', text: `command -v ${c.name} found nothing on ${gone.map((p) => `${PLATFORM_NAME[p]} (${index?.platforms[p]?.os ?? p})`).join(' and ')} when the platforms were recorded.` })));
+    const where = gone.map((p) => PLATFORM_NAME[p].split(' ')[0]).join(' and ');
+    card.append(h('div', { class: 'flag' }, h('div', { class: 'head' }, h('code', { text: c.name }), h('span', { class: `pill ${c.guard ? 'guarded' : 'rejected'}`, text: c.guard ? `guarded · no such tool on ${where}` : `no such tool on ${where}` })), h('p', { class: 'note', text: `command -v ${c.name} found nothing on ${gone.map((p) => `${PLATFORM_NAME[p]} (${index?.platforms[p]?.os ?? p})`).join(' and ')} when the platforms were recorded.${c.guard ? ` This command ${guardPhrase(c)}, so it does not run there.` : ''}` })));
   }
   for (const f of c.flags) card.append(renderFlag(c, f));
   for (const n of c.notes) card.append(h('p', { class: 'note', text: n }));
@@ -184,7 +187,7 @@ function renderCommand(c: CommandFinding, lines: string[]): HTMLElement {
 }
 
 function renderFlag(c: CommandFinding, f: FlagFinding): HTMLElement {
-  const w = worst(f);
+  const w = worst(f, c);
   const el = h('div', { class: 'flag' });
   el.append(h('div', { class: 'head' }, h('code', { text: `${c.name} ${f.flag}` }), h('span', { class: `pill ${w.cls}`, text: w.text })));
   if (PLATFORMS.every((p) => f.verdicts[p].status === 'builtin')) {

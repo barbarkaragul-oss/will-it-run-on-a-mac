@@ -77,7 +77,44 @@ export function documentationIsComplete(t: ToolOnPlatform): boolean {
   return t.sources.includes('help') || t.sources.includes('mdoc') || t.sources.includes('usage') || t.sources.includes('man');
 }
 
-export function judge(db: Database, tool: string, flag: string, platform: Platform, shape: Shape = 'bare'): Verdict {
+/** The value a flag was given in a script: the attached rest (-n5) or the next word (-n 5); dynamic words are not static. */
+export interface FlagArg { value: string; isStatic: boolean }
+
+/** The word a recorded scenario gave the flag: `head -n -1 f` -> "-1", `mktemp -t x` -> "x", `sed -i 's/a/b/' f` -> "s/a/b/". */
+export function probeArgOf(command: string, tool: string, flag: string): string | undefined {
+  const tokens: string[] = command.match(/'[^']*'|"[^"]*"|\S+/g) ?? [];
+  const unquote = (s: string): string => (/^'.*'$|^".*"$/s.test(s) ? s.slice(1, -1) : s);
+  const from = tokens.indexOf(tool);
+  for (let i = from < 0 ? 0 : from + 1; i < tokens.length; i++) {
+    const t = tokens[i]!;
+    if (t === flag) return tokens[i + 1] === undefined ? undefined : unquote(tokens[i + 1]!);
+    if (!flag.startsWith('--') && t.startsWith(flag) && t.length > flag.length) return unquote(t.slice(flag.length));
+    if (flag.startsWith('--') && t.startsWith(flag + '=')) return unquote(t.slice(flag.length + 1));
+  }
+  return undefined;
+}
+
+const NUMBER = /^[-+]?\d+$/;
+const TEMPLATE = /X{3,}/;
+const NATURAL_DATE = /^(?:yesterday|tomorrow|today|now|noon|midnight|(?:next|last|this) [a-z]+|[+-]?\d+ (?:sec(?:ond)?|min(?:ute)?|hour|day|week|fortnight|month|year)s?(?: ago)?)$/i;
+
+/**
+ * Could a recorded scenario's failure apply to this use of the flag? Only a difference that is known to matter lets a
+ * use escape the scenario: the sign of a count (head -n 1 is not head -n -1), an empty value (sed -i '' is not sed -i
+ * 's/a/b/'), a mktemp template with or without XXX, a natural-language date against any other date. Anything else,
+ * including a value the script computes, stays covered: a different sed script after -i breaks on macOS just the same.
+ */
+export function sameArgClass(script: FlagArg | undefined, probeArg: string | undefined, tool: string): boolean {
+  if (!script || !script.isStatic || probeArg === undefined) return true;
+  const s = script.value, q = probeArg;
+  if (s === '' || q === '') return s === q;
+  if (NUMBER.test(s) && NUMBER.test(q)) return Math.sign(Number(s)) === Math.sign(Number(q));
+  if (tool === 'mktemp' || TEMPLATE.test(s) || TEMPLATE.test(q)) return TEMPLATE.test(s) === TEMPLATE.test(q);
+  if (NATURAL_DATE.test(q)) return NATURAL_DATE.test(s);
+  return true;
+}
+
+export function judge(db: Database, tool: string, flag: string, platform: Platform, shape: Shape = 'bare', arg?: FlagArg): Verdict {
   const label = PLATFORM_LABEL[platform];
   if (BUILTINS.has(tool)) {
     return { platform, tool, flag, status: 'builtin', headline: `${tool} is a shell builtin: what ${flag} does depends on the shell (macOS /bin/sh is bash 3.2 in POSIX mode, Ubuntu's is dash, Alpine's is BusyBox ash), not on the userland.`, evidence: [] };
@@ -97,7 +134,8 @@ export function judge(db: Database, tool: string, flag: string, platform: Platfo
     }
     const how = run.code === 0 ? 'exit 0' : run.stderr1 ? `it complained about something else: "${run.stderr1}"` : `exit ${run.code}, no option error`;
     // A scenario probe can still show the flag behaving differently (date -d yesterday on BusyBox: the flag exists, the date format does not).
-    const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === '' ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
+    // ...but only when the script gives the flag a value of the same kind as the scenario did (head -n 1 is not head -n -1).
+    const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === '' && sameArgClass(arg, probeArgOf(probe.command, tool, flag), tool) ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : '';
     const caveat = caveatText ? { caveat: caveatText } : {};
     if (info) return { platform, tool, flag, status: 'ok', headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveatText ? ' ' + caveatText : ''}`, evidence: info.evidence, run, ...(probe ? { probe } : {}), ...caveat };
     // find primaries are not parsed from the man pages at all, so "not in the documentation" would be a false claim there.

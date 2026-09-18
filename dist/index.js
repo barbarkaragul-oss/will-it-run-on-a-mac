@@ -23459,11 +23459,11 @@ var Language = class _Language {
   /**
    * Get the node type id for a node type name.
    */
-  idForNodeType(type, named) {
+  idForNodeType(type, named2) {
     const typeLength = C.lengthBytesUTF8(type);
     const typeAddress = C._malloc(typeLength + 1);
     C.stringToUTF8(type, typeAddress, typeLength + 1);
-    const result = C._ts_language_symbol_for_name(this[0], typeAddress, typeLength, named ? 1 : 0);
+    const result = C._ts_language_symbol_for_name(this[0], typeAddress, typeLength, named2 ? 1 : 0);
     C._free(typeAddress);
     return result || null;
   }
@@ -26120,7 +26120,31 @@ function rejectedName(stderr1) {
 function documentationIsComplete(t) {
   return t.sources.includes("help") || t.sources.includes("mdoc") || t.sources.includes("usage") || t.sources.includes("man");
 }
-function judge(db, tool, flag, platform2, shape = "bare") {
+function probeArgOf(command, tool, flag) {
+  const tokens = command.match(/'[^']*'|"[^"]*"|\S+/g) ?? [];
+  const unquote = (s) => /^'.*'$|^".*"$/s.test(s) ? s.slice(1, -1) : s;
+  const from = tokens.indexOf(tool);
+  for (let i2 = from < 0 ? 0 : from + 1; i2 < tokens.length; i2++) {
+    const t = tokens[i2];
+    if (t === flag) return tokens[i2 + 1] === void 0 ? void 0 : unquote(tokens[i2 + 1]);
+    if (!flag.startsWith("--") && t.startsWith(flag) && t.length > flag.length) return unquote(t.slice(flag.length));
+    if (flag.startsWith("--") && t.startsWith(flag + "=")) return unquote(t.slice(flag.length + 1));
+  }
+  return void 0;
+}
+var NUMBER = /^[-+]?\d+$/;
+var TEMPLATE = /X{3,}/;
+var NATURAL_DATE = /^(?:yesterday|tomorrow|today|now|noon|midnight|(?:next|last|this) [a-z]+|[+-]?\d+ (?:sec(?:ond)?|min(?:ute)?|hour|day|week|fortnight|month|year)s?(?: ago)?)$/i;
+function sameArgClass(script, probeArg, tool) {
+  if (!script || !script.isStatic || probeArg === void 0) return true;
+  const s = script.value, q = probeArg;
+  if (s === "" || q === "") return s === q;
+  if (NUMBER.test(s) && NUMBER.test(q)) return Math.sign(Number(s)) === Math.sign(Number(q));
+  if (tool === "mktemp" || TEMPLATE.test(s) || TEMPLATE.test(q)) return TEMPLATE.test(s) === TEMPLATE.test(q);
+  if (NATURAL_DATE.test(q)) return NATURAL_DATE.test(s);
+  return true;
+}
+function judge(db, tool, flag, platform2, shape = "bare", arg) {
   const label = PLATFORM_LABEL[platform2];
   if (BUILTINS.has(tool)) {
     return { platform: platform2, tool, flag, status: "builtin", headline: `${tool} is a shell builtin: what ${flag} does depends on the shell (macOS /bin/sh is bash 3.2 in POSIX mode, Ubuntu's is dash, Alpine's is BusyBox ash), not on the userland.`, evidence: [] };
@@ -26138,7 +26162,7 @@ function judge(db, tool, flag, platform2, shape = "bare") {
       return { platform: platform2, tool, flag, status: "rejected", headline: `${tool} ${flag} does not exist on ${label}: the binary answered "${run3.stderr1}"${when}${info3 ? ". The documentation still mentions it" : ""}.`, evidence: info3?.evidence ?? [], run: run3, ...probe ? { probe } : {} };
     }
     const how = run3.code === 0 ? "exit 0" : run3.stderr1 ? `it complained about something else: "${run3.stderr1}"` : `exit ${run3.code}, no option error`;
-    const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === "" ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : "";
+    const caveatText = probe && probe.code !== null && probe.code !== 0 && rejectedName(probe.stderr1) === "" && sameArgClass(arg, probeArgOf(probe.command, tool, flag), tool) ? `The recorded command "${probe.command}" still failed there: "${probe.stderr1}".` : "";
     const caveat = caveatText ? { caveat: caveatText } : {};
     if (info3) return { platform: platform2, tool, flag, status: "ok", headline: `${tool} ${flag} exists on ${label}${argNote}; executed there, ${how}${when}.${caveatText ? " " + caveatText : ""}`, evidence: info3.evidence, run: run3, ...probe ? { probe } : {}, ...caveat };
     if (EXPRESSION_TOOLS.has(tool)) return { platform: platform2, tool, flag, status: "ok-probed", headline: `${tool} ${flag} exists on ${label}: executed there${run3.form === "primary" ? ` as \`${tool} . ${flag} ...\`` : ""}, ${how}${when}.${caveatText ? " " + caveatText : ""}`, evidence: [], run: run3, ...probe ? { probe } : {}, ...caveat };
@@ -26392,7 +26416,9 @@ function addFlags(db, tool, wd, finding, words, i2, arity2, wholeFlag) {
     const rest = wholeFlag ? "" : v.startsWith("--") ? v.includes("=") ? v.slice(v.indexOf("=") + 1) : "" : v.slice(v.indexOf(flag[1], 1) + 1);
     const next = words[i2 + 1];
     const shape = rest.length && flags2[flags2.length - 1] === flag ? "attached" : next && next.isStatic && next.value === "" ? "empty" : "bare";
-    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p, shape)]));
+    const last = flags2[flags2.length - 1] === flag;
+    const arg = !last ? void 0 : shape === "attached" ? { value: rest, isStatic: true } : next && arity2(flag) !== "none" ? { value: next.value, isStatic: next.isStatic } : void 0;
+    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p, shape, arg)]));
     finding.flags.push({ flag, word: v, start: wd.start, end: wd.end, verdicts });
   }
   void flagsInWord;
@@ -26400,6 +26426,84 @@ function addFlags(db, tool, wd, finding, words, i2, arity2, wholeFlag) {
 }
 function pos(p, offset) {
   return offset ? { row: p.row + offset.row, column: p.row === 0 ? p.column + offset.column : p.column } : { row: p.row, column: p.column };
+}
+var NOT_A_FALLBACK = /* @__PURE__ */ new Set(["exit", "return", "die", "fail", "abort", "false", "true", "echo", "printf", ":"]);
+var named = (n) => !!n && n.isNamed;
+function statementCommand(n) {
+  if (n.type === "redirected_statement") {
+    const b = n.childForFieldName("body");
+    return b ? statementCommand(b) : null;
+  }
+  return n.type === "command" ? n : null;
+}
+function probesIn(n, out2 = []) {
+  if (n.type === "list") {
+    const ops = n.children.filter((k) => k && !k.isNamed).map((k) => k.type);
+    if (ops.includes("&&") && !ops.includes("||")) {
+      for (const k of n.children) if (named(k)) probesIn(k, out2);
+    }
+    return out2;
+  }
+  const c = statementCommand(n);
+  if (!c) return out2;
+  const nameNode = c.childForFieldName("name");
+  const name2 = nameNode ? resolveWord(nameNode.firstChild ?? nameNode).value : "";
+  const args2 = c.childrenForFieldName("argument").filter((a) => !!a).map((a) => resolveWord(a));
+  if (name2 === "command") {
+    const x = args2[1];
+    if (args2[0]?.isStatic && (args2[0].value === "-v" || args2[0].value === "-V") && x?.isStatic) out2.push({ kind: "command-v", tool: x.value, node: c });
+  } else if (name2 === "which" || name2 === "type" || name2 === "hash") {
+    const x = args2.find((a) => a.isStatic && !a.value.startsWith("-"));
+    if (x) out2.push({ kind: name2, tool: x.value, node: c });
+  }
+  return out2;
+}
+function guardOf(cmd) {
+  let child = cmd;
+  for (let node = cmd.parent; node; child = node, node = node.parent) {
+    if (node.type === "function_definition" || node.type === "program") return void 0;
+    if (node.type === "list") {
+      const kids = node.children;
+      const at = kids.findIndex((k) => k?.id === child.id);
+      let op, opAt = -1;
+      for (let i2 = at - 1; i2 >= 0; i2--) {
+        const k = kids[i2];
+        if (k && !k.isNamed && (k.type === "&&" || k.type === "||")) {
+          op = k.type;
+          opAt = i2;
+          break;
+        }
+      }
+      if (!op) continue;
+      const left = kids.slice(0, opAt).filter(named);
+      if (op === "&&") {
+        const probes = left.flatMap((l) => probesIn(l));
+        if (probes.length) return { kind: probes[0].kind, tools: probes.map((p) => p.tool), node: probes[0].node };
+        continue;
+      }
+      const leftNode = left[left.length - 1];
+      if (leftNode) return { kind: "or-fallback", node: leftNode };
+      continue;
+    }
+    if (node.type === "if_statement" || node.type === "elif_clause") {
+      const conds = [];
+      for (const k of node.children) {
+        if (!k) continue;
+        if (!k.isNamed && k.type === "then") break;
+        if (k.isNamed) conds.push(k);
+      }
+      if (conds.some((c) => c.id === child.id)) continue;
+      if (child.type === "else_clause" || child.type === "elif_clause") continue;
+      const probes = conds.flatMap((c) => probesIn(c));
+      if (probes.length) return { kind: probes[0].kind, tools: probes.map((p) => p.tool), node: probes[0].node };
+    }
+  }
+  return void 0;
+}
+function applyGuard(f, g, offset) {
+  if (g.kind === "or-fallback" ? NOT_A_FALLBACK.has(f.name) : !g.tools?.includes(f.name)) return;
+  const first = g.node.text.split("\n", 1)[0].trim();
+  f.guard = { kind: g.kind, line: pos(g.node.startPosition, offset).row, text: first.length > 60 ? first.slice(0, 57) + "..." : first, ...g.kind !== "or-fallback" ? { tool: f.name } : {} };
 }
 function analyzeTree(tree, db, parser, via = [], offset) {
   const commands = [];
@@ -26420,7 +26524,12 @@ function analyzeTree(tree, db, parser, via = [], offset) {
       const r = resolveWord(a);
       return { ...r, start: pos(a.startPosition, offset), end: pos(a.endPosition, offset), type: a.type };
     });
+    const g = guardOf(c);
+    const before = g ? new Set(commands) : void 0;
     analyzeWords(db, name2, words, via, start2, end, commands, parser);
+    if (g) {
+      for (const f of commands) if (!before.has(f) && !f.guard) applyGuard(f, g, offset);
+    }
   }
   commands.sort((a, b) => a.start.row - b.start.row || a.start.column - b.start.column);
   const known = new Set(Object.keys(db.tools));
@@ -26678,8 +26787,8 @@ function findConstructs(tree) {
     const t = n.text.replace(/^\s+/, "");
     const operator = n.childForFieldName("operator")?.text;
     const colons = n.children.filter((c) => !!c && c.type === ":");
-    const named = n.namedChildren.filter((c) => !!c);
-    const sub = named[0];
+    const named2 = n.namedChildren.filter((c) => !!c);
+    const sub = named2[0];
     const wholePositional = sub?.type === "special_variable_name" && /^[@*]$/.test(sub.text);
     const wholeArray = sub?.type === "subscript" && /^[@*]$/.test(sub.childForFieldName("index")?.text ?? "");
     if (/^\$\{![A-Za-z_][A-Za-z0-9_]*\[[@*]\]\}$/.test(t)) add("array_keys", n);
@@ -26692,8 +26801,8 @@ function findConstructs(tree) {
     else if (ARRAY_LENGTH_RE.test(t)) add("array_length", n);
     else if (/^\$\{#(?:[A-Za-z_][A-Za-z0-9_]*|\d+)\}$/.test(t)) add("string_length", n);
     else if (operator === ":" && (wholeArray || wholePositional)) add("array_slice", n);
-    else if (operator === ":" && colons.length === 2 && named.some((c) => c.type === "number" && c.text.startsWith("-") && c.startIndex > colons[1].startIndex)) add("substring_neg_len", n);
-    else if (operator === ":" && sub?.type !== "subscript" && named.some((c) => c.type === "number" && c.text.startsWith("-") || c.type === "parenthesized_expression")) add("substr_negative", n);
+    else if (operator === ":" && colons.length === 2 && named2.some((c) => c.type === "number" && c.text.startsWith("-") && c.startIndex > colons[1].startIndex)) add("substring_neg_len", n);
+    else if (operator === ":" && sub?.type !== "subscript" && named2.some((c) => c.type === "number" && c.text.startsWith("-") || c.type === "parenthesized_expression")) add("substr_negative", n);
     else if (operator === ":" && sub?.type === "variable_name") {
       const full = fullExpansionText(n);
       const kind = full && substringKind(full);
@@ -27089,6 +27198,37 @@ function analyzeShells(tree, db, targets, offset) {
   return out2;
 }
 
+// src/engine/counts.ts
+function classifyTool(c, p) {
+  if (c.tool?.[p] !== "missing") return null;
+  return c.guard ? "guarded" : "break";
+}
+function classifyFlag(c, f, p) {
+  const v = f.verdicts[p];
+  if (v.status === "rejected") return c.guard ? "guarded" : "break";
+  if (v.status === "missing") return "undocumented";
+  if (v.caveat && v.status !== "missing-tool") return c.guard ? "guarded" : "caveat";
+  return null;
+}
+function countPlatform(a, p) {
+  const n = { breaks: 0, undocumented: 0, caveats: 0, guarded: 0 };
+  const bump = (k) => {
+    if (k === "break") n.breaks++;
+    else if (k === "caveat") n.caveats++;
+    else if (k === "undocumented") n.undocumented++;
+    else if (k === "guarded") n.guarded++;
+  };
+  for (const c of a.commands) {
+    bump(classifyTool(c, p));
+    for (const f of c.flags) bump(classifyFlag(c, f, p));
+  }
+  return n;
+}
+function guardPhrase(c) {
+  if (!c.guard) return "";
+  return c.guard.kind === "or-fallback" ? `runs only if \`${c.guard.text}\` fails (line ${c.guard.line + 1})` : `is guarded by \`${c.guard.text}\` on line ${c.guard.line + 1}`;
+}
+
 // src/action/core.ts
 var PLATFORM_NAME2 = { ubuntu: "Ubuntu", macos: "macOS", alpine: "Alpine" };
 var DEFAULT_PLATFORMS = ["macos", "alpine"];
@@ -27108,7 +27248,7 @@ function parsePlatforms(input) {
   if (bad.length) throw new Error(`unknown platform ${bad.map((b) => `"${b}"`).join(", ")}; use ${PLATFORMS.join(", ")}`);
   return PLATFORMS.filter((p) => wanted.includes(p));
 }
-var emptyCount = () => ({ breaks: 0, undocumented: 0, caveats: 0, shellBreaks: 0 });
+var emptyCount = () => ({ breaks: 0, undocumented: 0, caveats: 0, guarded: 0, shellBreaks: 0 });
 var SEVERITY_ORDER = { error: 0, warning: 1, notice: 2 };
 function checkSource(src, file, engine, opts) {
   const { parser, db, shellsDb } = engine;
@@ -27118,35 +27258,34 @@ function checkSource(src, file, engine, opts) {
   const findings = [];
   const perPlatform = {};
   for (const p of opts.platforms) perPlatform[p] = emptyCount();
+  for (const p of opts.platforms) perPlatform[p] = { ...countPlatform(a, p), shellBreaks: 0 };
   for (const c of a.commands) {
     const at = { file, line: c.start.row + 1, column: c.start.column + 1, endLine: c.end.row + 1, endColumn: c.end.column + 1 };
+    const guarded = guardPhrase(c);
     for (const p of opts.platforms) {
-      const count = perPlatform[p];
-      if (c.tool?.[p] === "missing") {
-        count.breaks++;
-        findings.push({
-          ...at,
-          severity: "error",
-          kind: "missing-tool",
-          platform: p,
-          subject: c.name,
-          title: `${c.name} is not on ${PLATFORM_NAME2[p]}`,
-          message: `${c.name} is not on ${PLATFORM_NAME2[p]} at all: the tool itself is missing there, so every use of it breaks.`
-        });
-      }
+      const t = classifyTool(c, p);
+      const missing = `${c.name} is not on ${PLATFORM_NAME2[p]} at all: the tool itself is missing there, so every use of it breaks.`;
+      if (t === "break") findings.push({ ...at, severity: "error", kind: "missing-tool", platform: p, subject: c.name, title: `${c.name} is not on ${PLATFORM_NAME2[p]}`, message: missing });
+      else if (t === "guarded" && opts.verbose) findings.push({ ...at, severity: "notice", kind: "guarded", platform: p, subject: c.name, title: `${c.name} is not on ${PLATFORM_NAME2[p]}, but it is guarded`, message: `${c.name} is not on ${PLATFORM_NAME2[p]} at all, but this command ${guarded}.` });
       for (const f of c.flags) {
         const v = f.verdicts[p];
         const fat = { file, line: f.start.row + 1, column: f.start.column + 1, endLine: f.end.row + 1, endColumn: f.end.column + 1 };
         const base = { ...fat, platform: p, subject: c.name, flag: f.flag, message: v.headline };
-        if (v.status === "rejected") {
-          count.breaks++;
-          findings.push({ ...base, severity: "error", kind: "rejected", title: `${c.name} ${f.flag} breaks on ${PLATFORM_NAME2[p]}` });
-        } else if (v.status === "missing") {
-          count.undocumented++;
-          findings.push({ ...base, severity: "warning", kind: "undocumented", title: `${c.name} ${f.flag} is not documented on ${PLATFORM_NAME2[p]}` });
-        } else if (v.caveat && v.status !== "missing-tool") {
-          count.caveats++;
-          findings.push({ ...base, severity: "warning", kind: "caveat", title: `${c.name} ${f.flag} exists on ${PLATFORM_NAME2[p]}, but this use failed there` });
+        switch (classifyFlag(c, f, p)) {
+          case "break":
+            findings.push({ ...base, severity: "error", kind: "rejected", title: `${c.name} ${f.flag} breaks on ${PLATFORM_NAME2[p]}` });
+            break;
+          case "undocumented":
+            findings.push({ ...base, severity: "warning", kind: "undocumented", title: `${c.name} ${f.flag} is not documented on ${PLATFORM_NAME2[p]}` });
+            break;
+          case "caveat":
+            findings.push({ ...base, severity: "warning", kind: "caveat", title: `${c.name} ${f.flag} exists on ${PLATFORM_NAME2[p]}, but this use failed there` });
+            break;
+          case "guarded":
+            if (opts.verbose) findings.push({ ...base, severity: "notice", kind: "guarded", title: `${c.name} ${f.flag} on ${PLATFORM_NAME2[p]}: guarded`, message: `${v.headline} This command ${guarded}.` });
+            break;
+          default:
+            break;
         }
       }
     }
@@ -27215,6 +27354,7 @@ function checkFiles(files, engine, opts) {
       sum.breaks += c.breaks;
       sum.undocumented += c.undocumented;
       sum.caveats += c.caveats;
+      sum.guarded += c.guarded;
       sum.shellBreaks += c.shellBreaks;
     }
     perPlatform[p] = sum;
@@ -27240,6 +27380,7 @@ function platformLine(p, c) {
   if (c.caveats) parts2.push(`${c.caveats} exist${c.caveats === 1 ? "s" : ""} but failed in use`);
   if (c.undocumented) parts2.push(`${c.undocumented} not documented there`);
   if (c.shellBreaks) parts2.push(`${c.shellBreaks} shell construct${c.shellBreaks === 1 ? "" : "s"} break`);
+  if (c.guarded) parts2.push(`${c.guarded} guarded`);
   return `${PLATFORM_NAME2[p]}: ${parts2.join(" \xB7 ")}`;
 }
 var SITE = "https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/";

@@ -6,7 +6,7 @@
  */
 import type { Parser as TSParser, Node as TSNode, Tree as TSTree } from 'web-tree-sitter';
 import type { Database, Platform } from '../../scripts/extract.js';
-import { judge, flagsInWord, probeFor, BUILTINS, type Verdict, type Shape } from './verdict.js';
+import { judge, flagsInWord, probeFor, BUILTINS, type Verdict, type Shape, type FlagArg } from './verdict.js';
 
 export interface Pos { row: number; column: number }
 export interface FlagFinding {
@@ -30,6 +30,20 @@ export interface CommandFinding {
   checked: boolean;
   /** Is the tool itself there? (timeout and tac are not on macOS at all.) Undefined for builtins and unrecorded tools. */
   tool?: Record<Platform, 'present' | 'missing' | 'unknown'> | undefined;
+  /**
+   * The command only runs where it can: after `command -v` (which, type, hash) found it, or as the fallback on the right
+   * of `||`. The verdicts are unchanged; whoever counts breaks counts a guarded one as guarded, not as a break.
+   */
+  guard?: Guard;
+}
+export interface Guard {
+  kind: 'command-v' | 'which' | 'type' | 'hash' | 'or-fallback';
+  /** the tool the condition looked for (not set for or-fallback) */
+  tool?: string;
+  /** 0-based row of the guarding condition */
+  line: number;
+  /** the guarding text as written, for the message: "command -v timeout", "mktemp -d 2>/dev/null" */
+  text: string;
 }
 export interface Analysis {
   commands: CommandFinding[];
@@ -239,7 +253,10 @@ function addFlags(db: Database, tool: string, wd: Word, finding: CommandFinding,
     const rest = wholeFlag ? '' : v.startsWith('--') ? (v.includes('=') ? v.slice(v.indexOf('=') + 1) : '') : v.slice(v.indexOf(flag[1]!, 1) + 1);
     const next = words[i + 1];
     const shape: Shape = rest.length && flags[flags.length - 1] === flag ? 'attached' : next && next.isStatic && next.value === '' ? 'empty' : 'bare';
-    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p, shape)])) as Record<Platform, Verdict>;
+    // The value the flag was given, so a recorded failure is only carried over to a use of the same kind (head -n 1 is not head -n -1).
+    const last = flags[flags.length - 1] === flag;
+    const arg: FlagArg | undefined = !last ? undefined : shape === 'attached' ? { value: rest, isStatic: true } : next && arity(flag) !== 'none' ? { value: next.value, isStatic: next.isStatic } : undefined;
+    const verdicts = Object.fromEntries(PLATFORMS.map((p) => [p, judge(db, tool, flag, p, shape, arg)])) as Record<Platform, Verdict>;
     finding.flags.push({ flag, word: v, start: wd.start, end: wd.end, verdicts });
   }
   void flagsInWord;
@@ -248,6 +265,85 @@ function addFlags(db: Database, tool: string, wd: Word, finding: CommandFinding,
 
 function pos(p: { row: number; column: number }, offset?: Pos): Pos {
   return offset ? { row: p.row + offset.row, column: p.row === 0 ? p.column + offset.column : p.column } : { row: p.row, column: p.column };
+}
+
+/** On the right of `||` these are an error path, not a second way to do the same thing: `cmd || exit 1` still reports cmd. */
+const NOT_A_FALLBACK = new Set(['exit', 'return', 'die', 'fail', 'abort', 'false', 'true', 'echo', 'printf', ':']);
+
+interface Probe { kind: Exclude<Guard['kind'], 'or-fallback'>; tool: string; node: TSNode }
+interface GuardCandidate { kind: Guard['kind']; tools?: string[]; node: TSNode }
+
+const named = (n: TSNode | null | undefined): n is TSNode => !!n && n.isNamed;
+
+function statementCommand(n: TSNode): TSNode | null {
+  if (n.type === 'redirected_statement') { const b = n.childForFieldName('body'); return b ? statementCommand(b) : null; }
+  return n.type === 'command' ? n : null;
+}
+
+/** The "is X here?" questions a condition asks: command -v X, which X, type X, hash X, also inside an && chain. A negated one asks the opposite and is not a guard. */
+function probesIn(n: TSNode, out: Probe[] = []): Probe[] {
+  if (n.type === 'list') {
+    const ops = n.children.filter((k) => k && !k.isNamed).map((k) => k!.type);
+    if (ops.includes('&&') && !ops.includes('||')) for (const k of n.children) if (named(k)) probesIn(k, out);
+    return out;
+  }
+  const c = statementCommand(n);
+  if (!c) return out;
+  const nameNode = c.childForFieldName('name');
+  const name = nameNode ? resolveWord(nameNode.firstChild ?? nameNode).value : '';
+  const args = c.childrenForFieldName('argument').filter((a): a is TSNode => !!a).map((a) => resolveWord(a));
+  if (name === 'command') {
+    const x = args[1];
+    if (args[0]?.isStatic && (args[0].value === '-v' || args[0].value === '-V') && x?.isStatic) out.push({ kind: 'command-v', tool: x.value, node: c });
+  } else if (name === 'which' || name === 'type' || name === 'hash') {
+    const x = args.find((a) => a.isStatic && !a.value.startsWith('-'));
+    if (x) out.push({ kind: name, tool: x.value, node: c });
+  }
+  return out;
+}
+
+/**
+ * What, if anything, keeps this command from running where its tool is missing: the then-branch of an if (or elif)
+ * whose condition asked `command -v X`, the right of `command -v X &&`, or the right of `||`. Stops at the enclosing
+ * function or the top of the script; an else branch is not guarded by the condition that sent control there.
+ */
+function guardOf(cmd: TSNode): GuardCandidate | undefined {
+  let child: TSNode = cmd;
+  for (let node = cmd.parent; node; child = node, node = node.parent) {
+    if (node.type === 'function_definition' || node.type === 'program') return undefined;
+    if (node.type === 'list') {
+      const kids = node.children;
+      const at = kids.findIndex((k) => k?.id === child.id);
+      let op: string | undefined, opAt = -1;
+      for (let i = at - 1; i >= 0; i--) { const k = kids[i]; if (k && !k.isNamed && (k.type === '&&' || k.type === '||')) { op = k.type; opAt = i; break; } }
+      if (!op) continue; // the left-hand side runs unconditionally here; look further out
+      const left = kids.slice(0, opAt).filter(named);
+      if (op === '&&') {
+        const probes = left.flatMap((l) => probesIn(l));
+        if (probes.length) return { kind: probes[0]!.kind, tools: probes.map((p) => p.tool), node: probes[0]!.node };
+        continue;
+      }
+      const leftNode = left[left.length - 1];
+      if (leftNode) return { kind: 'or-fallback', node: leftNode };
+      continue;
+    }
+    if (node.type === 'if_statement' || node.type === 'elif_clause') {
+      // the condition is what comes before `then`: tree-sitter-bash names it on if_statement but not on elif_clause
+      const conds: TSNode[] = [];
+      for (const k of node.children) { if (!k) continue; if (!k.isNamed && k.type === 'then') break; if (k.isNamed) conds.push(k); }
+      if (conds.some((c) => c.id === child.id)) continue;
+      if (child.type === 'else_clause' || child.type === 'elif_clause') continue;
+      const probes = conds.flatMap((c) => probesIn(c));
+      if (probes.length) return { kind: probes[0]!.kind, tools: probes.map((p) => p.tool), node: probes[0]!.node };
+    }
+  }
+  return undefined;
+}
+
+function applyGuard(f: CommandFinding, g: GuardCandidate, offset: Pos | undefined): void {
+  if (g.kind === 'or-fallback' ? NOT_A_FALLBACK.has(f.name) : !g.tools?.includes(f.name)) return;
+  const first = g.node.text.split('\n', 1)[0]!.trim();
+  f.guard = { kind: g.kind, line: pos(g.node.startPosition, offset).row, text: first.length > 60 ? first.slice(0, 57) + '...' : first, ...(g.kind !== 'or-fallback' ? { tool: f.name } : {}) };
 }
 
 export function analyzeTree(tree: TSTree, db: Database, parser?: TSParser, via: string[] = [], offset?: Pos): Analysis {
@@ -263,7 +359,10 @@ export function analyzeTree(tree: TSTree, db: Database, parser?: TSParser, via: 
     if (!nameVal.isStatic) { commands.push({ name: nameNode.text, start, end, via, flags: [], notes: ['command name is not static: not checked'], checked: false }); continue; }
     const name = nameVal.value.replace(/^\\/, '').replace(/^.*\//, '');
     const words: Word[] = c.childrenForFieldName('argument').filter((a): a is TSNode => !!a).map((a) => { const r = resolveWord(a); return { ...r, start: pos(a.startPosition, offset), end: pos(a.endPosition, offset), type: a.type }; });
+    const g = guardOf(c);
+    const before = g ? new Set(commands) : undefined;
     analyzeWords(db, name, words, via, start, end, commands, parser);
+    if (g) for (const f of commands) if (!before!.has(f) && !f.guard) applyGuard(f, g, offset);
   }
   commands.sort((a, b) => a.start.row - b.start.row || a.start.column - b.start.column);
   const known = new Set(Object.keys(db.tools));
