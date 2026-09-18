@@ -89,9 +89,10 @@ npx github:barbarkaragul-oss/will-it-run-on-a-mac deploy.sh ci/    # files and d
 
 It exits 1 when something breaks, 0 when nothing does, and 2 when it could not run; `--json` prints the report, `--platforms macos` narrows it, `--no-fail` always exits 0.
 
-If your scripts are checked, you can say so in your README:
+To show it in your README, use two badges. The first is your workflow's own status badge: it turns red when the check finds something that breaks. The second is fixed and says what the scripts are checked with; on its own it does not change colour, so it should not stand without the first. The job summary of each run prints both with your repository and workflow file filled in.
 
 ```markdown
+[![scripts](https://github.com/OWNER/REPO/actions/workflows/scripts.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/scripts.yml)
 [![Will it run on a Mac?](https://img.shields.io/badge/will%20it%20run%20on%20a%20Mac%3F-checked%20in%20CI-2ea44f)](https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/)
 ```
 

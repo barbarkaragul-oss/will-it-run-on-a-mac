@@ -27385,6 +27385,13 @@ function platformLine(p, c) {
 }
 var SITE = "https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/";
 var BADGE_MARKDOWN = `[![Will it run on a Mac?](https://img.shields.io/badge/will%20it%20run%20on%20a%20Mac%3F-checked%20in%20CI-2ea44f)](${SITE})`;
+function badgeSnippet(repository, workflowRef) {
+  const m = repository && workflowRef ? /^(.+?)\/\.github\/workflows\/([^@/]+)@/.exec(workflowRef) : null;
+  const [repo, file] = m && m[1] === repository ? [repository, m[2]] : ["OWNER/REPO", "WORKFLOW.yml"];
+  const url = `https://github.com/${repo}/actions/workflows/${file}`;
+  return `[![scripts](${url}/badge.svg)](${url})
+${BADGE_MARKDOWN}`;
+}
 
 // src/action/main.ts
 var here = path6.dirname(fileURLToPath(import.meta.url));
@@ -27422,7 +27429,7 @@ async function writeSummary(r) {
     ]);
     if (rows.length > 200) s.addRaw(`\u2026and ${rows.length - 200} more in the JSON report.`, true);
   }
-  s.addRaw(`Paste a script at <a href="${SITE}">${SITE}</a> to see the full evidence for each flag. To show that your scripts are checked, add this to your README:`, true).addCodeBlock(BADGE_MARKDOWN, "markdown");
+  s.addRaw(`Paste a script at <a href="${SITE}">${SITE}</a> to see the full evidence for each flag. To show it in your README: the first badge is this workflow's status and turns red when something breaks; the second says what the scripts are checked with.`, true).addCodeBlock(badgeSnippet(process.env.GITHUB_REPOSITORY, process.env.GITHUB_WORKFLOW_REF), "markdown");
   await s.write();
 }
 async function run2() {

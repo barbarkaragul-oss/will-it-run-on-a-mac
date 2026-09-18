@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as core from '@actions/core';
 import * as glob from '@actions/glob';
-import { loadEngine, checkFiles, parsePlatforms, platformLine, PLATFORM_NAME, SITE, BADGE_MARKDOWN, type Finding, type Report } from './core.js';
+import { loadEngine, checkFiles, parsePlatforms, platformLine, PLATFORM_NAME, SITE, badgeSnippet, type Finding, type Report } from './core.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -47,8 +47,8 @@ async function writeSummary(r: Report): Promise<void> {
     ]);
     if (rows.length > 200) s.addRaw(`…and ${rows.length - 200} more in the JSON report.`, true);
   }
-  s.addRaw(`Paste a script at <a href="${SITE}">${SITE}</a> to see the full evidence for each flag. To show that your scripts are checked, add this to your README:`, true)
-    .addCodeBlock(BADGE_MARKDOWN, 'markdown');
+  s.addRaw(`Paste a script at <a href="${SITE}">${SITE}</a> to see the full evidence for each flag. To show it in your README: the first badge is this workflow's status and turns red when something breaks; the second says what the scripts are checked with.`, true)
+    .addCodeBlock(badgeSnippet(process.env.GITHUB_REPOSITORY, process.env.GITHUB_WORKFLOW_REF), 'markdown');
   await s.write();
 }
 

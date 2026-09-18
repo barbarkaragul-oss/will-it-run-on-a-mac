@@ -247,4 +247,17 @@ export function platformLine(p: Platform, c: PlatformCount): string {
 }
 
 export const SITE = 'https://barbarkaragul-oss.github.io/will-it-run-on-a-mac/';
+/** A fixed badge: says what the scripts are checked with and links here. It does not change colour; the workflow badge does. */
 export const BADGE_MARKDOWN = `[![Will it run on a Mac?](https://img.shields.io/badge/will%20it%20run%20on%20a%20Mac%3F-checked%20in%20CI-2ea44f)](${SITE})`;
+
+/**
+ * The two badges for a README: the workflow's own status badge, which turns red when the check fails, and the fixed one
+ * that says what the check is. In a run, GITHUB_REPOSITORY and GITHUB_WORKFLOW_REF name the repository and the workflow
+ * file ("owner/repo/.github/workflows/scripts.yml@refs/heads/main"), so the first badge can be written out for them.
+ */
+export function badgeSnippet(repository?: string, workflowRef?: string): string {
+  const m = repository && workflowRef ? /^(.+?)\/\.github\/workflows\/([^@/]+)@/.exec(workflowRef) : null;
+  const [repo, file] = m && m[1] === repository ? [repository, m[2]!] : ['OWNER/REPO', 'WORKFLOW.yml'];
+  const url = `https://github.com/${repo}/actions/workflows/${file}`;
+  return `[![scripts](${url}/badge.svg)](${url})\n${BADGE_MARKDOWN}`;
+}

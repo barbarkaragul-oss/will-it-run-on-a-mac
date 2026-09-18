@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { Parser, Language } from 'web-tree-sitter';
 import { analyzeScript, PLATFORMS } from '../src/engine/analyze.js';
-import { checkSource, checkFiles, parsePlatforms, platformLine, type Engine } from '../src/action/core.js';
+import { checkSource, checkFiles, parsePlatforms, platformLine, badgeSnippet, BADGE_MARKDOWN, type Engine } from '../src/action/core.js';
 import type { Database } from '../scripts/extract.js';
 import type { ShellsDatabase } from '../scripts/extract-shells.js';
 
@@ -126,4 +126,12 @@ test('totals add up over files, and unknown platforms are refused', () => {
   assert.throws(() => parsePlatforms('macos,windows'), /unknown platform "windows"/);
   assert.deepEqual(parsePlatforms(''), ['macos', 'alpine']);
   assert.deepEqual(parsePlatforms('alpine, ubuntu'), ['ubuntu', 'alpine'].filter((p) => PLATFORMS.includes(p as never)));
+});
+
+test('the badge snippet pairs the workflow\'s own status badge with the fixed one, filled in from the run', () => {
+  const s = badgeSnippet('octo/repo', 'octo/repo/.github/workflows/scripts.yml@refs/heads/main');
+  assert.equal(s.split('\n')[0], '[![scripts](https://github.com/octo/repo/actions/workflows/scripts.yml/badge.svg)](https://github.com/octo/repo/actions/workflows/scripts.yml)');
+  assert.equal(s.split('\n')[1], BADGE_MARKDOWN);
+  assert.match(badgeSnippet(undefined, undefined), /OWNER\/REPO\/actions\/workflows\/WORKFLOW\.yml/);
+  assert.match(badgeSnippet('octo/repo', 'other/repo/.github/workflows/x.yml@refs/heads/main'), /OWNER\/REPO/, 'a workflow from another repository is not this one');
 });
