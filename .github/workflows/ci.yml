@@ -27,7 +27,12 @@ jobs:
       - name: Built action must be committed
         run: |
           git diff --stat -- dist
-          git diff --quiet -- dist || { echo "dist/ is stale: run 'npm run build:action' and commit"; exit 1; }
+          if ! git diff --quiet -- dist; then
+            # the files and the first lines of the difference as an annotation, so it can be read without the log
+            detail=$( { git diff --stat -- dist; git diff -- dist/index.js dist/cli.js | head -40; } | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            echo "::error title=dist/ is stale::run 'npm run build:action' and commit%0A${detail}"
+            exit 1
+          fi
       # The action checks this repository's own sample, the way a workflow that uses it would:
       # the annotations and the job summary of this run are what a user of the action sees.
       - name: Run the action on the sample
