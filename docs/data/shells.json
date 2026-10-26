@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-19T14:49:17.055Z",
+ "generated_at": "2026-10-26T14:26:14.114Z",
  "shells": {
   "alpine": {
    "/bin/sh": {
@@ -108,15 +108,15 @@
   "ubuntu": {
    "/bin/bash": {
     "kind": "bash",
-    "version": "5.2.21(1)-release"
+    "version": "5.3.9(1)-release"
    },
    "/bin/sh": {
     "kind": "dash",
-    "version": "0.5.12-6ubuntu5"
+    "version": "0.5.12-12ubuntu3"
    },
    "/bin/dash": {
     "kind": "dash",
-    "version": "0.5.12-6ubuntu5"
+    "version": "0.5.12-12ubuntu3"
    },
    "/bin/zsh": {
     "kind": "zsh",
@@ -156,7 +156,7 @@
    },
    "/bin/ksh": {
     "kind": "ksh",
-    "version": "Version AJM 93u+m/1.0.8 2024-01-01"
+    "version": "Version AJM 93u+m/1.0.10 2024-08-01"
    }
   }
  },
@@ -292,7 +292,7 @@
     },
     "ubuntu|/bin/bash": {
      "exit": 0,
-     "stdout1": "5.2.21(1)-release|nozsh|noksh",
+     "stdout1": "5.3.9(1)-release|nozsh|noksh",
      "stderr1": ""
     },
     "ubuntu|/bin/sh": {
@@ -352,7 +352,7 @@
     },
     "ubuntu|/bin/ksh": {
      "exit": 0,
-     "stdout1": "nobash|nozsh|Version AJM 93u+m/1.0.8 2024-01-01",
+     "stdout1": "nobash|nozsh|Version AJM 93u+m/1.0.10 2024-08-01",
      "stderr1": ""
     }
    }
@@ -7548,14 +7548,14 @@
      "stderr1": ""
     },
     "ubuntu|/bin/sh": {
-     "exit": 2,
-     "stdout1": "",
-     "stderr1": "/bin/sh: 1: set: Illegal option -o pipefail"
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
     },
     "ubuntu|/bin/dash": {
-     "exit": 2,
-     "stdout1": "",
-     "stderr1": "/bin/dash: 1: set: Illegal option -o pipefail"
+     "exit": 0,
+     "stdout1": "ok",
+     "stderr1": ""
     },
     "ubuntu|/bin/zsh": {
      "exit": 0,
